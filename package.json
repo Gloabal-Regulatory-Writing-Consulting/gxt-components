@@ -64,7 +64,7 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@{darnold001}"
+    "registry": "https://npm.pkg.github.com/@gloabal-regulatory-writing-consulting"
   },
-  "name": "@darnold001/gxt-components"
+  "name": "@gloabal-regulatory-writing-consulting/gxt-components"
 }
