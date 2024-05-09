@@ -66,5 +66,5 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@{darnold001}"
   },
-  "name": "@{darnold001}/{GxT-Components}"
+  "name": "@darnold001/gxt-components"
 }
