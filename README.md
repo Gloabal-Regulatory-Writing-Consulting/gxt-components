@@ -3,7 +3,7 @@ GxT's Official Components Library
 
 ## Installation
 ```bash
-npm install @gxt/components
+npm install github:gloabal-regulatory-writing-consulting/gxt-components
 ```
 
 ## Usage
