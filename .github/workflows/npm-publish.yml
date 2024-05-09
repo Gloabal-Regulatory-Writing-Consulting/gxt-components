@@ -18,7 +18,7 @@ jobs:
           node-version: 18
           registry-url: https://registry.npmjs.org/
       - name: login to npm
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.GXT_COMPONENT_LIB}}" > ~/.npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_PUBLISH_TOKEN}}" > ~/.npmrc
 
       - name: Install dependencies
         run: npm install
@@ -26,4 +26,4 @@ jobs:
       - name: Publish to npm
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GXT_COMPONENT_LIB}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
