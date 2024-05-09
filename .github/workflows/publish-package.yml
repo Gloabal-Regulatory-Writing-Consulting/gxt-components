@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
-          scope: "@{darnold001}"
+          scope: "darnold001"
       - run: npm install
       - run: npm run test
       - run: npm run build
