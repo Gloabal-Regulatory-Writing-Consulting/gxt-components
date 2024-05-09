@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Component Library",
   "scripts": {
     "format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
@@ -67,5 +67,5 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@gloabal-regulatory-writing-consulting"
   },
-  "name": "@gloabal-regulatory-writing-consulting/gxt-components"
+  "name": "@global-exponential-technologies/gxt-components"
 }
