@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-          scope: "@global-xt"
+      - name: login to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.GXT_COMPONENT_LIB}}" > ~/.npmrc
 
       - name: Install dependencies
         run: npm install
