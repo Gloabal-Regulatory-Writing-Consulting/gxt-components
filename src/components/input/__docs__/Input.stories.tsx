@@ -11,6 +11,8 @@ type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
   args: {
+    inputType: "text",
+    label: "",
     primary: true,
     disabled: false,
     size: "small",
@@ -26,8 +28,19 @@ export const Label: Story = {
     onChange: (e) => console.log(e.target.value),
   },
 };
+export const Password: Story = {
+  args: {
+    inputType: "password",
+    label: "This is a label",
+    primary: false,
+    disabled: false,
+    size: "small",
+    onChange: (e) => console.log(e.target.value),
+  },
+};
 export const Disabled: Story = {
   args: {
+    label: "",
     primary: true,
     disabled: true,
     size: "small",

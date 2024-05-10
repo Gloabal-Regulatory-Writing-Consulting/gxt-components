@@ -11,14 +11,14 @@ export type InputProps = {
 };
 
 const StyledInput = styled.input<InputProps>`
+  width: 100%;
   border: 1px solid #ccc;
   line-height: 1;
   font-size: 15px;
   cursor: pointer;
-  font-weight: 700;
   border-radius: 10px;
   display: inline-block;
-  color: ${(props) => (props.primary ? "#fff" : "#000")};
+  color: ${(props) => (props.primary ? "grey" : "#000")};
   padding: ${(props) =>
     props.size === "small"
       ? "7px 25px 8px"
@@ -28,7 +28,6 @@ const StyledInput = styled.input<InputProps>`
 `;
 const StyledLabel = styled.label`
   font-size: 15px;
-  font-weight: bold;
   display: block;
   margin-bottom: 5px;
 `;

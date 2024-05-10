@@ -21,4 +21,9 @@ describe("Input component", () => {
     const input = screen.getByTestId("input");
     expect(input).toBeDisabled();
   });
+  it("Input should render password", () => {
+    render(<Input inputType="password" />);
+    const input = screen.getByTestId("input");
+    expect(input).toHaveAttribute("type", "password");
+  });
 });

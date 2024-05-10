@@ -2,11 +2,14 @@ import React, { FC } from "react";
 import Input, { InputProps } from "../Input";
 
 const Example: FC<InputProps> = ({
-  label = "This is a label",
+  label = "",
   disabled = false,
-  onChange = () => {},
+  onChange = (e) => {
+    console.log("onChange", e.target.value);
+  },
   primary = true,
   size = "small",
+  inputType = "text",
 }) => {
   return (
     <div
@@ -18,6 +21,7 @@ const Example: FC<InputProps> = ({
       }}
     >
       <Input
+        inputType={inputType}
         label={label}
         size={size}
         disabled={disabled}
