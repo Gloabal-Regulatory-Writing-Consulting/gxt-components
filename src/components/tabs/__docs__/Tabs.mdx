@@ -1,0 +1,41 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./Example.tsx";
+import * as Tabs from "./Tabs.stories.tsx";
+
+<Meta of={Tabs} title="Tab" />
+
+# Tabs
+
+Tabs component for displaying multiple tabs.
+
+#### Example
+
+<Canvas>
+  <Tabs
+    tabs={[
+      { title: "Tab 1", active: true, onClickHandler: () => console.log("Tab 1 clicked") },
+      { title: "Tab 2", active: false, onClickHandler: () => console.log("Tab 2 clicked") },
+      { title: "Tab 3", active: false, onClickHandler: () => console.log("Tab 3 clicked"), disabled: false },
+    ]}
+  />
+</Canvas>
+
+## Usage
+
+```tsx
+import React from "react";
+import Tabs, { TabsProps } from "./Tabs";
+
+const Example: React.FC = () => {
+  const tabs: TabProps[] = [
+    { title: "Tab 1", active: true, onClickHandler: () => console.log("Tab 1 clicked") },
+    { title: "Tab 2", active: false, onClickHandler: () => console.log("Tab 2 clicked") },
+    { title: "Tab 3", active: false, onClickHandler: () => console.log("Tab 3 clicked") },
+  ];
+
+  return (
+    <Tabs tabs={tabs} />
+  );
+};
+
+export default Example;
