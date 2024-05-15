@@ -1,53 +1,47 @@
-import React, { MouseEventHandler } from "react";
-import styled from "styled-components";
+import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import classes from "./Button.module.css";
 
-export type ButtonProps = {
-  text?: string;
-  primary?: boolean;
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "title"> {
+  loading?: boolean;
   disabled?: boolean;
-  size?: "small" | "medium" | "large";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-};
+  classNames?: string;
+  variant?: "primary" | "secondary" | "negative" | "positive";
+  children: ReactNode;
+}
 
-const StyledButton = styled.button<ButtonProps>`
-  border: 0;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  font-weight: bold;
-  border-radius: 10px;
-  display: inline-block;
-  color: ${(props) => (props.primary ? "#fff" : "#000")};
-  background-color: ${(props) => (props.primary ? "#FF5655" : "#f4c4c4")};
-  padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-        ? "9px 30px 11px"
-        : "14px 30px 16px"};
-`;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      loading = false,
+      disabled = false,
+      classNames = "",
+      variant = "primary",
+      children,
+      ...rest
+    }: ButtonProps,
+    ref: React.Ref<HTMLButtonElement>,
+  ) => {
+    const buttonClasses = {
+      primary: "primary-button",
+      secondary: "secondary-button",
+      negative: "negative-button",
+      positive: "positive-button",
+    };
 
-const Button: React.FC<ButtonProps> = ({
-  size,
-  primary,
-  disabled,
-  text,
-  onClick,
-  ...props
-}) => {
-  return (
-    <StyledButton
-      type="button"
-      onClick={onClick}
-      primary={primary}
-      disabled={disabled}
-      size={size}
-      {...props}
-    >
-      {text}
-    </StyledButton>
-  );
-};
+    const className = `${classes.button} ${classes[buttonClasses[variant]] || classes[buttonClasses.primary]} ${classNames} ${disabled ? "disabled" : ""} `;
 
+    return (
+      <button
+        ref={ref}
+        className={className}
+        disabled={loading || disabled}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  },
+);
+Button.displayName = "Button";
 export default Button;

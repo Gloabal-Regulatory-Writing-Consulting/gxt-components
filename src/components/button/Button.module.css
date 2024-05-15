@@ -1,0 +1,115 @@
+.button {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+
+  border-radius: 0.25rem;
+
+  /* shadow/sm */
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+
+  /* Body/Body bold */
+  font-family: Mulish;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  /* 1.5rem */
+  letter-spacing: 0.00119rem;
+}
+
+.primary-button {
+  background: var(--primary-200, #177BA6);
+  color: var(--system-50, #FFF);
+}
+
+.primary-button:hover {
+  font-weight: 700;
+  background: var(--primary-300, #115873);
+  color: var(--system-50, #FFF);
+}
+
+.primary-button:focus {
+  border: 2px solid var(--primary-200, #177BA6);
+  background: var(--primary-50, #2AACE2);
+  color: var(--system-50, #FFF);
+}
+
+.primary-button:disabled {
+  background: var(--neutral-50, #F9FAFB);
+  color: var(--neutral-50, #9CA3AF);
+}
+
+.secondary-button {
+  height: 2.625rem;
+  flex-shrink: 0;
+  border: 1px solid var(--neutral-50, #9CA3AF);
+  background: var(--system-50, #FFF);
+  color: var(--primary-200, #177BA6);
+}
+
+.secondary-button:hover {
+  height: 2.625rem;
+  flex-shrink: 0;
+  border: 1px solid var(--neutral-100, #1C99CE);
+  background: var(--system-50, #FFF);
+  color: var(--primary-200, #177BA6);
+}
+
+.secondary-button:focus {
+  height: 2.625rem;
+  flex-shrink: 0;
+  border: 2px solid var(--primary-200, #177BA6);
+  background: var(--system-50, #FFF);
+  color: var(--primary-200, #177BA6);
+}
+
+.secondary-button:disabled {
+  background: var(--neutral-50, #F9FAFB);
+  color: var(--neutral-200, #9CA3AF);
+}
+
+
+.negative-button {
+  background: var(--negative-100, #EF4444);
+  color: var(--system-50, #FFF);
+}
+
+.negative-button:hover {
+  background: var(--negative-200, #7F1D1D);
+  color: var(--system-50, #FFF);
+}
+
+.negative-button:focus {
+  border: 2px solid var(--negative-200, #7F1D1D);
+  background: var(--negative-50, #F87171);
+  color: var(--system-50, #FFF);
+}
+
+.negative-button:disabled {
+  background: var(--neutral-50, #F9FAFB);
+  color: var(--neutral-200, #9CA3AF);
+}
+
+.positive-button {
+  background: var(--positive-100, #059669);
+  color: var(--system-50, #FFF);
+}
+
+.positive-button:hover {
+  background: var(--positive-200, #065F46);
+  color: var(--system-50, #FFF);
+}
+
+.positive-button:focus {
+  border: 2px solid var(--positive-200, #065F46);
+  background: var(--positive-50, #34D399);
+  color: var(--positive-200, #065F46);
+}
+
+.positive-button:disabled {
+  background: var(--neutral-50, #F9FAFB);
+  color: var(--neutral-200, #9CA3AF);
+}
