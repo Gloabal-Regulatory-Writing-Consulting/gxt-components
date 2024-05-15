@@ -1,0 +1,48 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as Search from "./Search.stories.tsx";
+
+<Meta of={Search} title="Search" />
+
+# Search
+
+Search component with different props.
+
+#### Example
+
+<Canvas>
+  <Search/>
+</Canvas>
+
+## Usage
+
+```ts
+import Search from "sld-ui";
+
+const Example = () => {
+  const handleSearch = (searchTerm: string) => {
+    console.log("Search term:", searchTerm);
+    // Perform search operations here
+  };
+
+  return (
+    <Search
+      onChangeCallback={handleSearch}
+      placeholder="Type to search..."
+      debounceTime={500}
+    />
+  );
+};
+
+export default Example;
+```
+
+#### Arguments
+
+- **placeholder** _`string`_ - Placeholder text for the search input field.
+- **debounceTime** _`number`_ - The time in milliseconds to wait before triggering the search callback after a user stops typing.
+- **onChangeCallback** _`(searchTerm: string) => void`_ - A function that is called whenever the search term changes. It receives the current search term as a parameter.
+- **id** _`string`_ - The HTML ID attribute of the search input element.
+- **name** _`string`_ - The HTML name attribute of the search input element.
+- **className** _`string`_ - Additional CSS class names to apply to the search input.
+- **width** _`string`_ - The width of the search input field.
+- **...rest** - Additional HTML input attributes that can be passed to the underlying input element.
