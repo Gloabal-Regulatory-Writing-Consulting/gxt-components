@@ -1,0 +1,51 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as Dropdown from "./Dropdown.stories.tsx";
+
+<Meta of={Dropdown} title="Dropdown" />
+
+# Dropdown
+
+Dropdown component with different props.
+
+#### Example
+
+<Canvas of={Dropdown.DropdownSelect}/>
+## Usage
+
+```ts
+import Dropdown from "sld-ui";
+
+const Example = () => {
+  const handleSelect = (selectedOption: string) => {
+    console.log("Selected option:", selectedOption);
+    // Handle selected option here
+  };
+
+  const renderOption = (option: string | null) => {
+    return option ? <span>{option}</span> : null;
+  };
+
+  return (
+    <Dropdown
+      type="select"
+      options={["Option 1", "Option 2", "Option 3"]}
+      onSelect={handleSelect}
+      renderOption={renderOption}
+      label="Select an option"
+    />
+  );
+};
+
+export default Example;
+```
+
+
+
+#### Arguments
+
+- **type** _`"select" | "button"`_ -  Type of the dropdown button.
+- **options** _`T[]`_ - An array of options to be displayed in the dropdown.
+- **onSelect** _`(option: T) => void`_ - A function that is called whenever an option is selected. It receives the selected option as a parameter.
+- **renderOption** _`(option: T | null) => ReactNode`_ - A function that returns the JSX to render for each option.
+- **disabled** _`boolean`_ - Whether the dropdown button is disabled or not.
+- **label** _`string`_ - Label text for the dropdown button.

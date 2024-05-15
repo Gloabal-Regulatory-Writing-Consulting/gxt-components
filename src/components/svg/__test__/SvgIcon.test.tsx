@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import SvgIcon, { IconType } from "../SvgIcon";
 
-describe("Search Component", () => {
+describe("SVG Component", () => {
   Object.values(IconType).forEach((iconType) => {
     it(`should render correct SVG icon for ${iconType}`, () => {
       const { container } = render(<SvgIcon iconType={iconType} />);
