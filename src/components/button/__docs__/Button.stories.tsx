@@ -1,38 +1,42 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Example from "./Example";
 
-const meta: Meta<typeof Example> = {
+import Button from "../Button";
+
+const meta: Meta<typeof Button> = {
   title: "Button",
-  component: Example,
+  component: Button,
 };
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+
+type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   args: {
-    text: "Button",
-    primary: true,
+    variant: "primary",
     disabled: false,
-    size: "small",
-    onClick: () => console.log("Button"),
+    children: "Button",
   },
 };
 export const Secondary: Story = {
   args: {
-    text: "Button",
-    primary: false,
+    variant: "secondary",
     disabled: false,
-    size: "small",
-    onClick: () => console.log("Button"),
+    children: "Button",
   },
 };
-export const Disabled: Story = {
+export const Negative: Story = {
   args: {
-    text: "Button",
-    primary: true,
-    disabled: true,
-    size: "small",
-    onClick: () => console.log("Button"),
+    variant: "negative",
+    disabled: false,
+    children: "Button",
+  },
+};
+
+export const Positive: Story = {
+  args: {
+    variant: "positive",
+    disabled: false,
+    children: "Button",
   },
 };
