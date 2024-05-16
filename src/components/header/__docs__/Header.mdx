@@ -1,0 +1,40 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as Header from "./Header.stories.tsx";
+
+<Meta of={Header} title="Header" />
+
+# Header
+
+Header component
+
+#### Example
+
+<Canvas>
+  <Header/>
+</Canvas>
+
+## Usage
+
+```ts
+import { Header } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+ const Default = () => (
+  <Header>
+    <Header.Heading>Upload Documents</Header.Heading>
+    <Header.Button>
+      <Button variant="secondary" children="Add to Catalog" />
+    </Header.Button>
+    <Header.Button>
+      <Button variant="secondary" children="Cancel" />
+    </Header.Button>
+    <Header.Breadcrumbs>Home {`  >  `} Upload Documents</Header.Breadcrumbs>
+  </Header>
+);
+export default ExampleButton;
+```
+
+#### Arguments
+
+- **Header.Heading** _`string`_ - Heading text for the Header component.
+- **Header.Button** _`element`_ - Buttons can be passed to header component or either svg icons.
+- **Header.Breadcrumbs** _`element`_ - breadcrum component can be passed to the Breadcrumbs .
+
