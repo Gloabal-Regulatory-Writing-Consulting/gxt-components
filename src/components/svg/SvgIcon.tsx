@@ -8,6 +8,7 @@ export enum IconType {
   FIRST_PAGE = "firstpage",
   LAST_PAGE = "lastpage",
   SMILEYFACE = "smileyface",
+  PENCIL = "pencil",
 }
 
 export interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
@@ -137,6 +138,20 @@ const SvgIcon: FC<SvgIconProps> = ({
           d="M7 11H8.5V12.5V13.4062L11.875 10L8.5 6.625V7.5V9H7H4.5V11H7ZM12.9375 11.0625L9 15H8.5H7V14V13.5V12.5H5.5H4.5H3V11V9V7.5H4.5H5.5H7V6.5V6V5H8.5H9L12.9375 8.96875L14 10L12.9375 11.0625ZM15.5 4.75V4H17V4.75V15.25V16H15.5V15.25V4.75Z"
           fill={rest?.fill || "var(--primary-300, #115873)"}
         />
+      </svg>
+    ),
+    [IconType.PENCIL]: (
+      <svg
+        stroke="currentColor"
+        fill="currentColor"
+        strokeWidth="0"
+        viewBox="0 0 16 16"
+        className={rest?.className}
+        height={size || "16"}
+        width={size || "16"}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
       </svg>
     ),
   };

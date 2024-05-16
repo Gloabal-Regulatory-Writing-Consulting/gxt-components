@@ -1,0 +1,61 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as Avatar from "./Avatar.stories.tsx";
+
+<Meta of={Avatar} title="Avatar" />
+
+# Avatar
+
+Avatar component with different props.
+
+#### Example
+
+<Canvas>
+  <Avatar
+    size="large"
+    user={{ firstName: "John", lastName: "Doe", avatar: "avatar.jpg" }}
+    isExpanded={false}
+    imageUrl="image.jpg"
+    onClickHandler={() => {}}
+    handleImageUpload={(e) => {}}
+  />
+</Canvas>
+
+## Usage
+
+```tsx
+import Avatar from "sld-ui";
+
+const Example = () => {
+  const onClickHandler = () => {
+    // Handle on click of avatar
+  };
+
+  const handleImageUpload = (e) => {
+    // Handle image upload
+  };
+
+  return (
+    <Avatar
+      size="small"
+      user={{ firstName: "John", lastName: "Doe", avatar: "avatar.jpg" }}
+      isExpanded={false}
+      imageUrl="image.jpg"
+      onClickHandler={onClickHandler}
+      handleImageUpload={handleImageUpload}
+    />
+  );
+};
+
+export default Example;
+```
+
+
+#### Arguments
+
+- **size** _`"small" | "large"`_ - Size of the avatar.
+- **user** _`UserObj`_ - User object containing user information.
+- **isExpanded** _`boolean`_ - Whether the avatar is expanded or not.
+- **imageUrl** _`string`_ - URL of the image to display as avatar.
+- **onClickHandler** _`() => void`_ - Callback function for handling click event.
+- **handleImageUpload** _`(e: ChangeEvent<HTMLInputElement>) => void`_ - Callback function for handling image upload.
+
