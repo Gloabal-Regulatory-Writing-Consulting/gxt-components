@@ -1,41 +1,40 @@
-import React, { ChangeEventHandler } from "react";
+import React, { InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
-export type InputProps = {
+export interface InputProps extends InputHTMLAttributes<HTMLButtonElement> {
   label?: string;
   inputType?: "text" | "password" | "email" | "number";
   primary?: boolean;
-  disabled?: boolean;
-  size?: "small" | "medium" | "large";
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-};
+  inputSize?: "small" | "medium" | "large";
+}
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
-  border: 1px solid #ccc;
+  border: 0.0625rem solid #ccc;
   line-height: 1;
-  font-size: 15px;
+  font-size: 0.9375rem;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   display: inline-block;
   color: ${(props) => (props.primary ? "grey" : "#000")};
   padding: ${(props) =>
-    props.size === "small"
-      ? "7px 25px 8px"
-      : props.size === "medium"
-        ? "9px 30px 11px"
-        : "14px 30px 16px"};
+    props.inputSize === "small"
+      ? "0.4375rem 1.5625rem 0.5rem"
+      : props.inputSize === "medium"
+        ? "0.5625rem 1.875rem 0.6875rem"
+        : "0.875rem 1.875rem 1rem"};
 `;
+
 const StyledLabel = styled.label`
-  font-size: 15px;
+  font-size: 0.9375rem;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
 `;
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 `;
 
 const Input: React.FC<InputProps> = ({
@@ -44,7 +43,6 @@ const Input: React.FC<InputProps> = ({
   size,
   primary,
   disabled,
-  onChange,
   ...props
 }) => {
   return (
@@ -58,9 +56,9 @@ const Input: React.FC<InputProps> = ({
         data-testid="input"
         id={label}
         type={inputType}
-        onChange={onChange}
         primary={primary}
         disabled={disabled}
+        autoComplete={props.autoComplete || "off"}
         size={size}
         {...props}
       />

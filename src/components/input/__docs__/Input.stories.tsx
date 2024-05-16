@@ -15,7 +15,7 @@ export const Primary: Story = {
     label: "",
     primary: true,
     disabled: false,
-    size: "small",
+    inputSize: "small",
     onChange: (e) => console.log(e.target.value),
   },
 };
@@ -24,7 +24,7 @@ export const Label: Story = {
     label: "This is a label",
     primary: false,
     disabled: false,
-    size: "small",
+    inputSize: "small",
     onChange: (e) => console.log(e.target.value),
   },
 };
@@ -34,7 +34,7 @@ export const Password: Story = {
     label: "This is a label",
     primary: false,
     disabled: false,
-    size: "small",
+    inputSize: "small",
     onChange: (e) => console.log(e.target.value),
   },
 };
@@ -43,7 +43,7 @@ export const Disabled: Story = {
     label: "",
     primary: true,
     disabled: true,
-    size: "small",
+    inputSize: "small",
     onChange: (e) => console.log(e.target.value),
   },
 };
