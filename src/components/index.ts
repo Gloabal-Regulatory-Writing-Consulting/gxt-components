@@ -4,3 +4,5 @@ export * from "./tab";
 export * from "./tabs";
 export * from "./search";
 export * from "./svg";
+export * from "./header";
+
