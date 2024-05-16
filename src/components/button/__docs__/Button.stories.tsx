@@ -15,27 +15,21 @@ export const Primary: Story = {
   args: {
     variant: "primary",
     disabled: false,
-    loading: false,
     children: "Button",
-    onClick: () => console.log("Button"),
   },
 };
 export const Secondary: Story = {
   args: {
     variant: "secondary",
     disabled: false,
-    loading: false,
     children: "Button",
-    onClick: () => console.log("Button"),
   },
 };
 export const Negative: Story = {
   args: {
     variant: "negative",
     disabled: false,
-    loading: false,
     children: "Button",
-    onClick: () => console.log("Button"),
   },
 };
 
@@ -43,8 +37,6 @@ export const Positive: Story = {
   args: {
     variant: "positive",
     disabled: false,
-    loading: false,
     children: "Button",
-    onClick: () => console.log("Button"),
   },
 };

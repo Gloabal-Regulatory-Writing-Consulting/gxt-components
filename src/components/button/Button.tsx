@@ -1,11 +1,7 @@
 import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import styled from "styled-components";
 
-export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "title"> {
-  loading?: boolean;
-  disabled?: boolean;
-  classNames?: string;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "negative" | "positive";
   children: ReactNode;
 }
@@ -35,11 +31,13 @@ const StyledButton = styled.button<ButtonProps>`
 
 const PrimaryStyledButton = styled(StyledButton)`
   background: var(--primary-200, #177ba6);
+  border-color: var(--primary-200, #177ba6);
   color: var(--system-50, #fff);
 
   &:hover {
     font-weight: 700;
     background: var(--primary-300, #115873);
+    border-color: var(--primary-300, #115873);
     color: var(--system-50, #fff);
   }
 
@@ -51,6 +49,7 @@ const PrimaryStyledButton = styled(StyledButton)`
 
   &:disabled {
     background: var(--neutral-50, #f9fafb);
+    border-color: var(--neutral-50, #f9fafb);
     color: var(--neutral-50, #9ca3af);
   }
 `;
@@ -73,16 +72,19 @@ const SecondaryStyledButton = styled(StyledButton)`
 
   &:disabled {
     background: var(--neutral-50, #f9fafb);
+    border-color: var(--neutral-50, #f9fafb);
     color: var(--neutral-200, #9ca3af);
   }
 `;
 
 const NegativeStyledButton = styled(StyledButton)`
   background: var(--negative-100, #ef4444);
+  border-color: var(--negative-100, #ef4444);
   color: var(--system-50, #fff);
 
   &:hover {
     background: var(--negative-200, #7f1d1d);
+    border-color: var(--negative-200, #7f1d1d);
   }
 
   &:focus {
@@ -92,16 +94,19 @@ const NegativeStyledButton = styled(StyledButton)`
 
   &:disabled {
     background: var(--neutral-50, #f9fafb);
+    border-color: var(--neutral-50, #f9fafb);
     color: var(--neutral-200, #9ca3af);
   }
 `;
 
 const PositiveStyledButton = styled(StyledButton)`
   background: var(--positive-100, #059669);
+  border-color: var(--positive-100, #059669);
   color: var(--system-50, #fff);
 
   &:hover {
     background: var(--positive-200, #065f46);
+    border-color: var(--positive-200, #065f46);
   }
 
   &:focus {
@@ -112,19 +117,14 @@ const PositiveStyledButton = styled(StyledButton)`
 
   &:disabled {
     background: var(--neutral-50, #f9fafb);
+    border-color: var(--neutral-50, #f9fafb);
     color: var(--neutral-200, #9ca3af);
   }
 `;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      loading = false,
-      disabled = false,
-      variant = "primary",
-      children,
-      ...rest
-    }: ButtonProps,
+    { variant = "primary", children, ...rest }: ButtonProps,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
     const StyledComponent = {
@@ -137,7 +137,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const ButtonComponent = StyledComponent[variant];
 
     return (
-      <ButtonComponent ref={ref} disabled={loading || disabled} {...rest}>
+      <ButtonComponent ref={ref} {...rest}>
         {children}
       </ButtonComponent>
     );

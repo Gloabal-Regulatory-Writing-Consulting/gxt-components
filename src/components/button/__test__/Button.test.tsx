@@ -1,30 +1,13 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import React from "react";
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
+import "jest-styled-components";
 
 import Button from "../Button";
 
-export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "title"> {
-  title: string | ReactNode;
-  loading?: boolean;
-  disabled?: boolean;
-  classNames?: string;
-  variant?: "primary" | "secondary" | "negative" | "positive";
-}
-
 describe("Button component", () => {
   it("Button should not render when disabled and loading", () => {
-    render(
-      <Button disabled loading>
-        Click me
-      </Button>,
-    );
-    const button = screen.queryByRole("button");
-    expect(button).toBeDisabled();
-  });
-  it("Button should not render when loading", () => {
-    render(<Button loading>Click me</Button>);
+    render(<Button disabled>Click me</Button>);
     const button = screen.queryByRole("button");
     expect(button).toBeDisabled();
   });
@@ -43,6 +26,28 @@ describe("Button component", () => {
     const title = <span>Click me</span>;
     render(<Button>{title}</Button>);
     const button = screen.getByRole("button");
-    expect(button.children[0]).toHaveTextContent("Click me");
+    expect(button).toHaveTextContent("Click me");
+  });
+  it("Button should render when variant is primary", () => {
+    const { asFragment } = render(<Button variant="primary">Click Me</Button>);
+
+    expect(asFragment()).toMatchSnapshot("PrimaryButton");
+  });
+  it("Button should render when variant is secondary", () => {
+    const { asFragment } = render(
+      <Button variant="secondary">Click Me</Button>,
+    );
+
+    expect(asFragment()).toMatchSnapshot("SecondaryButton");
+  });
+  it("Button should render when variant is negative", () => {
+    const { asFragment } = render(<Button variant="negative">Click Me</Button>);
+
+    expect(asFragment()).toMatchSnapshot("NegativeButton");
+  });
+  it("Button should render when variant is positive", () => {
+    const { asFragment } = render(<Button variant="positive">Click Me</Button>);
+
+    expect(asFragment()).toMatchSnapshot("PositiveButton");
   });
 });

@@ -23,12 +23,12 @@ const ExampleButton = () => {
 
   return (
     <Button
-      title="Button"
       onClick={handleClick}
       disabled={false}
-      size="medium"
       variant="primary"
-    />
+    >
+      Click me
+    </Button>
   );
 };
 
@@ -37,9 +37,6 @@ export default ExampleButton;
 
 #### Arguments
 
-- **title** - Text or node to render inside the button.
-- **loading** -  A boolean indicating whether to show a loading spinner in the button.
 - **disabled** -  A boolean indicating whether the button should be disabled.
-- **classNames** - Additional CSS classes to apply to the button.
 - **variant** `"primary" | "secondary" | "negative" | "positive"` - The style variant of the button.
 - **onClick** - Function called when the button is clicked. It receives a MouseEventHandler for handling the click event on the button element.
