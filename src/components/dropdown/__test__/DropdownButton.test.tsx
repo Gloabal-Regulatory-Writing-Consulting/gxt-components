@@ -1,9 +1,9 @@
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { render, fireEvent, screen } from "@testing-library/react";
-import DropdownButton from "../DropdownButton";
+import Dropdown from "../Dropdown";
 
-describe("DropdownButton component", () => {
+describe("Dropdown component", () => {
   const options = ["Option 1", "Option 2", "Option 3"];
   const renderOption = vi.fn((option) => <div>{option}</div>);
   const onSelect = vi.fn();
@@ -14,7 +14,7 @@ describe("DropdownButton component", () => {
 
   it("renders correctly with select type", () => {
     render(
-      <DropdownButton
+      <Dropdown
         type="select"
         options={options}
         renderOption={renderOption}
@@ -31,7 +31,7 @@ describe("DropdownButton component", () => {
 
   it("renders correctly with button type", () => {
     render(
-      <DropdownButton
+      <Dropdown
         type="button"
         options={options}
         renderOption={renderOption}
@@ -44,7 +44,7 @@ describe("DropdownButton component", () => {
 
   it("calls onSelect when an option is selected", () => {
     render(
-      <DropdownButton
+      <Dropdown
         type="select"
         options={options}
         renderOption={renderOption}
@@ -60,7 +60,7 @@ describe("DropdownButton component", () => {
 
   it("disables button when disabled prop is true", () => {
     render(
-      <DropdownButton
+      <Dropdown
         type="button"
         options={options}
         renderOption={renderOption}

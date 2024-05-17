@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Search Component > should render correct SVG icon for chevrondown 1`] = `
+exports[`SVG Component > should render correct SVG icon for chevrondown 1`] = `
 <div>
   <svg
     fill="none"
@@ -24,7 +24,7 @@ exports[`Search Component > should render correct SVG icon for chevrondown 1`] =
 </div>
 `;
 
-exports[`Search Component > should render correct SVG icon for search 1`] = `
+exports[`SVG Component > should render correct SVG icon for search 1`] = `
 <div>
   <svg
     class=""
