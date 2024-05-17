@@ -9,11 +9,12 @@ describe('Avatar', () => {
     lastName: 'Doe',
   };
 
+  const defaultProps: AvatarProps = {
+    size: 'small',
+    user: mockUser,
+  };
+
   const renderComponent = (props?: Partial<AvatarProps>) => {
-    const defaultProps: AvatarProps = {
-      size: 'small',
-      user: mockUser,
-    };
     return render(<Avatar {...defaultProps} {...props} />);
   };
 
@@ -61,5 +62,15 @@ describe('Avatar', () => {
       expect(userName).toBeInTheDocument();
       expect(viewProfileText).toBeInTheDocument();
     });
+  });
+
+  it("Avatar should render with a specific size", () => {
+    const { asFragment } = render(<Avatar {...defaultProps} size="large" />);
+    expect(asFragment()).toMatchSnapshot("AvatarLargeSize");
+  });
+
+  it("Avatar should render with a specific size", () => {
+    const { asFragment } = render(<Avatar {...defaultProps} size="small" />);
+    expect(asFragment()).toMatchSnapshot("AvatarLargeSize");
   });
 });

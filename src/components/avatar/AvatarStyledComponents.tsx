@@ -1,27 +1,11 @@
 import styled, { css } from "styled-components";
 import { SvgIcon } from "../svg";
 
-export const theme = {
-  fontSizes: {
-    small: "0.8rem",
-    medium: "1rem",
-    large: "1.5rem",
-    xLarge: "2.25rem",
-  },
-  lineHeights: {
-    small: "0.4rem",
-    medium: "0.8rem",
-    large: "1rem",
-    xLarge: "2.5rem",
-  },
-};
-
 export const AvatarContainer = styled.div`
   display: flex;
   align-items: center;
 
   &.expanded-avatar {
-    margin-left: 1rem;
     transition: width 0.3s ease;
   }
 `;
@@ -30,44 +14,41 @@ export const AvatarIcon = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  gap: 0.75rem;
 `;
 
 export const AvatarBox = styled.div`
   position: relative;
 `;
 
-export const AvatarButton = styled.button<{ size: "small" | "large" }>`
-  border-style: solid;
-  border-width: 1px;
-  border-color: #78858e;
-  border-radius: 9999px;
-  background-position: center;
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
+export const AvatarButton = styled.div<{ size: "small" | "large" }>`
+  background: var(--Semantic-Tokens-Fills-Component-Primary-primary-default, #177BA6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: clip;
 
   ${({ size }) =>
     size === "small" &&
     css`
-      height: 2rem;
-      width: 2rem;
-      padding: 0 0;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
     `}
 
   ${({ size }) =>
     size === "large" &&
     css`
-      height: 4.25rem;
-      width: 4.5rem;
-      padding: 0 0;
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
     `}
-`;
 
-export const AvatarContent = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  background-size: contain;
+    ${AvatarContainer}:hover & {
+    border: 2px solid var(--Semantic-Tokens-Borders-Primary-border-primary-default, #177BA6);
+  }
 `;
 
 export const AvatarText = styled.p<{
@@ -75,46 +56,61 @@ export const AvatarText = styled.p<{
   size: "small" | "large";
 }>`
   color: #000;
-  margin-left: 0.5rem;
+  margin: 0;
 
   ${({ weight }) =>
     weight === "bold" &&
     css`
-      font-weight: bold;
+      font-weight: 700;
+    `}
+
+  ${({ weight }) =>
+    weight === "normal" &&
+    css`
+      font-weight: 400;
+      ${AvatarContainer}:focus & {
+        color: var(--Semantic-Tokens-Text-text-medium, #9CA3AF);
+      }
     `}
 
   ${({ size }) =>
     size === "small" &&
     css`
-      font-size: ${({ theme }) => theme.fontSizes.small};
-      line-height: ${({ theme }) => theme.lineHeights.small};
+    font-size: 1rem;
+    line-height: 150%;
     `}
 
   ${({ size }) =>
     size === "large" &&
     css`
-      font-size: ${({ theme }) => theme.fontSizes.large};
-      line-height: ${({ theme }) => theme.lineHeights.large};
+      font-size: 2rem;
+      line-height: 150%;
     `}
 `;
 
 export const UserInitials = styled.div<{ size: "small" | "large" }>`
-  width: 100%;
-  align-items: center;
-  color: slate-300;
+  color: var(--Semantic-Tokens-Text-text-light, #FFF);
+  text-align: center;
+
+  font-family: Mulish;
+  font-style: normal;
+  line-height: 150%;
+
 
   ${({ size }) =>
     size === "small" &&
     css`
-      font-size: ${({ theme }) => theme.fontSizes.medium};
-      line-height: ${({ theme }) => theme.lineHeights.medium};
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.014px;
     `}
 
   ${({ size }) =>
     size === "large" &&
     css`
-      font-size: ${({ theme }) => theme.fontSizes.xLarge};
-      line-height: ${({ theme }) => theme.lineHeights.xLarge};
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.024px;
     `}
 `;
 
@@ -129,12 +125,12 @@ export const StyledIcon = styled(SvgIcon)`
   position: absolute;
   bottom: -8px;
   right: ${({ size }) => (size === 8 ? "0" : "5px")};
-  border-radius: 9999px;
+  border-radius: 50%;
   background-color: lightgrey;
   cursor: pointer;
 
   &:hover {
-    background-color: primary_bg_color;
+    background-color: var(--primary-50, #1C99CE);;
     color: white;
   }
 `;

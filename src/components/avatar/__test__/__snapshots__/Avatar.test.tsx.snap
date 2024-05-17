@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-aYaIB iAVyJI undefined"
+  >
+    <div
+      class="sc-gEvDqW KVfas"
+      data-testid="avatarIcon"
+    >
+      <div
+        class="sc-eqUzNf engioi"
+      >
+        <div
+          class="sc-fqkwJk eUDqXp avatar-button"
+        >
+          <div
+            class="sc-iGgVNO gqEbas"
+            data-testid="user-initials"
+          >
+            JD
+          </div>
+        </div>
+        <label
+          for="img"
+        >
+            
+        </label>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 2`] = `
+<DocumentFragment>
+  <div
+    class="sc-aYaIB iAVyJI undefined"
+  >
+    <div
+      class="sc-gEvDqW KVfas"
+      data-testid="avatarIcon"
+    >
+      <div
+        class="sc-eqUzNf engioi"
+      >
+        <div
+          class="sc-fqkwJk ffocQB avatar-button"
+        >
+          <div
+            class="sc-iGgVNO fnVQo"
+            data-testid="user-initials"
+          >
+            JD
+          </div>
+        </div>
+        <label
+          for="img"
+        >
+            
+        </label>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,15 +1,12 @@
 import React, { ChangeEvent, useMemo } from "react";
 import { IconType } from "../svg/SvgIcon";
-import { ThemeProvider } from "styled-components";
 import {
   AvatarBox,
   AvatarButton,
   AvatarContainer,
-  AvatarContent,
   AvatarIcon,
   AvatarText,
   StyledIcon,
-  theme,
   UserIcon,
   UserInitials,
 } from "./AvatarStyledComponents";
@@ -47,21 +44,21 @@ const Avatar: React.FC<AvatarProps> = ({
   }, [firstName, lastName]);
 
   const noIcon: JSX.Element = (
-    <UserInitials size={size}>{userInitials}</UserInitials>
+    <UserInitials data-testid="user-initials" size={size}>{userInitials}</UserInitials>
   );
 
   const userIcon: JSX.Element = (
     <UserIcon src={imageUrl || avatar} alt="Avatar" />
   );
 
-  const userAvatar = () => {
+  const userAvatar = useMemo(() => {
     switch (true) {
-      case !!imageUrl || !!avatar:
-        return userIcon;
-      default:
-        return noIcon;
+        case !!imageUrl || !!avatar:
+            return userIcon;
+        default:
+            return noIcon;
     }
-  };
+}, [imageUrl, avatar, userIcon, noIcon]);
 
   const editImage = handleImageUpload ? (
     <>
@@ -82,26 +79,24 @@ const Avatar: React.FC<AvatarProps> = ({
   ) : null;
 
   return (
-    <ThemeProvider theme={theme}>
-      <AvatarContainer className={`${isExpanded && "expanded-avatar"}`}>
-        <AvatarIcon data-testid="avatarIcon" onClick={onClickHandler}>
-          <AvatarBox>
-            <AvatarButton size={size} className={`avatar-button`}>
-              <AvatarContent>{userAvatar()}</AvatarContent>
-            </AvatarButton>
-            {<label htmlFor="img"> {editImage} </label>}
-          </AvatarBox>
-          {isExpanded && (
-            <div>
-              <AvatarText weight="bold" size={size}>
-                {userName}
-              </AvatarText>
-              <AvatarText size={size}>View profile</AvatarText>
-            </div>
-          )}
-        </AvatarIcon>
-      </AvatarContainer>
-    </ThemeProvider>
+    <AvatarContainer className={`${isExpanded && "expanded-avatar"}`}>
+      <AvatarIcon data-testid="avatarIcon" onClick={onClickHandler}>
+        <AvatarBox>
+          <AvatarButton size={size} className={`avatar-button`}>
+            {userAvatar}
+          </AvatarButton>
+          {<label htmlFor="img"> {editImage} </label>}
+        </AvatarBox>
+        {isExpanded && (
+          <div>
+            <AvatarText weight="bold" size={size}>
+              {userName}
+            </AvatarText>
+            <AvatarText weight="normal" size={size}>View profile</AvatarText>
+          </div>
+        )}
+      </AvatarIcon>
+    </AvatarContainer>
   );
 };
 
