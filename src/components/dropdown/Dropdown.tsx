@@ -20,6 +20,7 @@ export interface DropdownProps<T> {
   onSelect?: (option: T) => void;
   label?: string;
   initialValue?: T | null;
+  dropdownIcon?: boolean;
 }
 
 const Dropdown = <T,>({
@@ -30,6 +31,7 @@ const Dropdown = <T,>({
   renderOption = (option: T | null) => option?.toString(),
   label,
   initialValue = null,
+  dropdownIcon = true,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
@@ -89,16 +91,18 @@ const Dropdown = <T,>({
     <DropdownContainer ref={dropdownRef}>
       <CustomSelectButton onClick={toggleDropdown} disabled={disabled}>
         <SelectWrapper>{currentOption[type]}</SelectWrapper>
-        <IconWrapper disabled={disabled}>
-          <SvgIcon
-            iconType={IconType.ChevronDown}
-            fill={
-              disabled
-                ? "var(--neutral-200, #9CA3AF)"
-                : "var(--primary-50, #2AACE2)"
-            }
-          />
-        </IconWrapper>
+        {dropdownIcon && (
+          <IconWrapper disabled={disabled}>
+            <SvgIcon
+              iconType={IconType.ChevronDown}
+              fill={
+                disabled
+                  ? "var(--neutral-200, #9CA3AF)"
+                  : "var(--primary-50, #2AACE2)"
+              }
+            />
+          </IconWrapper>
+)}
       </CustomSelectButton>
       {isOpen && (
         <SelectItemsWrapper position={position}>
