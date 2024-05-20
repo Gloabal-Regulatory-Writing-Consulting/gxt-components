@@ -35,28 +35,32 @@ export const IconWrapper = styled.div<{ disabled: boolean }>`
 
 export const SelectItemsWrapper = styled.div<{ position?: DropdownPosition }>`
   position: absolute;
+  ${({ position }) => {
+    return `
+    top: ${position === "bottom" ? "100%" : "auto"};
+    bottom: ${position === "top" ? "100%" : "auto"};
+    ${position === "top" && `margin-bottom: 0.25rem;`};
+    ${position === "bottom" && `margin-top: 0.25rem;`};
+    `;
+  }}
+  left: 0;
   border-radius: 0.375rem;
   border: 1px solid var(--neutral-200, #9ca3af);
-  margin-top: 8px;
   background: var(--system-50, #fff);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   max-height: 12.5rem;
   overflow-y: auto;
-  ${({ position }) => position && position === "bottom" && `bottom: 45px;`}
 `;
 
-export const SelectItemWrapper = styled.div`
+export const SelectItemWrapper = styled.div<{ isActive: boolean }>`
   display: flex;
   padding: 0.75rem 1rem;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   border: none;
   cursor: pointer;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--neutral-200, #9ca3af);
   border-bottom: 1px solid var(--system-100, #f3f4f6);
 
@@ -67,6 +71,13 @@ export const SelectItemWrapper = styled.div`
     border-radius: 0 0 0.375rem 0.375rem;
     border-bottom: none;
   }
+
+  ${({ isActive }) =>
+    isActive &&
+    `
+    background-color: var(--primary-100, #cce4f6);
+    color: var(--primary-200, #177ba6);
+  `}
 
   &:hover {
     transition: border-color 0.3s;
@@ -79,36 +90,28 @@ export const SelectItemWrapper = styled.div`
 export const CustomSelectButton = styled.button<{
   disabled: boolean;
 }>`
-  display: inline-flex;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   position: relative;
-  width: auto;
+  width: fit-content;
   color: var(--neutral-200, #9ca3af);
   border: 1px solid var(--neutral-200, #9ca3af);
   border-radius: 0.375rem;
   padding: 0;
   background: var(--system-50, #fff);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  overflow: hidden;
 
-  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
-
-  ${({ disabled }) =>
-    !disabled &&
-    `
-    &:hover {
-      transition: border-color 0.3s;
-      color: var(--primary-200, #177ba6);
-      border: 1px solid var((--primary-200, #177ba6);
-    }
-  `}
+  &:not(:disabled):hover {
+    transition: border-color 0.3s;
+    color: var(--primary-200, #177ba6);
+    border: 1px solid var(--primary-200, #177ba6);
+  }
 `;
 
 export const DropdownContainer = styled.div`
+  display: inline-block;
   position: relative;
-  width: fit-content;
   color: var(--neutral-200, #9ca3af);
   font-size: 1rem;
   font-style: normal;

@@ -16,7 +16,7 @@ export interface DropdownProps<T> {
   disabled?: boolean;
   type: DropdownType;
   options: T[];
-  renderOption: (option: T | null) => ReactNode;
+  renderOption?: (option: T | null) => ReactNode;
   onSelect?: (option: T) => void;
   label?: string;
 }
@@ -31,7 +31,7 @@ const Dropdown = <T,>({
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
-    options.at(0) || null,
+    options?.at(0) || null,
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<DropdownPosition>("bottom");
@@ -40,7 +40,7 @@ const Dropdown = <T,>({
     if (dropdownRef.current && isOpen) {
       const buttonRect = dropdownRef.current.getBoundingClientRect();
       const bottomSpace = window.innerHeight - buttonRect.bottom;
-      setPosition(bottomSpace < 200 ? "bottom" : "top");
+      setPosition(bottomSpace < 200 ? "top" : "bottom");
     }
   }, [isOpen]);
 
@@ -103,6 +103,7 @@ const Dropdown = <T,>({
           {options.map((option, index) => (
             <SelectItemWrapper
               key={index}
+              isActive={type === "select" && option === selectedOption}
               onClick={() => handleItemClick(option)}
             >
               {renderOption(option)}
