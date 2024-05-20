@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 import Button from "../Button";
+import { SvgIcon } from "../../svg";
+import { IconType } from "../../svg/SvgIcon";
 
 const meta: Meta<typeof Button> = {
   title: "Button",
@@ -10,33 +13,38 @@ const meta: Meta<typeof Button> = {
 export default meta;
 
 type Story = StoryObj<typeof Button>;
-
 export const Primary: Story = {
   args: {
     variant: "primary",
     disabled: false,
     children: "Button",
+    iconButton: false,
   },
 };
 export const Secondary: Story = {
   args: {
+    ...Primary.args,
     variant: "secondary",
-    disabled: false,
-    children: "Button",
   },
 };
 export const Negative: Story = {
   args: {
+    ...Primary.args,
     variant: "negative",
-    disabled: false,
-    children: "Button",
   },
 };
 
 export const Positive: Story = {
   args: {
+    ...Primary.args,
     variant: "positive",
-    disabled: false,
-    children: "Button",
+  },
+};
+
+export const IconButton: Story = {
+  args: {
+    ...Primary.args,
+    iconButton: true,
+    children: <SvgIcon iconType={IconType.SMILEYFACE} />,
   },
 };
