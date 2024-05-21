@@ -2,6 +2,7 @@ import React from "react";
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Input from "../Input";
+import "jest-styled-components";
 
 describe("Input component", () => {
   it("Input should render correctly", () => {

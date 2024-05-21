@@ -8,7 +8,7 @@ const Example: FC<InputProps> = ({
     console.log("onChange", e.target.value);
   },
   primary = true,
-  size = "small",
+  inputSize = "small",
   inputType = "text",
 }) => {
   return (
@@ -23,7 +23,7 @@ const Example: FC<InputProps> = ({
       <Input
         inputType={inputType}
         label={label}
-        size={size}
+        inputSize={inputSize}
         disabled={disabled}
         onChange={onChange}
         primary={primary}
