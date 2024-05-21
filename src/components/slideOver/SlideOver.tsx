@@ -6,8 +6,8 @@ import { useSlots } from "../../utils/useSlots";
 type Position = "left" | "right";
 
 const SlideOverContainer = styled.div<{
-  isOpen: boolean;
-  position: Position;
+  $isOpen: boolean;
+  $position: Position;
   width: string;
 }>`
   display: flex;
@@ -21,14 +21,14 @@ const SlideOverContainer = styled.div<{
   z-index: 1000;
   height: 100vh;
   width: ${({ width }) => width};
-  ${({ position, isOpen, width }) => {
-    const slideOverPosition = position === "right" ? "right" : "left";
-    const slideOverPositionValue = isOpen ? "0" : `-${width}`;
+  ${({ $position, $isOpen, width }) => {
+    const slideOverPosition = $position === "right" ? "right" : "left";
+    const slideOverPositionValue = $isOpen ? "0" : `-${width}`;
 
     return `
     ${slideOverPosition}: ${slideOverPositionValue};
     transition: ${slideOverPosition} 0.3s ease-in-out;
-    border-${position === "right" ? "left" : "right"}: 1px solid var(--neutral-50, #9ca3af);
+    border-${$position === "right" ? "left" : "right"}: 1px solid var(--neutral-50, #9ca3af);
     `;
   }};
 `;
@@ -53,13 +53,13 @@ const Footer = styled.div`
   z-index: 1000;
 `;
 
-const SlideOverOverlay = styled.div<{ isOpen: boolean }>`
+const SlideOverOverlay = styled.div<{ $isOpen: boolean }>`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
-  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   transition: opacity 0.3s ease-in-out;
   z-index: 999;
 `;
@@ -104,8 +104,8 @@ const SlideOver: FC<SlideOverProps> & {
   const slideOverComponent = (
     <>
       <SlideOverContainer
-        isOpen={isOpen}
-        position={position}
+        $isOpen={isOpen}
+        $position={position}
         className={slideOverClasses}
         style={slideOverStyles}
         width={width}
@@ -118,7 +118,7 @@ const SlideOver: FC<SlideOverProps> & {
       </SlideOverContainer>
       {isOpen && overlay && (
         <SlideOverOverlay
-          isOpen={isOpen}
+          $isOpen={isOpen}
           onClick={onClose}
           className={overlayClasses}
           style={overlayStyles}
