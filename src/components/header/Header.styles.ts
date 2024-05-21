@@ -29,11 +29,10 @@ export const BreadcrumbsContainer = styled.div`
   letter-spacing: 0.00119rem;
 `;
 
-export const ButtonContainer = styled.div`
+export const ActionsContainer = styled.div`
   display: flex;
-  gap: 12px;
-  padding: 0px 0px 0px 40px;
-  margin-top: 2px;
+  align-items: flex-end;
+  gap: 1.25rem;
 `;
 
 export const MainContainer = styled.div`

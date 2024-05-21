@@ -1,73 +1,66 @@
-/* eslint-disable react/prop-types */
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import {
   MainContainer,
   Container,
   Heading,
   BreadcrumbsContainer,
-  ButtonContainer,
-} from "./HeaderStyledComponents";
+  ActionsContainer,
+} from "./Header.styles";
+import { useSlots } from "../../utils/useSlots";
 
-interface ButtonProps {
+interface ActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-interface HeadingProps {
+interface HeadingProps extends React.HTMLAttributes<HTMLDivElement> {
   children: string;
 }
 
-interface BreadcrumbsProps {
+interface BreadcrumbsProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export const Button: FC<ButtonProps> = ({ children }) => <>{children}</>;
-
-export const HeadingComponent: FC<HeadingProps> = ({ children }) => (
-  <Heading>{children}</Heading>
+export const Actions: FC<ActionsProps> = ({ children, ...rest }) => (
+  <ActionsContainer {...rest}>{children}</ActionsContainer>
 );
 
-export const Breadcrumbs: FC<BreadcrumbsProps> = ({ children }) => (
-  <BreadcrumbsContainer>{children}</BreadcrumbsContainer>
+export const HeadingComponent: FC<HeadingProps> = ({ children, ...rest }) => (
+  <Heading {...rest}>{children}</Heading>
 );
 
-interface HeaderProps {
+export const Breadcrumbs: FC<BreadcrumbsProps> = ({ children, ...rest }) => (
+  <BreadcrumbsContainer {...rest}>{children}</BreadcrumbsContainer>
+);
+
+interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
-export const Header: FC<HeaderProps> & {
+const Header: FC<HeaderProps> & {
   Heading: typeof HeadingComponent;
-  Button: typeof Button;
+  Actions: typeof Actions;
   Breadcrumbs: typeof Breadcrumbs;
-} = ({ children }) => {
-  const buttons: ReactNode[] = [];
-  let heading: ReactNode | null = null;
-  let breadcrumbs: ReactNode | null = null;
-
-  React.Children.forEach(children, (child) => {
-    if (React.isValidElement(child)) {
-      if (child.type === Button) {
-        buttons.push(child);
-      } else if (child.type === HeadingComponent) {
-        heading = child;
-      } else if (child.type === Breadcrumbs) {
-        breadcrumbs = child;
-      }
-    }
+} = ({ children, ...rest }: HeaderProps) => {
+  const [slots, restChildren] = useSlots(children, {
+    heading: HeadingComponent,
+    buttons: Actions,
+    breadcrumbs: Breadcrumbs,
   });
 
   return (
-    <MainContainer>
+    <MainContainer {...rest}>
       <Container>
-        {heading}
-        <ButtonContainer>{buttons}</ButtonContainer>
+        {slots.heading}
+        {slots.buttons}
       </Container>
-      {breadcrumbs}
+      {slots.breadcrumbs}
+      {restChildren}
     </MainContainer>
   );
 };
 
 Header.Heading = HeadingComponent;
-Header.Button = Button;
+Header.Actions = Actions;
 Header.Breadcrumbs = Breadcrumbs;
 
 export default Header;

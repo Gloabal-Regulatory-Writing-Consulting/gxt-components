@@ -1,58 +1,101 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import Header from "../Header";
+import Header, { Actions, HeadingComponent, Breadcrumbs } from "../Header";
 import "@testing-library/jest-dom";
 
-describe("Header Component", () => {
-  it("renders heading when provided", () => {
-    const headingText = "Test Heading";
-    const { getByText } = render(
-      <Header>
-        <Header.Heading>{headingText}</Header.Heading>
-      </Header>,
-    );
-    expect(getByText(headingText)).toBeInTheDocument();
-  });
-
-  it("renders multiple buttons", () => {
+describe("Header component", () => {
+  it("should render the children correctly", () => {
     render(
       <Header>
-        <Header.Button>Button 1</Header.Button>
+        <Header.Heading>Page Title</Header.Heading>
+        <Header.Actions>
+          <button>Action 1</button>
+          <button>Action 2</button>
+        </Header.Actions>
+        <Header.Breadcrumbs>
+          <a href="#">Home</a>
+          <span>/</span>
+          <a href="#">Page</a>
+        </Header.Breadcrumbs>
+        <div>Additional Content</div>
       </Header>,
     );
 
-    expect(screen.getByText("Button 1")).toBeInTheDocument();
+    expect(screen.getByText("Page Title")).toBeInTheDocument();
+    expect(screen.getAllByRole("button")).toHaveLength(2);
+    expect(screen.getAllByRole("link")).toHaveLength(2);
+    expect(screen.getByText("Additional Content")).toBeInTheDocument();
   });
 
-  it("renders breadcrumbs when provided", () => {
-    const breadcrumbText = "Home > Test";
-    const { getByText } = render(
-      <Header>
-        <Header.Breadcrumbs>{breadcrumbText}</Header.Breadcrumbs>
-      </Header>,
+  it("should render without any children", () => {
+    render(<Header />);
+    expect(screen.queryByText("Page Title")).not.toBeInTheDocument();
+    expect(screen.queryAllByRole("button")).toHaveLength(0);
+    expect(screen.queryAllByRole("link")).toHaveLength(0);
+    expect(screen.queryByText("Additional Content")).not.toBeInTheDocument();
+  });
+});
+
+describe("HeadingComponent", () => {
+  it("should render the heading correctly", () => {
+    render(<HeadingComponent>Page Title</HeadingComponent>);
+    expect(screen.getByText("Page Title")).toBeInTheDocument();
+  });
+
+  it("should apply additional props to the heading", () => {
+    render(
+      <HeadingComponent data-testid="custom-heading">
+        Page Title
+      </HeadingComponent>,
     );
-    expect(getByText(breadcrumbText)).toBeInTheDocument();
+    expect(screen.getByTestId("custom-heading")).toBeInTheDocument();
   });
+});
 
-  it("renders heading, button, and breadcrumbs together correctly", () => {
-    const headingText = "Test Heading";
-    const breadcrumbText = "Home > Test";
-    const { getByText } = render(
-      <Header>
-        <Header.Heading>{headingText}</Header.Heading>
-        <Header.Button>Button 1</Header.Button>
-        <Header.Breadcrumbs>{breadcrumbText}</Header.Breadcrumbs>
-      </Header>,
+describe("Actions", () => {
+  it("should render the actions correctly", () => {
+    render(
+      <Actions>
+        <button>Action 1</button>
+        <button>Action 2</button>
+      </Actions>,
     );
-
-    expect(getByText(headingText)).toBeInTheDocument();
-    expect(getByText("Button 1")).toBeInTheDocument();
-    expect(getByText(breadcrumbText)).toBeInTheDocument();
+    expect(screen.getAllByRole("button")).toHaveLength(2);
   });
 
-  it("renders without any children", () => {
-    const { container } = render(<Header />);
-    expect(container).toBeInTheDocument();
+  it("should apply additional props to the actions container", () => {
+    render(
+      <Actions data-testid="custom-actions">
+        <button>Action 1</button>
+        <button>Action 2</button>
+      </Actions>,
+    );
+    expect(screen.getByTestId("custom-actions")).toBeInTheDocument();
+  });
+});
+
+describe("Breadcrumbs", () => {
+  it("should render the breadcrumbs correctly", () => {
+    render(
+      <Breadcrumbs>
+        <a href="#">Home</a>
+        <span>/</span>
+        <a href="#">Page</a>
+      </Breadcrumbs>,
+    );
+    expect(screen.getAllByRole("link")).toHaveLength(2);
+    expect(screen.getByText("/")).toBeInTheDocument();
+  });
+
+  it("should apply additional props to the breadcrumbs container", () => {
+    render(
+      <Breadcrumbs data-testid="custom-breadcrumbs">
+        <a href="#">Home</a>
+        <span>/</span>
+        <a href="#">Page</a>
+      </Breadcrumbs>,
+    );
+    expect(screen.getByTestId("custom-breadcrumbs")).toBeInTheDocument();
   });
 });
