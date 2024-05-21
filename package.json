@@ -70,5 +70,9 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@gloabal-regulatory-writing-consulting"
   },
-  "name": "@gloabal-regulatory-writing-consulting/gxt-components"
+  "name": "@gloabal-regulatory-writing-consulting/gxt-components",
+  "dependencies": {
+    "@types/css-modules": "^1.0.5",
+    "react-paginate": "^8.2.0"
+  }
 }
