@@ -4,7 +4,7 @@ import styled from "styled-components";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "negative" | "positive";
   children: ReactNode;
-  iconButton?: boolean;
+  circular?: boolean;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -21,10 +21,10 @@ const StyledButton = styled.button<ButtonProps>`
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.00119rem;
-  ${({ iconButton }) => {
+  ${({ circular = false }) => {
     return `
-    padding: ${iconButton ? "1rem 1rem" : "0.5rem 1rem"};
-    border-radius: ${iconButton ? "50%" : "0.25rem"};
+    padding: ${circular ? "1rem 1rem" : "0.5rem 1rem"};
+    border-radius: ${circular ? "50%" : "0.25rem"};
     `;
   }}
 `;

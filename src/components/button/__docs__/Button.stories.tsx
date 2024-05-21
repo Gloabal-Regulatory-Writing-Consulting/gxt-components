@@ -18,7 +18,7 @@ export const Primary: Story = {
     variant: "primary",
     disabled: false,
     children: "Button",
-    iconButton: false,
+    circular: false,
   },
 };
 export const Secondary: Story = {
@@ -44,7 +44,7 @@ export const Positive: Story = {
 export const IconButton: Story = {
   args: {
     ...Primary.args,
-    iconButton: true,
+    circular: true,
     children: <SvgIcon iconType={IconType.SMILEYFACE} />,
   },
 };
