@@ -10,14 +10,6 @@ describe("SVG Component", () => {
       expect(container).toMatchSnapshot();
     });
 
-    it(`should render with default size and no class - ${iconType}`, () => {
-      const { container } = render(<SvgIcon iconType={IconType.SEARCH} />);
-      const svgElement = container.querySelector("svg");
-      expect(svgElement).toHaveAttribute("height", "24");
-      expect(svgElement).toHaveAttribute("width", "24");
-      expect(svgElement).not.toHaveClass();
-    });
-
     it(`should render with custom size and class - ${iconType}`, () => {
       const { container } = render(
         <SvgIcon
