@@ -5,4 +5,4 @@ export * from "./tabs";
 export * from "./search";
 export * from "./svg";
 export * from "./dropdown";
-export * from "./checkboxInput";
+export * from "./pagination";

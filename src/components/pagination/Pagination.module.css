@@ -1,0 +1,43 @@
+.paginated-box {
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.pages-count {
+    display: flex;
+    justify-content: center;
+    border-radius: 0.25rem;
+    width: 2.625rem;
+    height: 2.625rem;
+    align-items: center;
+    color: var(--neutral-400, #414141);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.00119rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pages-count>a {
+    padding: 0.625rem;
+}
+
+.active-page {
+    border: 2px solid var(--primary-100, #1C99CE);
+    background: var(--system-50, #FFF);
+}
+
+.active-page:hover {
+    background: var(--primary-300, #115873);
+    color: var(--system-50, #FFF);
+}
+
+.next-pre-btn>a {
+    display: flex;
+}

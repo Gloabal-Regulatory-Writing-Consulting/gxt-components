@@ -19,6 +19,7 @@ export interface DropdownProps<T> {
   renderOption?: (option: T | null) => ReactNode;
   onSelect?: (option: T) => void;
   label?: string;
+  initialValue?: T | null;
 }
 
 const Dropdown = <T,>({
@@ -28,10 +29,11 @@ const Dropdown = <T,>({
   onSelect,
   renderOption = (option: T | null) => option?.toString(),
   label,
+  initialValue = null,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
-    options?.at(0) || null,
+    initialValue || options?.at(0) || null,
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<DropdownPosition>("bottom");
