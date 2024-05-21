@@ -1,7 +1,7 @@
 import React from "react";
 import { it, expect, vi, describe } from "vitest";
 import { render, screen } from "@testing-library/react";
-import SlideOver, { SlideOverHeader, SlideOverFooter } from "../SlideOver";
+import SlideOver from "../SlideOver";
 
 describe("SlideOver component", () => {
   it("renders with title", () => {
@@ -9,7 +9,7 @@ describe("SlideOver component", () => {
 
     render(
       <SlideOver onClose={onClose} isOpen={true}>
-        <SlideOverHeader>Sample SlideOver Title</SlideOverHeader>
+        <SlideOver.Header>Sample SlideOver Title</SlideOver.Header>
       </SlideOver>,
     );
 
@@ -38,7 +38,7 @@ describe("SlideOver component", () => {
     render(
       <SlideOver onClose={onClose} isOpen={true}>
         SlideOver content
-        <SlideOverFooter>Sample SlideOver Footer</SlideOverFooter>
+        <SlideOver.Footer>Sample SlideOver Footer</SlideOver.Footer>
       </SlideOver>,
     );
 

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { useSlots } from "../../utils/useSlots";
 
+type Position = "left" | "right";
+
 const SlideOverContainer = styled.div<{
   isOpen: boolean;
   position: Position;
@@ -62,8 +64,6 @@ const SlideOverOverlay = styled.div<{ isOpen: boolean }>`
   z-index: 999;
 `;
 
-type Position = "left" | "right";
-
 export interface SlideOverProps {
   onClose: () => void;
   children: React.ReactNode;
@@ -79,7 +79,10 @@ export interface SlideOverProps {
   overlayStyles?: React.CSSProperties;
 }
 
-const SlideOver: FC<SlideOverProps> = ({
+const SlideOver: FC<SlideOverProps> & {
+  Header: typeof SlideOverHeader;
+  Footer: typeof SlideOverFooter;
+} = ({
   onClose,
   children,
   isOpen = false,
@@ -113,7 +116,7 @@ const SlideOver: FC<SlideOverProps> = ({
         </Content>
         {footer}
       </SlideOverContainer>
-      {overlay && (
+      {isOpen && overlay && (
         <SlideOverOverlay
           isOpen={isOpen}
           onClick={onClose}
@@ -124,7 +127,11 @@ const SlideOver: FC<SlideOverProps> = ({
     </>
   );
 
-  return ReactDOM.createPortal(slideOverComponent, document.body);
+  return ReactDOM.createPortal(
+    slideOverComponent,
+    document.body,
+    `slideOver-${position}`,
+  );
 };
 
 const SlideOverFooter = function FooterComponent({
@@ -135,7 +142,7 @@ const SlideOverFooter = function FooterComponent({
   return <Footer>{children}</Footer>;
 };
 
-const SlideOverHeader = function FooterComponent({
+const SlideOverHeader = function HeaderComponent({
   children,
 }: {
   children: React.ReactNode;
@@ -144,7 +151,7 @@ const SlideOverHeader = function FooterComponent({
 };
 
 SlideOver.displayName = "SlideOver";
-
-export { SlideOver, SlideOverHeader, SlideOverFooter };
+SlideOver.Header = SlideOverHeader;
+SlideOver.Footer = SlideOverFooter;
 
 export default SlideOver;
