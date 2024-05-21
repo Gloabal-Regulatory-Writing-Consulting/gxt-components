@@ -4,6 +4,7 @@ import styled from "styled-components";
 export interface CheckboxInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   inputSize?: "small" | "medium" | "large";
+  label?: string;
   indeterminate?: boolean;
 }
 
@@ -84,10 +85,32 @@ const StyledInput = styled.input<CheckboxInputProps>`
   }
 `;
 
+const StyledLabel = styled.label<{ disabled: boolean }>`
+  display: block;
+  color: ${(props) =>
+    props.disabled
+      ? `var(--neutral-200, #9ca3af)`
+      : `var(--neutral-400, #414141)`};
+
+  font-family: Mulish;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.5rem */
+  letter-spacing: 0.00119rem;
+`;
+
+const StyledWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 const CheckboxInput: React.FC<CheckboxInputProps> = ({
   indeterminate = false,
   inputSize,
   checked,
+  label,
   ...props
 }) => {
   const checkboxRef = useRef<HTMLInputElement>(null);
@@ -99,15 +122,26 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   }, [indeterminate]);
 
   return (
-    <StyledInput
-      {...props}
-      ref={checkboxRef}
-      data-testid="checkbox-input"
-      type="checkbox"
-      autoComplete={props.autoComplete || "off"}
-      inputSize={inputSize}
-      checked={!indeterminate && checked}
-    />
+    <StyledWrapper>
+      <StyledInput
+        {...props}
+        ref={checkboxRef}
+        data-testid="checkbox-input"
+        type="checkbox"
+        autoComplete={props.autoComplete || "off"}
+        inputSize={inputSize}
+        checked={!indeterminate && checked}
+      />
+      {label && (
+        <StyledLabel
+          data-testid="label"
+          aria-label={label}
+          disabled={!!props.disabled}
+        >
+          {label}
+        </StyledLabel>
+      )}
+    </StyledWrapper>
   );
 };
 

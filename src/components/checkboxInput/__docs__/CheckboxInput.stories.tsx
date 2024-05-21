@@ -62,3 +62,13 @@ export const IndeterminateAndDisable: Story = {
     checked: false,
   },
 };
+
+export const LabeledCheckbox: Story = {
+  args: {
+    disabled: false,
+    inputSize: "small",
+    indeterminate: false,
+    checked: false,
+    label: "Click me",
+  },
+};
