@@ -111,7 +111,7 @@ const Pagination: FC<PaginationProps> = ({
             pageRangeDisplayed={2}
             pageCount={Math.ceil(totalItems / itemsPerPage)}
             marginPagesDisplayed={1}
-            activeClassName={styles["ative-page"]}
+            activeClassName={styles["active-page"]}
             disabledClassName={styles["disable-page"]}
             pageClassName={styles["pages-count"]}
             onPageChange={(data) => onPageChange(data.selected)}
@@ -134,8 +134,8 @@ const Pagination: FC<PaginationProps> = ({
           options={perPageOptions}
           type="select"
           onSelect={handlePerPageChange}
-          renderOption={(option) => option?.toString()}
-          initialSelect={itemsPerPage}
+          renderOption={(option) => option || ""}
+          initialValue={itemsPerPage}
         />
         <Label>{label} per page</Label>
       </PerPageContainer>

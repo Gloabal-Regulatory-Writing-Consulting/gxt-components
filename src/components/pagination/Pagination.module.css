@@ -28,18 +28,14 @@
     padding: 0.625rem;
 }
 
-.ative-page {
+.active-page {
     border: 2px solid var(--primary-100, #1C99CE);
     background: var(--system-50, #FFF);
 }
 
-.ative-page:hover {
+.active-page:hover {
     background: var(--primary-300, #115873);
     color: var(--system-50, #FFF);
-}
-
-.next-pre-btn {
-    cursor: pointer;
 }
 
 .next-pre-btn>a {
