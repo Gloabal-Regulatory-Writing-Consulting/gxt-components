@@ -1,0 +1,39 @@
+import React from "react";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import AccordionExample from "./AccordionExample"
+import * as Accordion from "./Accordion.stories";
+
+
+<Meta title="components/AccordionExample" component={AccordionExample} />
+
+#### Example
+
+<Canvas of={Accordion.AccordionComponent} />
+
+# AccordionExample
+
+This is an example component that showcases the usage of `AccordionItem` components.
+
+## Usage
+
+```tsx
+import AccordionItem from "./AccordionItem";
+
+const AccordionExample = () => (
+     <div style={{ width: "20rem", color: "#414141" }}>
+        <Accordion
+          isSearchAble={isSearchAble}
+          isAccordionOpen={isAccordionOpen}
+          onChangeCallback={onChangeHandler}
+        >
+          <Accordion.Header key="1">Header</Accordion.Header>
+          <Accordion.Content key="2">here is content</Accordion.Content>
+        </Accordion>
+      </div>
+);
+
+export default AccordionExample;
+```
+
+## Props
+<Controls of={Accordion.AccordionComponent} />
