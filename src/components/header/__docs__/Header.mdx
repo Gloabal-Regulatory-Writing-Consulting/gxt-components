@@ -1,0 +1,34 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as Header from "./Header.stories.tsx";
+
+<Meta of={Header} title="Header" />
+
+# Header
+
+Header component
+
+#### Example
+
+<Canvas>
+  <Header/>
+</Canvas>
+
+## Usage
+
+```ts
+import { Header } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+ const ExampleHeader = () => (
+  <Header>
+    <Header.Heading>Upload Documents</Header.Heading>
+    <Header.Button>
+      <Button variant="secondary" children="Add to Catalog" />
+      <Button variant="secondary" children="Cancel" />
+    </Header.Button>
+    <Header.Breadcrumbs>Home {`  >  `} Upload Documents</Header.Breadcrumbs>
+  </Header>
+);
+export default ExampleHeader;
+```
+
+## Props
+<Controls of={Header.Default} />

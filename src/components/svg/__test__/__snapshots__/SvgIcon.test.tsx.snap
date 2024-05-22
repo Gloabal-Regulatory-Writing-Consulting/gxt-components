@@ -100,7 +100,6 @@ exports[`SVG Component > should render correct SVG icon for nextarrow 1`] = `
 exports[`SVG Component > should render correct SVG icon for pencil 1`] = `
 <div>
   <svg
-    class=""
     fill="currentColor"
     height="24"
     stroke="currentColor"
