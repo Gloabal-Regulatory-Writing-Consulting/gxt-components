@@ -15,6 +15,7 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   showBackground?: boolean;
   maxWidth?: string;
   maxHeight?: string;
+  onClose?: () => void;
 }
 
 const Modal: FC<ModalProps> & {
@@ -26,8 +27,9 @@ const Modal: FC<ModalProps> & {
   children,
   overlayBackground = "var(--neutral, #00000099)",
   showBackground = true,
-  maxWidth = "288px",
+  maxWidth = "18rem",
   maxHeight,
+  onClose,
   ...rest
 }) => {
   return (
@@ -35,8 +37,14 @@ const Modal: FC<ModalProps> & {
       <StyledModalOverlay
         overlayBackground={overlayBackground}
         showBackground={showBackground}
+        onClick={onClose}
       >
-        <StyledModalWrapper {...rest} maxWidth={maxWidth} maxHeight={maxHeight}>
+        <StyledModalWrapper
+          onClick={(e) => e.stopPropagation()}
+          {...rest}
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
+        >
           {children}
         </StyledModalWrapper>
       </StyledModalOverlay>
