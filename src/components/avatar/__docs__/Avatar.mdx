@@ -1,0 +1,44 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as Avatar from "./Avatar.stories.tsx";
+
+<Meta of={Avatar} title="Avatar" />
+
+# Avatar
+
+Avatar component with different props.
+
+#### Example
+
+<Canvas of={Avatar.AvatarWithUpload} />
+
+## Usage
+
+```tsx
+import Avatar from "sld-ui";
+
+const Example = () => {
+  const onClickHandler = () => {
+    // Handle on click of avatar
+  };
+
+  const handleImageUpload = (e) => {
+    // Handle image upload
+  };
+
+  return (
+    <Avatar
+      size="small"
+      user={{ firstName: "John", lastName: "Doe", avatar: "avatar.jpg" }}
+      isExpanded={false}
+      imageUrl="image.jpg"
+      onClickHandler={onClickHandler}
+      handleImageUpload={handleImageUpload}
+    />
+  );
+};
+
+export default Example;
+```
+
+## Props
+<Controls of={Avatar.AvatarWithUpload} />

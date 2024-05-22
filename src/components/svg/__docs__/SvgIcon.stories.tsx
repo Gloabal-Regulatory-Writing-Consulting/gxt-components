@@ -52,3 +52,9 @@ export const BackArrowIcon: Story = {
     size: 24,
   },
 };
+
+export const PencilIcon: Story = {
+  args: {
+    iconType: IconType.PENCIL,
+  },
+};

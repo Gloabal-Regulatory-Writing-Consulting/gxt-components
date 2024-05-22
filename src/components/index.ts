@@ -6,3 +6,4 @@ export * from "./search";
 export * from "./svg";
 export * from "./dropdown";
 export * from "./pagination";
+export * from "./avatar";
