@@ -57,6 +57,9 @@
     "react-dom": "^18.3.0",
     "react-paginate": "^8.2.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
+  },
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
