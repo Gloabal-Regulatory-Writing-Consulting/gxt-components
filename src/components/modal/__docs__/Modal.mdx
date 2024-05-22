@@ -1,4 +1,4 @@
-import { Canvas, Meta } from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as Modal from "./Modal.stories.tsx";
 
 <Meta of={Modal} title="Modal" />
@@ -21,31 +21,18 @@ import { Modal } from '@gloabal-regulatory-writing-consulting/gxt-components';;
    <Modal>
       <ModalHeader>
         <ModalHeaderHeading>Delete?</ModalHeaderHeading>
-        <ModalHeaderBody
-          styles={{
-            color: "var(--neutral-300, #4B5563)",
-            fontSize: "16px",
-            fontWeight: 400,
-            lineHeight: "150%",
-            letterSpacing: "0.019px",
-          }}
-        >
+        <ModalHeaderBody>
           Are you sure you want to delete template(s)?
         </ModalHeaderBody>
         <ModalHeaderBody>
           <div
             style={{
               textAlign: "center",
-
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              color: "var(--negative-100, #EF4444)",
-              fontSize: "16px",
-              fontWeight: 700,
-              lineHeight: "150%",
-              letterSpacing: "0.019px",
-            }}
+              color: "var(--negative-100, #EF4444)"
+               }}
           >
             Template(s) are being used in multiple documents
           </div>
@@ -59,12 +46,5 @@ import { Modal } from '@gloabal-regulatory-writing-consulting/gxt-components';;
 );
 export default Example;
 ```
-
-#### Arguments
-- **ModalHeaderHeading** _`div`_ - The heading text for the modal header. It typically displays the main title of the modal.
-- **ModalHeaderBody** _`div`_ - The body text for the modal header. It can contain descriptive text or additional information related to the heading.
-  - **styles** _`CSSProperties`_ - An object containing custom styles for the body text. This allows for flexible styling of the body content.
-- **ModalFooter** _`div`_ - The footer section of the modal, usually containing action buttons like "Confirm" and "Cancel".
-  - **Button** _`element`_ - Buttons or elements that can be passed into the footer for user actions. The buttons can be styled with different variants like `primary` or `secondary`.
-
-
+## Props
+<Controls of={Modal.Modal} />

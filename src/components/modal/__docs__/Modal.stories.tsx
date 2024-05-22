@@ -2,15 +2,16 @@ import { Meta, StoryObj } from "@storybook/react";
 import { ModalExample } from "./ModalExample";
 
 export default {
-  title: "Components/Modal",
+  title: "Modal",
   component: ModalExample,
 } as Meta;
 type Story = StoryObj<typeof ModalExample>;
 
 export const Modal: Story = {
   args: {
-    maxWidth: "500px",
+    maxWidth: "60rem",
     overlayBackground: "var(--neutral, #00000099)",
-    showBackground: true,
+    overlay: true,
+    isOpen: true,
   },
 };

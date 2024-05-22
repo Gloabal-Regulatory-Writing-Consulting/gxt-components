@@ -1,4 +1,6 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
+import PropTypes from "prop-types";
+
 import {
   ModalFooter as StyledModalFooter,
   ModalHeader as StyledModalHeader,
@@ -9,12 +11,14 @@ import {
 } from "./Modal.styles";
 import ReactPortal from "../ReactPortal/ReactPortal";
 
-interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   overlayBackground?: string;
-  showBackground?: boolean;
+  overlay?: boolean;
   maxWidth?: string;
   maxHeight?: string;
+  onClose?: () => void;
+  isOpen: boolean;
 }
 
 const Modal: FC<ModalProps> & {
@@ -25,18 +29,29 @@ const Modal: FC<ModalProps> & {
 } = ({
   children,
   overlayBackground = "var(--neutral, #00000099)",
-  showBackground = true,
-  maxWidth = "288px",
+  overlay = true,
+  maxWidth = "18rem",
   maxHeight,
+  onClose = () => {},
+  isOpen,
   ...rest
 }) => {
+  if (!isOpen) return null;
+
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
       <StyledModalOverlay
-        overlayBackground={overlayBackground}
-        showBackground={showBackground}
+        $overlayBackground={overlayBackground}
+        $showBackground={overlay}
+        onClick={onClose}
+        data-testid="modal-overlay"
       >
-        <StyledModalWrapper {...rest} maxWidth={maxWidth} maxHeight={maxHeight}>
+        <StyledModalWrapper
+          onClick={(e) => e.stopPropagation()}
+          {...rest}
+          $maxWidth={maxWidth}
+          $maxHeight={maxHeight}
+        >
           {children}
         </StyledModalWrapper>
       </StyledModalOverlay>
@@ -50,3 +65,13 @@ Modal.ModalHeaderBody = StyledModalHeaderBody;
 Modal.ModalFooter = StyledModalFooter;
 
 export default Modal;
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  overlayBackground: PropTypes.string,
+  overlay: PropTypes.bool,
+  maxWidth: PropTypes.string,
+  maxHeight: PropTypes.string,
+  onClose: PropTypes.func,
+  isOpen: PropTypes.bool.isRequired,
+};
