@@ -1,0 +1,119 @@
+import {
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+  useRef,
+  FC,
+} from "react";
+import Avatar, { UserObj } from "../avatar/Avatar";
+import { Navitem } from "../navitem";
+import { NavItemProps } from "../navitem/Navitem";
+import {
+  FooterContent,
+  Header,
+  HeaderContainer,
+  LeadingContent,
+  NavList,
+  Sidebar,
+} from "./NavbarStyledComponents";
+
+export interface NavbarProps {
+  footerLinks: NavItemProps[];
+  contentLinks: NavItemProps[];
+  setShowAvatarMenu: Dispatch<SetStateAction<boolean>>;
+  showAvatarMenu: boolean;
+  clientStyling: ClientStyling;
+  user: UserObj;
+}
+
+export interface ClientStyling {
+  thumbnail: string;
+  logo: string;
+}
+
+const Navbar: FC<NavbarProps> = ({
+  footerLinks,
+  contentLinks,
+  setShowAvatarMenu,
+  showAvatarMenu,
+  clientStyling,
+  user,
+}) => {
+  const EXPANSION_TIME = 200;
+  const { thumbnail, logo } = clientStyling;
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isTimeOutExpanded, setIsTimeOutExpanded] = useState(false);
+
+  const timeoutId = useRef<NodeJS.Timeout>();
+
+  const handleMouseEnter = () => setIsTimeOutExpanded(true);
+
+  const handleMouseLeave = () => setIsTimeOutExpanded(false);
+
+  useEffect(() => {
+    timeoutId.current = setTimeout(() => {
+      setIsExpanded(isTimeOutExpanded);
+    }, EXPANSION_TIME);
+
+    return () => {
+      clearTimeout(timeoutId.current);
+      timeoutId.current = undefined;
+    };
+  }, [isTimeOutExpanded]);
+
+  const avatarIcon = (
+    <span>
+      <Avatar
+        size="small"
+        onClickHandler={() => setShowAvatarMenu(!showAvatarMenu)}
+        user={user}
+        isExpanded={isExpanded}
+      />
+    </span>
+  );
+
+  return (
+    <Sidebar
+      isExpanded={isExpanded}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      data-testid="sidebar"
+    >
+      <LeadingContent isExpanded={isExpanded}>
+        <HeaderContainer isExpanded={isExpanded}>
+          <Header
+            src={isExpanded ? logo : thumbnail}
+            alt="company logo"
+            data-testid="logo"
+            isExpanded={isExpanded}
+          />
+        </HeaderContainer>
+        <NavList isExpanded={isExpanded}>
+          {contentLinks.map((link) => (
+            <Navitem
+              permission={link.permission}
+              text={link.text}
+              Icon={link.Icon}
+              isExpanded={isExpanded}
+            />
+          ))}
+        </NavList>
+      </LeadingContent>
+      <FooterContent isExpanded={isExpanded}>
+        {[...footerLinks].map((link) => (
+          <Navitem
+            permission={link.permission}
+            text={link.text}
+            Icon={link.Icon}
+            isExpanded={isExpanded}
+          />
+        ))}
+        {avatarIcon}
+      </FooterContent>
+    </Sidebar>
+  );
+};
+
+export default Navbar;

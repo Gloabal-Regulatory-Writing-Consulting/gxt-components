@@ -11,3 +11,4 @@ export * from "./header";
 export * from "./accordion";
 export * from "./modal";
 export * from "./navitem";
+export * from "./navbar";

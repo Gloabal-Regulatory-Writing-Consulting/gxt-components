@@ -1,0 +1,158 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navbar Component > renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-cPiJYC dZRWQG"
+    data-testid="sidebar"
+  >
+    <div
+      class="sc-jlZhRR jRXYUB"
+    >
+      <div
+        class="sc-jEABJj dyXKlO"
+      >
+        <img
+          alt="company logo"
+          class="sc-cwHqhk kQdbWR"
+          data-testid="logo"
+          src="http://example.com/thumbnail.jpg"
+        />
+      </div>
+      <div
+        class="sc-dLNtp jQpGFx"
+      >
+        <a
+          class="sc-dhKdPU lfdZxK"
+          data-testid="Content Link 1"
+          data-tooltip-content="Content Link 1"
+          data-tooltip-id="navlink"
+          href="/user"
+        >
+          <div
+            class="sc-jXbVAB irMOtm"
+          >
+            <div
+              class="sc-kpDprT swCGl"
+            >
+              <span>
+                CL1
+              </span>
+            </div>
+            <p
+              class="sc-dAlxHm bfIsjH"
+            >
+              Content Link 1
+            </p>
+          </div>
+        </a>
+        <a
+          class="sc-dhKdPU lfdZxK"
+          data-testid="Content Link 2"
+          data-tooltip-content="Content Link 2"
+          data-tooltip-id="navlink"
+          href="/user"
+        >
+          <div
+            class="sc-jXbVAB irMOtm"
+          >
+            <div
+              class="sc-kpDprT swCGl"
+            >
+              <span>
+                CL2
+              </span>
+            </div>
+            <p
+              class="sc-dAlxHm bfIsjH"
+            >
+              Content Link 2
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <ul
+      class="sc-eDPFhE gQNJRC"
+    >
+      <a
+        class="sc-dhKdPU lfdZxK"
+        data-testid="Footer Link 1"
+        data-tooltip-content="Footer Link 1"
+        data-tooltip-id="navlink"
+        href="/user"
+      >
+        <div
+          class="sc-jXbVAB irMOtm"
+        >
+          <div
+            class="sc-kpDprT swCGl"
+          >
+            <span>
+              FL1
+            </span>
+          </div>
+          <p
+            class="sc-dAlxHm bfIsjH"
+          >
+            Footer Link 1
+          </p>
+        </div>
+      </a>
+      <a
+        class="sc-dhKdPU lfdZxK"
+        data-testid="Footer Link 2"
+        data-tooltip-content="Footer Link 2"
+        data-tooltip-id="navlink"
+        href="/user"
+      >
+        <div
+          class="sc-jXbVAB irMOtm"
+        >
+          <div
+            class="sc-kpDprT swCGl"
+          >
+            <span>
+              FL2
+            </span>
+          </div>
+          <p
+            class="sc-dAlxHm bfIsjH"
+          >
+            Footer Link 2
+          </p>
+        </div>
+      </a>
+      <span>
+        <div
+          class="sc-aYaIB elxlrp false"
+        >
+          <div
+            class="sc-gEvDqW KVfas"
+            data-testid="avatarIcon"
+          >
+            <div
+              class="sc-eqUzNf engioi"
+            >
+              <div
+                class="sc-fqkwJk dnnfqZ avatar-button"
+              >
+                <img
+                  alt="Avatar"
+                  class="sc-gsFSjX hcoWMc"
+                  src="http://example.com/avatar.jpg"
+                />
+              </div>
+              <label
+                for="img"
+              >
+                  
+              </label>
+            </div>
+          </div>
+        </div>
+      </span>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,80 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as Navbar from "./Navbar.stories.tsx";
+
+<Meta of={Navbar} title="Navbar" />
+
+# Navbar
+
+## Example
+
+<Canvas of={Navbar.NavbarComponent} />
+
+## Usage
+
+```tsx
+import Navbar from "sld-ui";
+import { ReactComponent as HomeIcon } from "./icons/HomeIcon.svg";
+import { ReactComponent as SettingsIcon } from "./icons/SettingsIcon.svg";
+
+const Example = () => {
+  const footerLinks = [
+    {
+      permission: "/settings",
+      text: "Settings",
+      Icon: SettingsIcon,
+      isExpanded: false,
+    },
+    {
+      permission: "/help",
+      text: "Help",
+      Icon: HomeIcon,
+      isExpanded: false,
+    },
+  ];
+
+  const contentLinks = [
+    {
+      permission: "/home",
+      text: "Home",
+      Icon: HomeIcon,
+      isExpanded: false,
+    },
+    {
+      permission: "/dashboard",
+      text: "Dashboard",
+      Icon: HomeIcon,
+      isExpanded: false,
+    },
+  ];
+
+  const clientStyling = {
+    thumbnail: "http://example.com/thumbnail.jpg",
+    logo: "http://example.com/logo.jpg",
+  };
+
+  const user = {
+    firstName: "John",
+    lastName: "Doe",
+    avatar: "http://example.com/avatar.jpg",
+  };
+
+  const [showAvatarMenu, setShowAvatarMenu] = React.useState(false);
+
+  return (
+    <Navbar
+      footerLinks={footerLinks}
+      contentLinks={contentLinks}
+      setShowAvatarMenu={setShowAvatarMenu}
+      showAvatarMenu={showAvatarMenu}
+      clientStyling={clientStyling}
+      user={user}
+    />
+  );
+};
+
+export default Example;
+```
+
+## Props
+Navbar component with different props.
+<Controls of={Navbar.NavbarComponent} />
