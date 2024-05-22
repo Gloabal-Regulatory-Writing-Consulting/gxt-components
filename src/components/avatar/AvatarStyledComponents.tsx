@@ -1,9 +1,23 @@
 import styled, { css } from "styled-components";
 import { SvgIcon } from "../svg";
 
-export const AvatarContainer = styled.div`
+export const AvatarContainer = styled.div<{ size: "small" | "large" }>`
   display: flex;
   align-items: center;
+  padding-left: 0.5rem;
+  height: 2rem;
+
+  ${({ size }) =>
+    size === "small" &&
+    css`
+      height: 2.1rem;
+    `}
+
+  ${({ size }) =>
+    size === "small" &&
+    css`
+      height: 4.1rem;
+    `}
 
   &.expanded-avatar {
     transition: width 0.3s ease;
@@ -22,7 +36,7 @@ export const AvatarBox = styled.div`
 `;
 
 export const AvatarButton = styled.div<{ size: "small" | "large" }>`
-  background: var(--Semantic-Tokens-Fills-Component-Primary-primary-default, #177BA6);
+  background: var(--primary-200, #177ba6);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +61,7 @@ export const AvatarButton = styled.div<{ size: "small" | "large" }>`
     `}
 
     ${AvatarContainer}:hover & {
-    border: 2px solid var(--Semantic-Tokens-Borders-Primary-border-primary-default, #177BA6);
+    border: 2px solid var(--primary-200, #177ba6);
   }
 `;
 
@@ -69,15 +83,15 @@ export const AvatarText = styled.p<{
     css`
       font-weight: 400;
       ${AvatarContainer}:focus & {
-        color: var(--Semantic-Tokens-Text-text-medium, #9CA3AF);
+        color: var(--neutral-200, #9ca3af);
       }
     `}
 
   ${({ size }) =>
     size === "small" &&
     css`
-    font-size: 1rem;
-    line-height: 150%;
+      font-size: 1rem;
+      line-height: 150%;
     `}
 
   ${({ size }) =>
@@ -89,13 +103,12 @@ export const AvatarText = styled.p<{
 `;
 
 export const UserInitials = styled.div<{ size: "small" | "large" }>`
-  color: var(--Semantic-Tokens-Text-text-light, #FFF);
+  color: var(--system-50, #ffffff);
   text-align: center;
 
   font-family: Mulish;
   font-style: normal;
   line-height: 150%;
-
 
   ${({ size }) =>
     size === "small" &&
@@ -130,7 +143,11 @@ export const StyledIcon = styled(SvgIcon)`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--primary-50, #1C99CE);;
+    background-color: var(--primary-50, #1c99ce);
     color: white;
   }
+`;
+
+export const AvatarTextContainer = styled.div`
+  width: 15.7rem;
 `;

@@ -10,23 +10,23 @@ const meta: Meta<typeof Avatar> = {
 export default meta;
 type Story = StoryObj<typeof Avatar>;
 
-export const Primary: Story = {
+export const AvatarWithUpload: Story = {
   args: {
-    size: 'small',
-    onClickHandler: () => console.log('Primary'),
+    size: "small",
+    onClickHandler: () => console.log("Primary"),
     handleImageUpload: (e: ChangeEvent<HTMLInputElement>) => console.log(e),
-    user: {firstName: 'John', lastName: 'Doe'},
+    user: { firstName: "John", lastName: "Doe" },
     isExpanded: false,
-    imageUrl: '',
+    imageUrl: "",
   },
 };
 
-export const Secondary: Story = {
+export const AvatarDisplayOnly: Story = {
   args: {
-    size: 'small',
-    onClickHandler: () => console.log('Secondary'),
-    user: {firstName: 'John', lastName: 'Doe'},
+    size: "small",
+    onClickHandler: () => console.log("Secondary"),
+    user: { firstName: "John", lastName: "Doe" },
     isExpanded: false,
-    imageUrl: '',
+    imageUrl: "",
   },
 };

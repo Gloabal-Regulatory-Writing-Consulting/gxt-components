@@ -10,23 +10,14 @@ const Example: FC<AvatarProps> = ({
   handleImageUpload,
 }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Avatar
-        size={size}
-        user={user}
-        isExpanded={isExpanded}
-        imageUrl={imageUrl}
-        onClickHandler={onClickHandler}
-        handleImageUpload={handleImageUpload}
-      />
-    </div>
+    <Avatar
+      size={size}
+      user={user}
+      isExpanded={isExpanded}
+      imageUrl={imageUrl}
+      onClickHandler={onClickHandler}
+      handleImageUpload={handleImageUpload}
+    />
   );
 };
 

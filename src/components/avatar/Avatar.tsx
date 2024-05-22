@@ -6,6 +6,7 @@ import {
   AvatarContainer,
   AvatarIcon,
   AvatarText,
+  AvatarTextContainer,
   StyledIcon,
   UserIcon,
   UserInitials,
@@ -79,7 +80,7 @@ const Avatar: React.FC<AvatarProps> = ({
   ) : null;
 
   return (
-    <AvatarContainer className={`${isExpanded && "expanded-avatar"}`}>
+    <AvatarContainer size={size} className={`${isExpanded && "expanded-avatar"}`}>
       <AvatarIcon data-testid="avatarIcon" onClick={onClickHandler}>
         <AvatarBox>
           <AvatarButton size={size} className={`avatar-button`}>
@@ -88,12 +89,12 @@ const Avatar: React.FC<AvatarProps> = ({
           {<label htmlFor="img"> {editImage} </label>}
         </AvatarBox>
         {isExpanded && (
-          <div>
+          <AvatarTextContainer>
             <AvatarText weight="bold" size={size}>
               {userName}
             </AvatarText>
             <AvatarText weight="normal" size={size}>View profile</AvatarText>
-          </div>
+          </AvatarTextContainer>
         )}
       </AvatarIcon>
     </AvatarContainer>

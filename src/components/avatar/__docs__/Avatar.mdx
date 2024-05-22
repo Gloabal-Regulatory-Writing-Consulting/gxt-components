@@ -1,4 +1,4 @@
-import { Canvas, Meta } from "@storybook/blocks";
+import { Canvas, Meta, Controls } from "@storybook/blocks";
 import * as Avatar from "./Avatar.stories.tsx";
 
 <Meta of={Avatar} title="Avatar" />
@@ -9,16 +9,7 @@ Avatar component with different props.
 
 #### Example
 
-<Canvas>
-  <Avatar
-    size="large"
-    user={{ firstName: "John", lastName: "Doe", avatar: "avatar.jpg" }}
-    isExpanded={false}
-    imageUrl="image.jpg"
-    onClickHandler={() => {}}
-    handleImageUpload={(e) => {}}
-  />
-</Canvas>
+<Canvas of={Avatar.AvatarWithUpload} />
 
 ## Usage
 
@@ -49,13 +40,5 @@ const Example = () => {
 export default Example;
 ```
 
-
-#### Arguments
-
-- **size** _`"small" | "large"`_ - Size of the avatar.
-- **user** _`UserObj`_ - User object containing user information.
-- **isExpanded** _`boolean`_ - Whether the avatar is expanded or not.
-- **imageUrl** _`string`_ - URL of the image to display as avatar.
-- **onClickHandler** _`() => void`_ - Callback function for handling click event.
-- **handleImageUpload** _`(e: ChangeEvent<HTMLInputElement>) => void`_ - Callback function for handling image upload.
-
+## Props
+<Controls of={Avatar.AvatarWithUpload} />

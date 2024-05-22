@@ -1,16 +1,16 @@
-import React, { act } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Avatar, { AvatarProps, UserObj } from '../Avatar';
-import { describe, expect, it, vi } from 'vitest';
+import React, { act } from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import Avatar, { AvatarProps, UserObj } from "../Avatar";
+import { describe, expect, it, vi } from "vitest";
 
-describe('Avatar', () => {
+describe("Avatar", () => {
   const mockUser: UserObj = {
-    firstName: 'John',
-    lastName: 'Doe',
+    firstName: "John",
+    lastName: "Doe",
   };
 
   const defaultProps: AvatarProps = {
-    size: 'small',
+    size: "small",
     user: mockUser,
   };
 
@@ -18,38 +18,38 @@ describe('Avatar', () => {
     return render(<Avatar {...defaultProps} {...props} />);
   };
 
-  it('renders the user initials when no image is provided', () => {
+  it("renders the user initials when no image is provided", () => {
     renderComponent({ imageUrl: undefined });
 
-    const userInitials = screen.getByTestId('user-initials');
+    const userInitials = screen.getByTestId("user-initials");
     expect(userInitials).toBeInTheDocument();
-    expect(userInitials.textContent).toBe('JD');
+    expect(userInitials.textContent).toBe("JD");
   });
 
-  it('renders the user image when imageUrl is provided', () => {
-    renderComponent({ imageUrl: 'image.jpg' });
+  it("renders the user image when imageUrl is provided", () => {
+    renderComponent({ imageUrl: "image.jpg" });
 
-    const userImage = screen.getByAltText('Avatar');
+    const userImage = screen.getByAltText("Avatar");
     expect(userImage).toBeInTheDocument();
-    expect(userImage).toHaveAttribute('src', 'image.jpg');
+    expect(userImage).toHaveAttribute("src", "image.jpg");
   });
 
-  it('calls onClickHandler when the avatar button is clicked', () => {
+  it("calls onClickHandler when the avatar button is clicked", () => {
     const onClickHandler = vi.fn();
     renderComponent({ onClickHandler });
 
-    const avatarButton = screen.getByTestId('avatarIcon');
+    const avatarButton = screen.getByTestId("avatarIcon");
     fireEvent.click(avatarButton);
 
     expect(onClickHandler).toHaveBeenCalledTimes(1);
   });
 
-  it('calls handleImageUpload when a file is selected', () => {
+  it("calls handleImageUpload when a file is selected", () => {
     const handleImageUpload = vi.fn();
     renderComponent({ handleImageUpload });
 
-    const fileInput = screen.getByTestId('user-image-input');
-    fireEvent.change(fileInput, { target: { files: ['image.jpg'] } });
+    const fileInput = screen.getByTestId("user-image-input");
+    fireEvent.change(fileInput, { target: { files: ["image.jpg"] } });
 
     expect(handleImageUpload).toHaveBeenCalledTimes(1);
   });
@@ -71,6 +71,6 @@ describe('Avatar', () => {
 
   it("Avatar should render with a specific size", () => {
     const { asFragment } = render(<Avatar {...defaultProps} size="small" />);
-    expect(asFragment()).toMatchSnapshot("AvatarLargeSize");
+    expect(asFragment()).toMatchSnapshot("AvatarSmallSize");
   });
 });

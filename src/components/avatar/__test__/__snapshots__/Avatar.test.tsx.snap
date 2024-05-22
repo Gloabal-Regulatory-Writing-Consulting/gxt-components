@@ -3,7 +3,7 @@
 exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 1`] = `
 <DocumentFragment>
   <div
-    class="sc-aYaIB iAVyJI undefined"
+    class="sc-aYaIB gOqDzX undefined"
   >
     <div
       class="sc-gEvDqW KVfas"
@@ -13,10 +13,10 @@ exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 1`
         class="sc-eqUzNf engioi"
       >
         <div
-          class="sc-fqkwJk eUDqXp avatar-button"
+          class="sc-fqkwJk ggMdFh avatar-button"
         >
           <div
-            class="sc-iGgVNO gqEbas"
+            class="sc-iGgVNO jbeWTB"
             data-testid="user-initials"
           >
             JD
@@ -33,10 +33,10 @@ exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 1`
 </DocumentFragment>
 `;
 
-exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 2`] = `
+exports[`Avatar > Avatar should render with a specific size > AvatarSmallSize 1`] = `
 <DocumentFragment>
   <div
-    class="sc-aYaIB iAVyJI undefined"
+    class="sc-aYaIB elxlrp undefined"
   >
     <div
       class="sc-gEvDqW KVfas"
@@ -46,10 +46,10 @@ exports[`Avatar > Avatar should render with a specific size > AvatarLargeSize 2`
         class="sc-eqUzNf engioi"
       >
         <div
-          class="sc-fqkwJk ffocQB avatar-button"
+          class="sc-fqkwJk dnnfqZ avatar-button"
         >
           <div
-            class="sc-iGgVNO fnVQo"
+            class="sc-iGgVNO kwhzlp"
             data-testid="user-initials"
           >
             JD
