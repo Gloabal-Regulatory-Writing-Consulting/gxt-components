@@ -9,6 +9,7 @@ export enum IconType {
   LAST_PAGE = "lastpage",
   SMILEYFACE = "smileyface",
   PENCIL = "pencil",
+  ACCORDION_ARROW = "accordionarrow",
 }
 
 export interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
@@ -152,6 +153,18 @@ const SvgIcon: FC<SvgIconProps> = ({
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+      </svg>
+    ),
+    [IconType.ACCORDION_ARROW]: (
+      <svg
+        {...rest}
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill={rest?.fill || "var(--primary-300, #9CA3AF)"}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M10 4.96875L10.5312 5.5L16.5312 11.4688L17.0625 12L16 13.0625L15.4688 12.5312L10 7.0625L4.53125 12.5312L4 13.0625L2.9375 12L3.46875 11.4688L9.46875 5.46875L10 4.9375V4.96875Z" />
       </svg>
     ),
   };

@@ -8,3 +8,4 @@ export * from "./dropdown";
 export * from "./pagination";
 export * from "./avatar";
 export * from "./header";
+export * from "./accordion";

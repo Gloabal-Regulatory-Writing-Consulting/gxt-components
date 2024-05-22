@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export interface CheckboxInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
-  inputSize?: "small" | "medium" | "large";
+  inputSize?: "xs" | "small" | "medium" | "large";
   label?: string;
   indeterminate?: boolean;
 }
@@ -16,17 +16,21 @@ const StyledInput = styled.input<CheckboxInputProps>`
   display: inline-block;
   appearance: none;
   padding: ${(props) =>
-    props.inputSize === "small"
-      ? "0.875rem"
-      : props.inputSize === "medium"
-        ? "1rem"
-        : "1.25rem"};
+    props.inputSize === "xs"
+      ? "0.475rem"
+      : props.inputSize === "small"
+        ? "0.875rem"
+        : props.inputSize === "medium"
+          ? "1rem"
+          : "1.25rem"};
   background-size: ${(props) =>
-    props.inputSize === "small"
-      ? "1rem"
-      : props.inputSize === "medium"
-        ? "1.25rem"
-        : "1.5rem"};
+    props.inputSize === "xs"
+      ? "0.8rem"
+      : props.inputSize === "small"
+        ? "1rem"
+        : props.inputSize === "medium"
+          ? "1.25rem"
+          : "1.5rem"};
   &:hover {
     border: 1px solid var(--primary-300, #115873);
   }

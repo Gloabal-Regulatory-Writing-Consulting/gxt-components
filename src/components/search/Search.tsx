@@ -15,11 +15,12 @@ export interface SearchProps
 
 const SearchContainer = styled.div<{ width: string }>`
   position: relative;
-  display: inline-block;
+  display: flex;
   width: ${(props) => props.width || "100%"};
 `;
 
 const SearchInput = styled.input`
+  flex: 1;
   outline: none;
   padding-left: 30px;
   width: 100%;
