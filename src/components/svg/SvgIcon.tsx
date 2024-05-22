@@ -147,7 +147,7 @@ const SvgIcon: FC<SvgIconProps> = ({
         {...rest}
         width={rest.width || 20}
         height={rest.height || 20}
-        viewBox="0 0 20 20"
+        viewBox="-2 -1 20 20"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         className="bi bi-three-dots-vertical"

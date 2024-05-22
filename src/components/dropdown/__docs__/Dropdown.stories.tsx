@@ -29,6 +29,7 @@ export const DropdownButton: Story = {
     renderOption: (option) => <span>{option}</span>,
     label: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
+    dropdownIcon: true,
   },
 };
 
@@ -40,6 +41,7 @@ export const DropdownSelect: Story = {
     renderOption: (option) => <span>{option}</span>,
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
+    dropdownIcon: true,
   },
 };
 
@@ -51,6 +53,7 @@ export const DisabledButton: Story = {
     renderOption: (option) => <span>{option}</span>,
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
+    dropdownIcon: true,
   },
 };
 
@@ -60,9 +63,7 @@ export const actionsDropdown: Story = {
     type: "button",
     options: ["Option 1", "Option 2", "Option 3"],
     renderOption: (option) => <span>{option}</span>,
-    dropdownIcon: false,
     label: getSvgIcon(false),
-    dropdownIcon: false,
     onSelect: (option) => console.log("Selected option:", option),
   },
   decorators: [

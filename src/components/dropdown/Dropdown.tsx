@@ -31,7 +31,7 @@ const Dropdown = <T,>({
   renderOption = (option: T | null) => option?.toString(),
   label,
   initialValue = null,
-  dropdownIcon = true,
+  dropdownIcon = false,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
@@ -102,7 +102,7 @@ const Dropdown = <T,>({
               }
             />
           </IconWrapper>
-)}
+        )}
       </CustomSelectButton>
       {isOpen && (
         <SelectItemsWrapper position={position}>

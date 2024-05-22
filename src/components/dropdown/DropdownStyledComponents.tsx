@@ -87,7 +87,6 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   }
 `;
 
-
 export const CustomSelectButton = styled.button<{
   disabled: boolean;
 }>`
