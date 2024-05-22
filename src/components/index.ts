@@ -10,3 +10,4 @@ export * from "./avatar";
 export * from "./header";
 export * from "./accordion";
 export * from "./modal";
+export * from "./navitem";
