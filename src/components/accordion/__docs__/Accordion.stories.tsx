@@ -16,7 +16,7 @@ const meta: Meta<typeof Accordion> = {
           <Accordion.Header key="1">Accordion 1</Accordion.Header>
           <Accordion.Content key="2">
             <div>
-              <CheckboxInput inputSize="extraSmall" label="Automated" />
+              <CheckboxInput inputSize="xs" label="Automated" />
             </div>
           </Accordion.Content>
         </Accordion>
