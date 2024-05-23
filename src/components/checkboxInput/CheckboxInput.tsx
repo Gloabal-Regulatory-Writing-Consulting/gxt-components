@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export interface CheckboxInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
-  inputSize?: "xs" | "small" | "medium" | "large";
+  $inputSize?: "xs" | "small" | "medium" | "large";
   label?: string;
   indeterminate?: boolean;
 }
@@ -16,19 +16,19 @@ const StyledInput = styled.input<CheckboxInputProps>`
   display: inline-block;
   appearance: none;
   padding: ${(props) =>
-    props.inputSize === "xs"
+    props.$inputSize === "xs"
       ? "0.475rem"
-      : props.inputSize === "small"
+      : props.$inputSize === "small"
         ? "0.875rem"
-        : props.inputSize === "medium"
+        : props.$inputSize === "medium"
           ? "1rem"
           : "1.25rem"};
   background-size: ${(props) =>
-    props.inputSize === "xs"
+    props.$inputSize === "xs"
       ? "0.8rem"
-      : props.inputSize === "small"
+      : props.$inputSize === "small"
         ? "1rem"
-        : props.inputSize === "medium"
+        : props.$inputSize === "medium"
           ? "1.25rem"
           : "1.5rem"};
   &:hover {
@@ -112,7 +112,7 @@ const StyledWrapper = styled.div`
 
 const CheckboxInput: React.FC<CheckboxInputProps> = ({
   indeterminate = false,
-  inputSize,
+  $inputSize,
   checked,
   label,
   ...props
@@ -133,7 +133,7 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
         data-testid="checkbox-input"
         type="checkbox"
         autoComplete={props.autoComplete || "off"}
-        inputSize={inputSize}
+        $inputSize={$inputSize}
         checked={!indeterminate && checked}
       />
       {label && (

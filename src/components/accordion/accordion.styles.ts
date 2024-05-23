@@ -5,7 +5,7 @@ export const AccordionContainer = styled.div`
   overflow: hidden;
 `;
 
-export const Header = styled.div<{ isSearchAble: boolean }>`
+export const Header = styled.div<{ $isSearchAble: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +16,8 @@ export const Header = styled.div<{ isSearchAble: boolean }>`
   letter-spacing: 0.019px;
   cursor: pointer;
   color: var(--Neutral-400, #414141);
-  margin-bottom: ${({ isSearchAble }) => (isSearchAble ? "0.5rem" : "0.2rem")};
+  margin-bottom: ${({ $isSearchAble }) =>
+    $isSearchAble ? "0.5rem" : "0.2rem"};
 `;
 
 export const Content = styled.div<{ open: boolean }>`

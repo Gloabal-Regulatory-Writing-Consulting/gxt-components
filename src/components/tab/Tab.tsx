@@ -10,7 +10,7 @@ export type TabProps = {
 };
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  active?: boolean;
+  $isActive?: boolean;
 }
 
 const TabButton = styled.button<ButtonProps>`
@@ -25,8 +25,8 @@ const TabButton = styled.button<ButtonProps>`
   font-style: normal;
   transition: font-weight 0.2s ease-in-out;
 
-  ${({ active }) =>
-    active &&
+  ${({ $isActive }) =>
+    $isActive &&
     css`
       color: var(--primary-200, #177ba6);
       font-weight: 700;
@@ -48,8 +48,8 @@ const TabButton = styled.button<ButtonProps>`
       }
     `}
 
-  ${({ active }) =>
-    !active &&
+  ${({ $isActive }) =>
+    !$isActive &&
     css`
       color: var(--primary-200, #177ba6);
       font-weight: 400;
@@ -75,7 +75,7 @@ const Tab: React.FC<TabProps> = ({
     <TabButton
       onClick={onClickHandler}
       disabled={disabled}
-      active={active}
+      $isActive={active}
       className={className}
     >
       {title}

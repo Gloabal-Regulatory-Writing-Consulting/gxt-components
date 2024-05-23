@@ -105,7 +105,7 @@ const Dropdown = <T,>({
           {options.map((option, index) => (
             <SelectItemWrapper
               key={index}
-              isActive={type === "select" && option === selectedOption}
+              $isActive={type === "select" && option === selectedOption}
               onClick={() => handleItemClick(option)}
             >
               {renderOption(option)}

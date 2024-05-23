@@ -51,7 +51,7 @@ export const SelectItemsWrapper = styled.div<{ position?: DropdownPosition }>`
   overflow-y: auto;
 `;
 
-export const SelectItemWrapper = styled.div<{ isActive: boolean }>`
+export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   display: flex;
   padding: 0.75rem 1rem;
   align-items: center;
@@ -72,8 +72,8 @@ export const SelectItemWrapper = styled.div<{ isActive: boolean }>`
     border-bottom: none;
   }
 
-  ${({ isActive }) =>
-    isActive &&
+  ${({ $isActive }) =>
+    $isActive &&
     `
     background-color: var(--primary-100, #cce4f6);
     color: var(--primary-200, #177ba6);
