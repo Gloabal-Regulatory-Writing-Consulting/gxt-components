@@ -118,7 +118,6 @@ const Pagination: FC<PaginationProps> = ({
             previousClassName={styles["next-pre-btn"]}
             nextClassName={styles["next-pre-btn"]}
             forcePage={currentPage}
-            initialPage={currentPage}
           />
           <StyledSvgIcon
             iconType={IconType.LAST_PAGE}
