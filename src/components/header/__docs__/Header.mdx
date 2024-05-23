@@ -16,14 +16,14 @@ Header component
 ## Usage
 
 ```ts
-import { Header } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+import { Header } from '@gloabal-regulatory-writing-consulting/gxt-components';
  const ExampleHeader = () => (
   <Header>
     <Header.Heading>Upload Documents</Header.Heading>
-    <Header.Button>
-      <Button variant="secondary" children="Add to Catalog" />
-      <Button variant="secondary" children="Cancel" />
-    </Header.Button>
+    <Header.Actions>
+      <Button variant="secondary">Add to Catalog</Button>
+      <Button variant="secondary">Cancel</Button>
+    </Header.Actions>
     <Header.Breadcrumbs>Home {`  >  `} Upload Documents</Header.Breadcrumbs>
   </Header>
 );
