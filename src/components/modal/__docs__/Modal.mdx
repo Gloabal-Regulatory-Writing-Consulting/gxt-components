@@ -1,0 +1,50 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as Modal from "./Modal.stories.tsx";
+
+<Meta of={Modal} title="Modal" />
+
+# Modal
+
+Modal component with different props.
+
+#### Example
+
+<Canvas>
+<Modal/>
+</Canvas>
+
+## Usage
+
+```ts
+import { Modal } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+ const Example = () => (
+   <Modal>
+      <ModalHeader>
+        <ModalHeaderHeading>Delete?</ModalHeaderHeading>
+        <ModalHeaderBody>
+          Are you sure you want to delete template(s)?
+        </ModalHeaderBody>
+        <ModalHeaderBody>
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "var(--negative-100, #EF4444)"
+               }}
+          >
+            Template(s) are being used in multiple documents
+          </div>
+        </ModalHeaderBody>
+      </ModalHeader>
+      <ModalFooter>
+        <Button variant="primary" children="Confirm" />
+        <Button variant="secondary" children="Cancel" />
+      </ModalFooter>
+    </Modal>
+);
+export default Example;
+```
+## Props
+<Controls of={Modal.Modal} />

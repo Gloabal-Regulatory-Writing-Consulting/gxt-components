@@ -9,3 +9,4 @@ export * from "./pagination";
 export * from "./avatar";
 export * from "./header";
 export * from "./accordion";
+export * from "./modal";
