@@ -11,7 +11,6 @@ const meta: Meta<typeof Accordion> = {
         <Accordion
           isSearchAble={isSearchAble}
           isAccordionOpen={isAccordionOpen}
-          onChangeCallback={() => {}}
         >
           <Accordion.Header key="1">Accordion 1</Accordion.Header>
           <Accordion.Content key="2">
@@ -32,6 +31,6 @@ type Story = StoryObj<typeof Accordion>;
 export const AccordionComponent: Story = {
   args: {
     isSearchAble: true,
-    isAccordionOpen: false,
+    isAccordionOpen: true,
   },
 };
