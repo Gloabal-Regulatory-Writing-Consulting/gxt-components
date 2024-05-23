@@ -1,6 +1,6 @@
-import { FC } from "react";
+import React from "react";
+import styled from "styled-components";
 import Tab, { TabProps } from "../tab/Tab";
-import "./tabs.css";
 
 export type TabsProps = {
   tabs: TabProps[];
@@ -8,13 +8,19 @@ export type TabsProps = {
   tabStyle?: string;
 };
 
-const Tabs: FC<TabsProps> = ({ tabs, className = "", tabStyle = "" }) => {
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+const Tabs: React.FC<TabsProps> = ({ tabs, className = "", tabStyle = "" }) => {
   return (
-    <div className={`container ${className}`} data-testid="tabs-container">
+    <Container className={className} data-testid="tabs-container">
       {tabs.map((tab) => (
         <Tab key={tab.title} {...tab} className={tabStyle} />
       ))}
-    </div>
+    </Container>
   );
 };
 
