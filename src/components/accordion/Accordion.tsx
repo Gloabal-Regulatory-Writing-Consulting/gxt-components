@@ -67,7 +67,7 @@ const Accordion: React.FC<AccordionProps> & {
 
   return (
     <AccordionContainer>
-      <Header onClick={handleToggle} isSearchAble={isSearchAble}>
+      <Header onClick={handleToggle} $isSearchAble={isSearchAble}>
         {header}
         <AccordionIcon open={isOpen}>
           <SvgIcon iconType={IconType.ACCORDION_ARROW} />

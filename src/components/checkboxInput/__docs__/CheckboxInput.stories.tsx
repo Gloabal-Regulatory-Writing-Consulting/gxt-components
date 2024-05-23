@@ -13,7 +13,7 @@ type Story = StoryObj<typeof CheckboxInput>;
 export const Unchecked: Story = {
   args: {
     disabled: false,
-    inputSize: "small",
+    $inputSize: "small",
     indeterminate: false,
     checked: false,
     onChange: (e) => {
@@ -40,7 +40,7 @@ export const Indeterminate: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    inputSize: "small",
+    $inputSize: "small",
     indeterminate: false,
     checked: false,
   },
@@ -49,7 +49,7 @@ export const Disabled: Story = {
 export const CheckedAndDisable: Story = {
   args: {
     disabled: true,
-    inputSize: "small",
+    $inputSize: "small",
     indeterminate: false,
     checked: true,
   },
@@ -58,7 +58,7 @@ export const CheckedAndDisable: Story = {
 export const IndeterminateAndDisable: Story = {
   args: {
     disabled: true,
-    inputSize: "small",
+    $inputSize: "small",
     indeterminate: true,
     checked: false,
   },
@@ -67,7 +67,7 @@ export const IndeterminateAndDisable: Story = {
 export const LabeledCheckbox: Story = {
   args: {
     disabled: false,
-    inputSize: "small",
+    $inputSize: "small",
     indeterminate: false,
     checked: false,
     label: "Click me",
