@@ -15,17 +15,17 @@ export const TabsList: Story = {
     tabs: [
       {
         active: true,
-        title: "Active Tab",
+        title: "Tab One",
         onClickHandler: () => console.log("Inactive Tab clicked"),
       },
       {
         active: false,
-        title: "Inactive Tab",
+        title: "Tab Two",
         onClickHandler: () => console.log("Inactive Tab clicked"),
       },
       {
         active: false,
-        title: "Inactive Tab",
+        title: "Tab Three",
         onClickHandler: () => console.log("Inactive Tab clicked"),
       },
     ],

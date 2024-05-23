@@ -1,6 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Tabs, { TabsProps } from "../Tabs";
+
 const Example: FC<TabsProps> = ({ tabs }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+  };
+
   return (
     <div
       style={{
@@ -10,7 +17,13 @@ const Example: FC<TabsProps> = ({ tabs }) => {
         height: "100%",
       }}
     >
-      <Tabs tabs={tabs} />
+      <Tabs
+        tabs={tabs.map((tab, index) => ({
+          ...tab,
+          active: index === activeTab,
+          onClickHandler: () => handleTabClick(index),
+        }))}
+      />
     </div>
   );
 };
