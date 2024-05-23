@@ -19,6 +19,10 @@ exports[`Button component > Button should render when variant is negative > Nega
   border-radius: 0.25rem;
 }
 
+.c0:active {
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
+}
+
 .c1 {
   background: var(--negative-100, #ef4444);
   border-color: var(--negative-100, #ef4444);
@@ -66,6 +70,10 @@ exports[`Button component > Button should render when variant is positive > Posi
   letter-spacing: 0.00119rem;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+}
+
+.c0:active {
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
 }
 
 .c1 {
@@ -118,6 +126,10 @@ exports[`Button component > Button should render when variant is primary > Prima
   border-radius: 0.25rem;
 }
 
+.c0:active {
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
+}
+
 .c1 {
   background: var(--primary-200, #177ba6);
   border-color: var(--primary-200, #177ba6);
@@ -168,6 +180,10 @@ exports[`Button component > Button should render when variant is secondary > Sec
   letter-spacing: 0.00119rem;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+}
+
+.c0:active {
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
 }
 
 .c1 {

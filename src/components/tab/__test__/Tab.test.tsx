@@ -16,10 +16,13 @@ describe("Tab Component", () => {
   });
 
   it("applies active styles when active is true", () => {
-    render(<Tab title="Tab 1" active onClickHandler={onClickHandler} />);
+    render(<Tab title="Tab 1" active={true} onClickHandler={onClickHandler} />);
     const tabElement = screen.getByText("Tab 1");
 
-    expect(tabElement).toHaveClass("tab active-tab");
+    expect(tabElement).toHaveStyle(`
+      font-weight: 700;
+      border-bottom: 2px solid var(--primary-200, #177ba6);
+    `);
   });
 
   it("applies inactive styles when active is false", () => {
@@ -27,7 +30,10 @@ describe("Tab Component", () => {
       <Tab title="Tab 1" active={false} onClickHandler={onClickHandler} />,
     );
     const tabElement = screen.getByText("Tab 1");
-    expect(tabElement).toHaveClass("inactive-tab");
+
+    expect(tabElement).toHaveStyle(`
+      border: none;
+    `);
   });
 
   it("calls onClickHandler when clicked", () => {
@@ -37,12 +43,10 @@ describe("Tab Component", () => {
   });
 
   it("disables tab when disabled prop is true", () => {
-    render(
-      <Tab title="Tab 1" disabled={true} onClickHandler={onClickHandler} />,
-    );
+    render(<Tab title="Tab 1" disabled onClickHandler={onClickHandler} />);
     const tabElement = screen.getByRole("button", { name: "Tab 1" });
-    expect(tabElement).toBeDisabled();
 
+    expect(tabElement).toBeDisabled();
     fireEvent.click(tabElement);
     expect(onClickHandler).not.toHaveBeenCalled();
   });
