@@ -27,6 +27,13 @@ const StyledButton = styled.button<ButtonProps>`
     border-radius: ${circular ? "50%" : "0.25rem"};
     `;
   }}
+
+  &:active {
+    padding: ${({ circular = false }) =>
+      circular
+        ? `calc(1rem - 1px) calc(1rem - 1px)`
+        : `calc(0.5rem - 1px) calc(1rem - 1px)`};
+  }
 `;
 
 const PrimaryStyledButton = styled(StyledButton)`
