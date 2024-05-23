@@ -34,33 +34,46 @@ const SlideOverContainer = styled.div<{
 `;
 
 const Header = styled.div`
-  box-sizing: border-box;
-  padding: 1.25rem;
-  font-size: 1.5rem;
+  align-items: flex-start;
+  align-self: stretch;
   border-bottom: 1px solid var(--neutral-50, #9ca3af);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  gap: 0.25rem;
+  padding: 1.5rem 1.25rem;
 `;
 
 const Content = styled.div`
-  padding: 1.25rem;
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1 1 1;
+  flex-direction: column;
+  height: 100%;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  overflow-y: auto;
 `;
 
 const Footer = styled.div`
-  box-sizing: border-box;
-  padding: 1.25rem;
-  background-color: white;
-  color: black;
+  align-items: center;
+  align-self: stretch;
   border-top: 1px solid var(--neutral-50, #9ca3af);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
   z-index: 1000;
 `;
 
 const SlideOverOverlay = styled.div<{ $isOpen: boolean }>`
-  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   position: fixed;
   top: 0;
-  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   transition: opacity 0.3s ease-in-out;
+  width: 100%;
   z-index: 999;
 `;
 
@@ -96,9 +109,9 @@ const SlideOver: FC<SlideOverProps> & {
   contentStyles = {},
   overlayStyles = {},
 }) => {
-  const [{ header, footer }, restChildren] = useSlots(children, {
-    header: SlideOverHeader,
-    footer: SlideOverFooter,
+  const [{ HeaderSlot, FooterSlot }, restChildren] = useSlots(children, {
+    HeaderSlot: SlideOverHeader,
+    FooterSlot: SlideOverFooter,
   });
 
   const slideOverComponent = (
@@ -110,11 +123,11 @@ const SlideOver: FC<SlideOverProps> & {
         style={slideOverStyles}
         width={width}
       >
-        {header}
+        {HeaderSlot && <HeaderSlot />}
         <Content style={contentStyles} className={contentClasses}>
           {restChildren}
         </Content>
-        {footer}
+        {FooterSlot && <FooterSlot />}
       </SlideOverContainer>
       {isOpen && overlay && (
         <SlideOverOverlay
@@ -136,18 +149,16 @@ const SlideOver: FC<SlideOverProps> & {
 
 const SlideOverFooter = function FooterComponent({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <Footer>{children}</Footer>;
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return <Footer {...props}>{children}</Footer>;
 };
 
 const SlideOverHeader = function HeaderComponent({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <Header>{children}</Header>;
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return <Header {...props}>{children}</Header>;
 };
 
 SlideOver.displayName = "SlideOver";
