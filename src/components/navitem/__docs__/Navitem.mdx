@@ -1,0 +1,38 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as Navitem from "./Navitem.stories.tsx";
+
+<Meta of={Navitem} title="Navitem" />
+
+# Navitem
+
+## Example
+
+<Canvas of={Navitem.NavitemComponent} />
+
+## Usage
+
+```tsx
+import Navitem from "sld-ui";
+import { ReactComponent as HomeIcon } from "./icons/HomeIcon.svg";
+
+const Example = () => {
+  const isLinkActive = (path) => {
+    // return true if path matches the current path of application
+  };
+  return (
+    <Navitem
+      navigateTo="/home"
+      text="Home"
+      Icon={HomeIcon}
+      isExpanded={true}
+      isLinkActive={isLinkActive}
+    />
+  );
+};
+
+export default Example;
+```
+
+## Props
+Navitem component with different props.
+<Controls of={Navitem.NavitemComponent} />

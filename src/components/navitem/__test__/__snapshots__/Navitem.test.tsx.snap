@@ -1,0 +1,303 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navitem component > applies active styles when link is active 1`] = `
+<DocumentFragment>
+  <a
+    aria-current="page"
+    class="sc-gEvDqW ixgtyG active"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > applies correct icon color when link is active 1`] = `
+<DocumentFragment>
+  <a
+    aria-current="page"
+    class="sc-gEvDqW ixgtyG active"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > applies correct icon color when link is not active 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cExATB"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk ijTCaO"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > does not apply active styles when link is not active 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cExATB"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk ijTCaO"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > does not render expanded text when isExpanded is false 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk bnbWnV"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > does not render icon when not provided 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      />
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > renders expanded text when isExpanded is true 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > renders icon when provided 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > renders with correct text 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Navitem component > renders without crashing 1`] = `
+<DocumentFragment>
+  <a
+    class="sc-gEvDqW ixgtyG"
+    data-testid="Home"
+    data-tooltip-content="Home"
+    data-tooltip-id="navlink"
+    href="/home"
+  >
+    <div
+      class="sc-aYaIB cCERKD"
+    >
+      <div
+        class="sc-eqUzNf kbmWsj"
+      >
+        <svg
+          data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
+        />
+      </div>
+      <p
+        class="sc-fqkwJk hXGbbs"
+      >
+        Home
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;

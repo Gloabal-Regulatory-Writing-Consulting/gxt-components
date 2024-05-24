@@ -79,6 +79,7 @@
   },
   "name": "@gloabal-regulatory-writing-consulting/gxt-components",
   "dependencies": {
-    "react-paginate": "^8.2.0"
+    "react-paginate": "^8.2.0",
+    "react-router-dom": "^6.23.1"
   }
 }
