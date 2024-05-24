@@ -6,11 +6,14 @@ import {
   NavText,
 } from "./NavItemStyledComponents";
 
-export interface NavItemProps {
+export interface INavItem {
   navigateTo: string;
   text: string;
   Icon?: React.ComponentType<any>;
   className?: string;
+}
+
+export interface NavItemProps extends INavItem {
   isExpanded: boolean;
   isLinkActive: (path: string) => boolean;
 }
