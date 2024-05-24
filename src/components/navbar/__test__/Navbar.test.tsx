@@ -8,7 +8,7 @@ import {
 } from "@testing-library/react";
 import Navbar, { NavbarProps } from "../Navbar";
 import { UserObj } from "../../avatar/Avatar";
-import { NavItemProps } from "../../navitem/Navitem";
+import { INavItem } from "../../navitem/Navitem";
 import { vi, it, describe, expect } from "vitest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
@@ -24,33 +24,29 @@ const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
   );
 };
 
-const footerLinks: NavItemProps[] = [
+const footerLinks: INavItem[] = [
   {
-    permission: "user",
+    navigateTo: "user",
     text: "Footer Link 1",
     Icon: () => <span>FL1</span>,
-    isExpanded: false,
   },
   {
-    permission: "user",
+    navigateTo: "user",
     text: "Footer Link 2",
     Icon: () => <span>FL2</span>,
-    isExpanded: false,
   },
 ];
 
-const contentLinks: NavItemProps[] = [
+const contentLinks: INavItem[] = [
   {
-    permission: "user",
+    navigateTo: "user",
     text: "Content Link 1",
     Icon: () => <span>CL1</span>,
-    isExpanded: false,
   },
   {
-    permission: "user",
+    navigateTo: "user",
     text: "Content Link 2",
     Icon: () => <span>CL2</span>,
-    isExpanded: false,
   },
 ];
 
@@ -67,6 +63,8 @@ const clientStyling = {
 
 const setShowAvatarMenu = vi.fn();
 
+const isLinkActive = (path: string) => path === "user";
+
 const defaultProps: NavbarProps = {
   footerLinks,
   contentLinks,
@@ -74,6 +72,7 @@ const defaultProps: NavbarProps = {
   showAvatarMenu: false,
   clientStyling,
   user,
+  isLinkActive,
 };
 
 describe("Navbar Component", () => {
