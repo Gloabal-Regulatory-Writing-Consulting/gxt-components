@@ -8,7 +8,7 @@ import {
 } from "react";
 import Avatar, { UserObj } from "../avatar/Avatar";
 import { Navitem } from "../navitem";
-import { NavItemProps } from "../navitem/Navitem";
+import { INavItem } from "../navitem/Navitem";
 import {
   FooterContent,
   Header,
@@ -19,12 +19,14 @@ import {
 } from "./NavbarStyledComponents";
 
 export interface NavbarProps {
-  footerLinks: NavItemProps[];
-  contentLinks: NavItemProps[];
+  footerLinks: INavItem[];
+  contentLinks: INavItem[];
   setShowAvatarMenu: Dispatch<SetStateAction<boolean>>;
   showAvatarMenu: boolean;
   clientStyling: ClientStyling;
   user: UserObj;
+  isLinkActive: (path: string) => boolean;
+  expansionTime?: number;
 }
 
 export interface ClientStyling {
@@ -39,8 +41,9 @@ const Navbar: FC<NavbarProps> = ({
   showAvatarMenu,
   clientStyling,
   user,
+  isLinkActive,
+  expansionTime = 300,
 }) => {
-  const EXPANSION_TIME = 200;
   const { thumbnail, logo } = clientStyling;
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -55,7 +58,7 @@ const Navbar: FC<NavbarProps> = ({
   useEffect(() => {
     timeoutId.current = setTimeout(() => {
       setIsExpanded(isTimeOutExpanded);
-    }, EXPANSION_TIME);
+    }, expansionTime);
 
     return () => {
       clearTimeout(timeoutId.current);
@@ -76,38 +79,40 @@ const Navbar: FC<NavbarProps> = ({
 
   return (
     <Sidebar
-      isExpanded={isExpanded}
+      $isExpanded={isExpanded}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-testid="sidebar"
     >
-      <LeadingContent isExpanded={isExpanded}>
-        <HeaderContainer isExpanded={isExpanded}>
+      <LeadingContent $isExpanded={isExpanded}>
+        <HeaderContainer $isExpanded={isExpanded}>
           <Header
             src={isExpanded ? logo : thumbnail}
             alt="company logo"
             data-testid="logo"
-            isExpanded={isExpanded}
+            $isExpanded={isExpanded}
           />
         </HeaderContainer>
-        <NavList isExpanded={isExpanded}>
+        <NavList $isExpanded={isExpanded}>
           {contentLinks.map((link) => (
             <Navitem
-              permission={link.permission}
+              navigateTo={link.navigateTo}
               text={link.text}
               Icon={link.Icon}
               isExpanded={isExpanded}
+              isLinkActive={isLinkActive}
             />
           ))}
         </NavList>
       </LeadingContent>
-      <FooterContent isExpanded={isExpanded}>
-        {[...footerLinks].map((link) => (
+      <FooterContent>
+        {footerLinks.map((link) => (
           <Navitem
-            permission={link.permission}
+            navigateTo={link.navigateTo}
             text={link.text}
             Icon={link.Icon}
             isExpanded={isExpanded}
+            isLinkActive={isLinkActive}
           />
         ))}
         {avatarIcon}

@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React, { FC } from "react";
 import { SvgIcon } from "../../svg";
 import { IconType } from "../../svg/SvgIcon";
-import { BrowserRouter as Router } from "react-router-dom";
-import Example from "./Example";
+import { BrowserRouter as Router, useMatch } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const withRouter = (Story) => (
   <Router>
@@ -11,10 +11,11 @@ const withRouter = (Story) => (
   </Router>
 );
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof Navbar> = {
   title: "Navbar",
-  component: Example,
+  component: Navbar,
   decorators: [withRouter],
+  tags: ["autodocs"],
 };
 
 const SearchIcon: FC<{
@@ -64,13 +65,13 @@ const ChevronIcon: FC<{
 
 const contentNavlinks = [
   {
-    permission: "/Search",
+    navigateTo: "/Search",
     text: "Search",
     Icon: SearchIcon,
     isExpanded: false,
   },
   {
-    permission: "/Chevron",
+    navigateTo: "/Chevron",
     text: "Chevron",
     Icon: ChevronIcon,
     isExpanded: false,
@@ -79,15 +80,17 @@ const contentNavlinks = [
 
 const footerNavLinks = [
   {
-    permission: "/EditFiles",
+    navigateTo: "/EditFiles",
     text: "Edit Files",
     Icon: PencilIcon,
     isExpanded: false,
   },
 ];
 
+const isLinkActive = (path: string) => !!useMatch(`${path}/*`);
+
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof Navbar>;
 
 export const NavbarComponent: Story = {
   args: {
@@ -101,5 +104,7 @@ export const NavbarComponent: Story = {
       logo: "https://assets-global.website-files.com/65c52881530653d17b57a875/65cd352d274bc8fe4b952072_Global%20Exp%20Tech_black%20letter_blue%20globe.png",
     },
     user: { firstName: "John", lastName: "Doe" },
+    expansionTime: 300,
+    isLinkActive: isLinkActive,
   },
 };

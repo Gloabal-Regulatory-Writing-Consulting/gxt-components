@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const LeadingContent = styled.div<{ isExpanded: boolean }>`
+export const LeadingContent = styled.div<{ $isExpanded: boolean }>`
   display: flex;
   padding: 1.25rem 0rem 1rem 0rem;
   flex-direction: column;
@@ -8,16 +8,16 @@ export const LeadingContent = styled.div<{ isExpanded: boolean }>`
   gap: 2.5rem;
   flex: 1 0 0;
 
-  ${({ isExpanded }) =>
-    isExpanded === true &&
+  ${({ $isExpanded }) =>
+    $isExpanded === true &&
     css`
       align-self: stretch;
     `}
 `;
 
-export const Header = styled.img<{ isExpanded: boolean }>`
-  ${({ isExpanded }) =>
-    isExpanded === true
+export const Header = styled.img<{ $isExpanded: boolean }>`
+  ${({ $isExpanded }) =>
+    $isExpanded === true
       ? css`
           max-width: 13.7rem;
         `
@@ -26,7 +26,7 @@ export const Header = styled.img<{ isExpanded: boolean }>`
         `}
 `;
 
-export const HeaderContainer = styled.div<{ isExpanded: boolean }>`
+export const HeaderContainer = styled.div<{ $isExpanded: boolean }>`
   display: flex;
   padding: 0rem 1.5rem;
   flex-direction: column;
@@ -35,8 +35,8 @@ export const HeaderContainer = styled.div<{ isExpanded: boolean }>`
   transition: width 0.5s;
   height: 2rem;
 
-  ${({ isExpanded }) =>
-    isExpanded === true
+  ${({ $isExpanded }) =>
+    $isExpanded
       ? css`
           align-items: center;
           max-width: 15.7rem;
@@ -47,7 +47,7 @@ export const HeaderContainer = styled.div<{ isExpanded: boolean }>`
         `}
 `;
 
-export const Sidebar = styled.div<{ isExpanded: boolean }>`
+export const Sidebar = styled.div<{ $isExpanded: boolean }>`
   height: 100vh;
   flex-direction: column;
   align-items: flex-start;
@@ -56,8 +56,8 @@ export const Sidebar = styled.div<{ isExpanded: boolean }>`
   background: var(--system-50, #ffffff);
   transition: width 0.5s;
 
-  ${({ isExpanded }) =>
-    isExpanded === true
+  ${({ $isExpanded }) =>
+    $isExpanded
       ? css`
           display: inline-flex;
           width: 15.7rem;
@@ -68,7 +68,7 @@ export const Sidebar = styled.div<{ isExpanded: boolean }>`
         `}
 `;
 
-export const NavList = styled.div<{ isExpanded: boolean }>`
+export const NavList = styled.div<{ $isExpanded: boolean }>`
   display: flex;
   padding: 0rem 1rem;
   flex-direction: column;
@@ -77,14 +77,14 @@ export const NavList = styled.div<{ isExpanded: boolean }>`
   flex: 1 0 0;
   list-style-type: none;
 
-  ${({ isExpanded }) =>
-    isExpanded === false &&
+  ${({ $isExpanded }) =>
+    !$isExpanded &&
     css`
       align-self: stretch;
     `}
 `;
 
-export const FooterContent = styled.ul<{ isExpanded: boolean }>`
+export const FooterContent = styled.div`
   display: flex;
   padding: 1rem;
   flex-direction: column;
