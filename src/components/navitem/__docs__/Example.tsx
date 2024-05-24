@@ -2,19 +2,21 @@ import React, { FC } from "react";
 import Navitem, { NavItemProps } from "../Navitem";
 
 const Example: FC<NavItemProps> = ({
-  permission,
+  navigateTo,
   text,
   Icon,
   className,
   isExpanded,
+  isLinkActive,
 }) => {
   return (
     <Navitem
-      permission={permission}
+      navigateTo={navigateTo}
       text={text}
       Icon={Icon}
       className={className}
       isExpanded={isExpanded}
+      isLinkActive={isLinkActive}
     />
   );
 };

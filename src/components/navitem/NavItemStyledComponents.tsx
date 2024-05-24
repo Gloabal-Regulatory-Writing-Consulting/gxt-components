@@ -37,12 +37,15 @@ export const NavText = styled.p<{ isActive: boolean; isExpanded: boolean }>`
   line-height: 150%;
   letter-spacing: 0.00119rem;
   margin: 0;
-  opacity: ${({ isExpanded }) => (isExpanded ? 1 : 0)};
-  visibility: ${({ isExpanded }) => (isExpanded ? "visible" : "hidden")};
   transition:
     opacity 0.5s ease-in-out,
     visibility 0.5s ease-in-out;
 
-  color: ${({ isActive }) =>
-    isActive ? "var(--primary-200, #177BA6)" : "var(--neutral-400, #414141)"};
+  ${({ isActive, isExpanded }) => css`
+    opacity: ${isExpanded ? 1 : 0};
+    visibility: ${isExpanded ? "visible" : "hidden"};
+    color: ${isActive
+      ? "var(--primary-200, #177BA6)"
+      : "var(--neutral-400, #414141)"};
+  `}
 `;

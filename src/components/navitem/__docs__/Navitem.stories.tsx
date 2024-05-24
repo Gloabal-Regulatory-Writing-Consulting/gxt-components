@@ -37,9 +37,10 @@ type Story = StoryObj<typeof Navitem>;
 
 export const NavitemComponent: Story = {
   args: {
-    permission: "/",
+    navigateTo: "/",
     text: "Search",
     Icon: CustomIcon as React.ComponentType<any> | undefined,
     isExpanded: true,
+    isLinkActive: () => false,
   },
 };

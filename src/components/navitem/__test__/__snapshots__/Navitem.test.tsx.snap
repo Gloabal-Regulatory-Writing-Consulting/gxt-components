@@ -23,7 +23,7 @@ exports[`Navitem component > applies active styles when link is active 1`] = `
         />
       </div>
       <p
-        class="sc-fqkwJk fRKsUy"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -55,7 +55,7 @@ exports[`Navitem component > applies correct icon color when link is active 1`] 
         />
       </div>
       <p
-        class="sc-fqkwJk fRKsUy"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -84,7 +84,7 @@ exports[`Navitem component > applies correct icon color when link is not active 
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk ijTCaO"
       >
         Home
       </p>
@@ -113,7 +113,7 @@ exports[`Navitem component > does not apply active styles when link is not activ
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk ijTCaO"
       >
         Home
       </p>
@@ -132,17 +132,19 @@ exports[`Navitem component > does not render expanded text when isExpanded is fa
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       >
         <svg
           data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
         />
       </div>
       <p
-        class="sc-fqkwJk gFvGEZ"
+        class="sc-fqkwJk bnbWnV"
       >
         Home
       </p>
@@ -161,13 +163,13 @@ exports[`Navitem component > does not render icon when not provided 1`] = `
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       />
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -186,17 +188,19 @@ exports[`Navitem component > renders expanded text when isExpanded is true 1`] =
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       >
         <svg
           data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -215,17 +219,19 @@ exports[`Navitem component > renders icon when provided 1`] = `
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       >
         <svg
           data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -244,17 +250,19 @@ exports[`Navitem component > renders with correct text 1`] = `
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       >
         <svg
           data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>
@@ -273,17 +281,19 @@ exports[`Navitem component > renders without crashing 1`] = `
     href="/home"
   >
     <div
-      class="sc-aYaIB cExATB"
+      class="sc-aYaIB cCERKD"
     >
       <div
         class="sc-eqUzNf kbmWsj"
       >
         <svg
           data-testid="mock-icon"
+          fill="var(--primary-200, #177BA6)"
+          stroke="var(--primary-200, #177BA6)"
         />
       </div>
       <p
-        class="sc-fqkwJk kEbofk"
+        class="sc-fqkwJk hXGbbs"
       >
         Home
       </p>

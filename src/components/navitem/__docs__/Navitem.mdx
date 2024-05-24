@@ -16,12 +16,16 @@ import Navitem from "sld-ui";
 import { ReactComponent as HomeIcon } from "./icons/HomeIcon.svg";
 
 const Example = () => {
+  const isLinkActive = (path) => {
+    // return true if path matches the current path of application
+  };
   return (
     <Navitem
-      permission="/home"
+      navigateTo="/home"
       text="Home"
       Icon={HomeIcon}
       isExpanded={true}
+      isLinkActive={isLinkActive}
     />
   );
 };

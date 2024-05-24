@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Navitem from "../Navitem";
-import { NavItemProps } from "../Navitem";
+import Navitem, { NavItemProps } from "../Navitem";
 import { describe, expect, it } from "vitest";
 
 const MockIcon = (props: any) => <svg {...props} data-testid="mock-icon" />;
@@ -20,11 +19,12 @@ const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
 };
 
 const defaultProps: NavItemProps = {
-  permission: "/home",
+  navigateTo: "/home",
   text: "Home",
   Icon: MockIcon,
   className: "",
   isExpanded: true,
+  isLinkActive: (path: string) => path === "/home",
 };
 
 describe("Navitem component", () => {
@@ -64,7 +64,6 @@ describe("Navitem component", () => {
     const { asFragment } = renderWithRouter(
       <Navitem {...defaultProps} isExpanded={false} />,
     );
-
     const navText = screen.getByText("Home");
     expect(navText).toHaveStyle("visibility: hidden");
     expect(asFragment()).toMatchSnapshot();
@@ -83,9 +82,13 @@ describe("Navitem component", () => {
   });
 
   it("does not apply active styles when link is not active", () => {
-    const { asFragment } = renderWithRouter(<Navitem {...defaultProps} />, {
-      route: "/another-route",
-    });
+    const isLinkActiveMock = (path: string) => path !== "/home";
+    const { asFragment } = renderWithRouter(
+      <Navitem {...defaultProps} isLinkActive={isLinkActiveMock} />,
+      {
+        route: "/another-route",
+      },
+    );
     const navItemContainer = screen.getByTestId("Home").firstChild;
     expect(navItemContainer).not.toHaveStyle("border-left: solid");
     expect(asFragment()).toMatchSnapshot();
@@ -102,9 +105,13 @@ describe("Navitem component", () => {
   });
 
   it("applies correct icon color when link is not active", () => {
-    const { asFragment } = renderWithRouter(<Navitem {...defaultProps} />, {
-      route: "/another-route",
-    });
+    const isLinkActiveMock = (path: string) => path !== "/home";
+    const { asFragment } = renderWithRouter(
+      <Navitem {...defaultProps} isLinkActive={isLinkActiveMock} />,
+      {
+        route: "/another-route",
+      },
+    );
     const icon = screen.getByTestId("mock-icon");
     expect(icon).not.toHaveAttribute("stroke", "var(--primary-200, #177BA6)");
     expect(icon).not.toHaveAttribute("fill", "var(--primary-200, #177BA6)");

@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useMatch } from "react-router-dom";
 import {
   NavIcon,
   NavItemContainer,
@@ -8,11 +7,12 @@ import {
 } from "./NavItemStyledComponents";
 
 export interface NavItemProps {
-  permission: string;
+  navigateTo: string;
   text: string;
   Icon?: React.ComponentType<any>;
   className?: string;
   isExpanded: boolean;
+  isLinkActive: (path: string) => boolean;
 }
 
 export interface IClientStyling {
@@ -20,28 +20,33 @@ export interface IClientStyling {
   logo: string;
 }
 
-const Navitem: FC<NavItemProps> = ({ permission, text, Icon, isExpanded }) => {
-  const match = useMatch(`${permission}/*`);
-  const isLinkActive = !!match;
+const Navitem: FC<NavItemProps> = ({
+  navigateTo,
+  text,
+  Icon,
+  isExpanded,
+  isLinkActive,
+}) => {
+  const isLinkActivated = isLinkActive(navigateTo);
 
   return (
     <NavLinkStyled
       data-tooltip-id="navlink"
       data-tooltip-content={text}
-      to={permission}
+      to={navigateTo}
       data-testid={text}
       end
     >
-      <NavItemContainer isLinkActive={isLinkActive}>
+      <NavItemContainer isLinkActive={isLinkActivated}>
         <NavIcon>
           {Icon && (
             <Icon
-              stroke={isLinkActive && "var(--primary-200, #177BA6)"}
-              fill={isLinkActive && "var(--primary-200, #177BA6)"}
+              stroke={isLinkActivated && "var(--primary-200, #177BA6)"}
+              fill={isLinkActivated && "var(--primary-200, #177BA6)"}
             ></Icon>
           )}
         </NavIcon>
-        <NavText isExpanded={isExpanded} isActive={isLinkActive}>
+        <NavText isExpanded={isExpanded} isActive={isLinkActivated}>
           {text}
         </NavText>
       </NavItemContainer>
