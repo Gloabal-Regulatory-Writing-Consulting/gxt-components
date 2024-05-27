@@ -15,7 +15,6 @@ const StyledButton = styled.button<ButtonProps>`
   border: 1px solid transparent;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
-  font-family: Mulish;
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
