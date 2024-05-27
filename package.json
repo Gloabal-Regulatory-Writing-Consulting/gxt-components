@@ -54,8 +54,9 @@
     "@types/react-paginate": "^7.1.4"
   },
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": "^18.3.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.9.5"
@@ -79,7 +80,6 @@
   },
   "name": "@gloabal-regulatory-writing-consulting/gxt-components",
   "dependencies": {
-    "react-paginate": "^8.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-paginate": "^8.2.0"
   }
 }
