@@ -94,25 +94,29 @@ const Navbar: FC<NavbarProps> = ({
           />
         </HeaderContainer>
         <NavList $isExpanded={isExpanded}>
-          {contentLinks.map((link) => (
+          {contentLinks.map((link, index) => (
             <Navitem
+              key={index}
               navigateTo={link.navigateTo}
               text={link.text}
               Icon={link.Icon}
               isExpanded={isExpanded}
               isLinkActive={isLinkActive}
+              onClickHandler={link.onClickHandler}
             />
           ))}
         </NavList>
       </LeadingContent>
       <FooterContent>
-        {footerLinks.map((link) => (
+        {footerLinks.map((link, index) => (
           <Navitem
+            key={index}
             navigateTo={link.navigateTo}
             text={link.text}
             Icon={link.Icon}
             isExpanded={isExpanded}
             isLinkActive={isLinkActive}
+            onClickHandler={link.onClickHandler}
           />
         ))}
         {avatarIcon}

@@ -11,6 +11,7 @@ export interface INavItem {
   text: string;
   Icon?: React.ComponentType<any>;
   className?: string;
+  onClickHandler?: () => void;
 }
 
 export interface NavItemProps extends INavItem {
@@ -23,37 +24,57 @@ export interface IClientStyling {
   logo: string;
 }
 
+type WrapperProps = {
+  onClickHandler?: () => void;
+  children: React.ReactNode;
+};
+
+const NavLinkWrapper = ({ onClickHandler, children }: WrapperProps) => {
+  return onClickHandler ? (
+    <div onClick={onClickHandler}>{children}</div>
+  ) : (
+    <>{children}</>
+  );
+};
+
 const Navitem: FC<NavItemProps> = ({
   navigateTo,
   text,
   Icon,
   isExpanded,
   isLinkActive,
+  onClickHandler,
 }) => {
   const isLinkActivated = isLinkActive(navigateTo);
 
   return (
-    <NavLinkStyled
-      data-tooltip-id="navlink"
-      data-tooltip-content={text}
-      to={navigateTo}
-      data-testid={text}
-      end
-    >
-      <NavItemContainer isLinkActive={isLinkActivated}>
-        <NavIcon>
-          {Icon && (
-            <Icon
-              stroke={isLinkActivated && "var(--primary-200, #177BA6)"}
-              fill={isLinkActivated && "var(--primary-200, #177BA6)"}
-            ></Icon>
-          )}
-        </NavIcon>
-        <NavText isExpanded={isExpanded} isActive={isLinkActivated}>
-          {text}
-        </NavText>
-      </NavItemContainer>
-    </NavLinkStyled>
+    <NavLinkWrapper onClickHandler={onClickHandler}>
+      <NavLinkStyled
+        data-tooltip-id="navlink"
+        data-tooltip-content={text}
+        to={navigateTo}
+        data-testid={text}
+        end
+      >
+        <NavItemContainer isLinkActive={isLinkActivated}>
+          <NavIcon>
+            {Icon && (
+              <Icon
+                stroke={
+                  isLinkActivated ? "var(--primary-200, #177BA6)" : undefined
+                }
+                fill={
+                  isLinkActivated ? "var(--primary-200, #177BA6)" : undefined
+                }
+              ></Icon>
+            )}
+          </NavIcon>
+          <NavText isExpanded={isExpanded} isActive={isLinkActivated}>
+            {text}
+          </NavText>
+        </NavItemContainer>
+      </NavLinkStyled>
+    </NavLinkWrapper>
   );
 };
 
