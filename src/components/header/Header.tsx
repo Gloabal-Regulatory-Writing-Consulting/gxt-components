@@ -6,7 +6,7 @@ import {
   BreadcrumbsContainer,
   ActionsContainer,
 } from "./Header.styles";
-import { useSlots } from "../../utils/useSlots";
+import { useSlots } from "../../hooks/useSlots";
 
 export const Actions: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Search } from "../search";
 import { SvgIcon } from "../svg";
 import { IconType } from "../svg/SvgIcon";
-import { useSlots } from "../../utils/useSlots";
+import { useSlots } from "../../hooks/useSlots";
 
 import {
   AccordionContainer,

@@ -91,8 +91,9 @@ export function useSlots<Config extends SlotConfig>(
 
     // If the child is a slot, add it to the `slots` object
 
-    slots[slotKey] = (props) =>
-      cloneElement(child, props) as child as SlotValue<Config, keyof Config>;
+    slots[slotKey] = ((
+      props: (Partial<SlotElements<Config>> & React.Attributes) | undefined,
+    ) => cloneElement(child, props)) as SlotValue<Config, keyof Config>;
   });
 
   return [slots, rest];
