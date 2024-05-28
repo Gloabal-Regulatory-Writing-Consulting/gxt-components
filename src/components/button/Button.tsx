@@ -56,12 +56,12 @@ const PrimaryStyledButton = styled(StyledButton)`
   &:disabled {
     background: var(--neutral-50, #f9fafb);
     border-color: var(--neutral-50, #f9fafb);
-    color: var(--neutral-50, #9ca3af);
+    color: var(--neutral-200, #9ca3af);
   }
 `;
 
 const SecondaryStyledButton = styled(StyledButton)`
-  border: 1px solid var(--neutral-50, #9ca3af);
+  border: 1px solid var(--neutral-200, #9ca3af);
   background: var(--system-50, #fff);
   color: var(--primary-200, #177ba6);
 

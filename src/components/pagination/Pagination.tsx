@@ -23,7 +23,7 @@ const PaginationContainer = styled.div<{ width?: string }>`
   width: ${(props) => props.width || "100%"};
   justify-content: space-between;
   align-items: stretch;
-  border: 0.063rem solid var(--neutral-100, #9ca3af);
+  border: 0.063rem solid var(--neutral-200, #9ca3af);
 `;
 
 const PaginationWrapper = styled.div`

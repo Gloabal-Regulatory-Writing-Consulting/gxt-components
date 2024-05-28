@@ -12,3 +12,6 @@ export * from "./accordion";
 export * from "./modal";
 export * from "./navitem";
 export * from "./navbar";
+export * from "./slideOver";
+export * from "./slideOverFilters";
+export * from "./checkboxInput";

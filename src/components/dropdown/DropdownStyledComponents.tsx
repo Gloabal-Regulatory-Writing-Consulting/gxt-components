@@ -81,8 +81,8 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
 
   &:hover {
     transition: border-color 0.3s;
-    color: var(--primary-200, #177ba6);
-    background-color: var(--system-100, #f3f4f6);
+    color: var(--system-100, #000000);
+    background-color: var(--primary-50, #2aace2);
     border-color: var(--primary-200, #177ba6);
   }
 `;

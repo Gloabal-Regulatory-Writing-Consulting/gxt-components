@@ -9,7 +9,7 @@ export interface CheckboxInputProps
 }
 
 const StyledInput = styled.input<CheckboxInputProps>`
-  border: 1px solid var(--neutral-50, #9ca3af);
+  border: 1px solid var(--neutral-200, #9ca3af);
   line-height: 1;
   cursor: pointer;
   border-radius: 25%;
@@ -57,7 +57,7 @@ const StyledInput = styled.input<CheckboxInputProps>`
     }
 
     &:disabled {
-      background-color: var(--neutral-50, #9ca3af);
+      background-color: var(--neutral-200, #9ca3af);
       border: 1px solid var(--neutral-50, #f9fafb);
     }
   }
@@ -79,13 +79,13 @@ const StyledInput = styled.input<CheckboxInputProps>`
     }
 
     &:disabled {
-      background-color: var(--neutral-50, #9ca3af);
+      background-color: var(--neutral-200, #9ca3af);
       border: 1px solid var(--neutral-50, #f9fafb);
     }
   }
   &:disabled {
     background-color: var(--neutral-50, #f9fafb);
-    border: 1px solid var(--neutral-50, #9ca3af);
+    border: 1px solid var(--neutral-200, #9ca3af);
   }
 `;
 
