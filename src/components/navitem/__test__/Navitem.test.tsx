@@ -1,10 +1,12 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navitem, { NavItemProps } from "../Navitem";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 const MockIcon = (props: any) => <svg {...props} data-testid="mock-icon" />;
+
+const mockOnClickHandler = vi.fn();
 
 const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
   window.history.pushState({}, "Test page", route);
@@ -25,6 +27,7 @@ const defaultProps: NavItemProps = {
   className: "",
   isExpanded: true,
   isLinkActive: (path: string) => path === "/home",
+  onClickHandler: mockOnClickHandler,
 };
 
 describe("Navitem component", () => {
@@ -116,5 +119,11 @@ describe("Navitem component", () => {
     expect(icon).not.toHaveAttribute("stroke", "var(--primary-200, #177BA6)");
     expect(icon).not.toHaveAttribute("fill", "var(--primary-200, #177BA6)");
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("calls the onClickHandler when clicked", () => {
+    renderWithRouter(<Navitem {...defaultProps} />);
+    fireEvent.click(screen.getByTestId("Home-navlink"));
+    expect(mockOnClickHandler).toHaveBeenCalledTimes(1);
   });
 });

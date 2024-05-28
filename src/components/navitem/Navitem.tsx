@@ -35,7 +35,7 @@ const Navitem: FC<NavItemProps> = ({
   const isLinkActivated = isLinkActive(navigateTo);
 
   return (
-    <div onClick={onClickHandler}>
+    <div onClick={onClickHandler} data-testid={text + "-navlink"}>
       <NavLinkStyled
         data-tooltip-id="navlink"
         data-tooltip-content={text}
