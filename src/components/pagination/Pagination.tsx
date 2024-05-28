@@ -135,6 +135,7 @@ const Pagination: FC<PaginationProps> = ({
           onSelect={handlePerPageChange}
           renderOption={(option) => option || ""}
           initialValue={itemsPerPage}
+          dropdownIcon={true}
         />
         <Label>{label} per page</Label>
       </PerPageContainer>
