@@ -4,13 +4,8 @@ import SlideOver from "../slideOver/SlideOver";
 
 export const SlideOverHeader = styled(SlideOver.Header)`
   background-color: var(--primary-50, #2aace2);
-
-  /* width: 25rem; */
   height: 1.75rem;
-
-  color: var(--System-50, #fff);
-  /* Headers/H5 */
-  font-family: Mulish;
+  color: var(--system-50, #fff);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;

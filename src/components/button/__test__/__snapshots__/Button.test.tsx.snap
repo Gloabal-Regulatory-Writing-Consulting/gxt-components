@@ -9,7 +9,6 @@ exports[`Button component > Button should render when variant is negative > Nega
   gap: 0.75rem;
   border: 1px solid transparent;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-  font-family: Mulish;
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -62,7 +61,6 @@ exports[`Button component > Button should render when variant is positive > Posi
   gap: 0.75rem;
   border: 1px solid transparent;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-  font-family: Mulish;
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -116,7 +114,6 @@ exports[`Button component > Button should render when variant is primary > Prima
   gap: 0.75rem;
   border: 1px solid transparent;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-  font-family: Mulish;
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -152,7 +149,7 @@ exports[`Button component > Button should render when variant is primary > Prima
 .c1:disabled {
   background: var(--neutral-50, #f9fafb);
   border-color: var(--neutral-50, #f9fafb);
-  color: var(--neutral-50, #9ca3af);
+  color: var(--neutral-200, #9ca3af);
 }
 
 <button
@@ -172,7 +169,6 @@ exports[`Button component > Button should render when variant is secondary > Sec
   gap: 0.75rem;
   border: 1px solid transparent;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-  font-family: Mulish;
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -187,7 +183,7 @@ exports[`Button component > Button should render when variant is secondary > Sec
 }
 
 .c1 {
-  border: 1px solid var(--neutral-50, #9ca3af);
+  border: 1px solid var(--neutral-200, #9ca3af);
   background: var(--system-50, #fff);
   color: var(--primary-200, #177ba6);
 }

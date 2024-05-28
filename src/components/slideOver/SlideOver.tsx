@@ -28,7 +28,7 @@ const SlideOverContainer = styled.div<{
     return `
     ${slideOverPosition}: ${slideOverPositionValue};
     transition: ${slideOverPosition} 0.3s ease-in-out;
-    border-${$position === "right" ? "left" : "right"}: 1px solid var(--neutral-50, #9ca3af);
+    border-${$position === "right" ? "left" : "right"}: 1px solid var(--neutral-200, #9ca3af);
     `;
   }};
 `;
@@ -36,7 +36,7 @@ const SlideOverContainer = styled.div<{
 const Header = styled.div`
   align-items: flex-start;
   align-self: stretch;
-  border-bottom: 1px solid var(--neutral-50, #9ca3af);
+  border-bottom: 1px solid var(--neutral-200, #9ca3af);
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
@@ -59,7 +59,7 @@ const Content = styled.div`
 const Footer = styled.div`
   align-items: center;
   align-self: stretch;
-  border-top: 1px solid var(--neutral-50, #9ca3af);
+  border-top: 1px solid var(--neutral-200, #9ca3af);
   display: flex;
   justify-content: space-between;
   padding: 1rem;

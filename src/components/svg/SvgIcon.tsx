@@ -186,7 +186,7 @@ const SvgIcon: FC<SvgIconProps> = ({
         width="18"
         height="18"
         viewBox="0 0 20 20"
-        fill={rest?.fill || "var(--primary-300, #9CA3AF)"}
+        fill={rest?.fill || "var(--neutral-200, #9CA3AF)"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M10 4.96875L10.5312 5.5L16.5312 11.4688L17.0625 12L16 13.0625L15.4688 12.5312L10 7.0625L4.53125 12.5312L4 13.0625L2.9375 12L3.46875 11.4688L9.46875 5.46875L10 4.9375V4.96875Z" />

@@ -15,7 +15,7 @@ export const Header = styled.div`
   line-height: 150%;
   letter-spacing: 0.019px;
   cursor: pointer;
-  color: var(--Neutral-400, #414141);
+  color: var(--neutral-400, #414141);
   margin-bottom: 0.5rem;
 `;
 
