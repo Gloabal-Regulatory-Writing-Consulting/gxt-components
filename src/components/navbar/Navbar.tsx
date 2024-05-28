@@ -94,9 +94,9 @@ const Navbar: FC<NavbarProps> = ({
           />
         </HeaderContainer>
         <NavList $isExpanded={isExpanded}>
-          {contentLinks.map((link, index) => (
+          {contentLinks.map((link) => (
             <Navitem
-              key={index}
+              key={link.text}
               navigateTo={link.navigateTo}
               text={link.text}
               Icon={link.Icon}
@@ -108,9 +108,9 @@ const Navbar: FC<NavbarProps> = ({
         </NavList>
       </LeadingContent>
       <FooterContent>
-        {footerLinks.map((link, index) => (
+        {footerLinks.map((link) => (
           <Navitem
-            key={index}
+            key={link.text}
             navigateTo={link.navigateTo}
             text={link.text}
             Icon={link.Icon}

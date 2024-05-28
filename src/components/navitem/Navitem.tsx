@@ -24,19 +24,6 @@ export interface IClientStyling {
   logo: string;
 }
 
-type WrapperProps = {
-  onClickHandler?: () => void;
-  children: React.ReactNode;
-};
-
-const NavLinkWrapper = ({ onClickHandler, children }: WrapperProps) => {
-  return onClickHandler ? (
-    <div onClick={onClickHandler}>{children}</div>
-  ) : (
-    <>{children}</>
-  );
-};
-
 const Navitem: FC<NavItemProps> = ({
   navigateTo,
   text,
@@ -48,7 +35,7 @@ const Navitem: FC<NavItemProps> = ({
   const isLinkActivated = isLinkActive(navigateTo);
 
   return (
-    <NavLinkWrapper onClickHandler={onClickHandler}>
+    <div onClick={onClickHandler}>
       <NavLinkStyled
         data-tooltip-id="navlink"
         data-tooltip-content={text}
@@ -56,7 +43,7 @@ const Navitem: FC<NavItemProps> = ({
         data-testid={text}
         end
       >
-        <NavItemContainer isLinkActive={isLinkActivated}>
+        <NavItemContainer $isLinkActive={isLinkActivated}>
           <NavIcon>
             {Icon && (
               <Icon
@@ -69,12 +56,12 @@ const Navitem: FC<NavItemProps> = ({
               ></Icon>
             )}
           </NavIcon>
-          <NavText isExpanded={isExpanded} isActive={isLinkActivated}>
+          <NavText $isExpanded={isExpanded} $isActive={isLinkActivated}>
             {text}
           </NavText>
         </NavItemContainer>
       </NavLinkStyled>
-    </NavLinkWrapper>
+    </div>
   );
 };
 
