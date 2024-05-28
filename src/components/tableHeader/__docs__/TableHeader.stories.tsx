@@ -9,8 +9,8 @@ type Story = StoryObj<typeof TableHeader>;
 
 export const TableHeaderExample: Story = {
   args: {
-    ColumnName: "hoveredText",
-    handleColumnSort: () => {
+    ColumnName: "id",
+    handleColumnSort: (order, columnName) => {
       console.log("handleColumnSort");
     },
     Title: "New Column",

@@ -20,8 +20,8 @@ import { TableHeader } from '@gloabal-regulatory-writing-consulting/gxt-componen
 export const TableHeader = () => {
   return (
     <TableHeader
-    ColumnName: "hoveredText",
-    handleColumnSort: () => {
+    ColumnName: "id",
+    handleColumnSort: (order, columnName) => {
       console.log("handleColumnSort");
     },
     Title: "New Column",

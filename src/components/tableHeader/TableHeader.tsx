@@ -9,7 +9,7 @@ import {
 
 type ITableHeader = {
   ColumnName?: string;
-  handleColumnSort: (order: string, column: string) => void;
+  handleColumnSort: (order: "ASC" | "DESC", column: string) => void;
   Title: string;
   className?: string;
   height?: string;
@@ -24,18 +24,20 @@ const TableHeader: React.FC<ITableHeader> = ({
   height = "",
   backgroundColor = "",
 }) => (
-  <HeaderContainer style={{ backgroundColor, height }}>
+  <HeaderContainer backgroundColor={backgroundColor} height={height}>
     <HeaderTitle>{Title}</HeaderTitle>
     <SortContainer isVisible={!!ColumnName} className={className}>
       <ArrowWrapper>
         <SvgIcon
           iconType={IconType.ARROW_UP}
           onClick={() => handleColumnSort("ASC", ColumnName)}
+          data-testid="arrow-up-icon"
         />
       </ArrowWrapper>
       <SvgIcon
         iconType={IconType.ARROW_DOWN}
         onClick={() => handleColumnSort("DESC", ColumnName)}
+        data-testid="arrow-down-icon"
       />
     </SortContainer>
   </HeaderContainer>
