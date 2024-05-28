@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Search } from "../search";
 import { SvgIcon } from "../svg";
 import { IconType } from "../svg/SvgIcon";
-import { useSlots } from "../../utils/useSlots";
+import { useSlots } from "../../hooks/useSlots";
 
 import {
   AccordionContainer,
@@ -16,45 +16,62 @@ import {
 export interface AccordionProps {
   children: ReactNode;
   isSearchAble?: boolean;
-  onChangeCallback?: (searchTerm: string) => void;
   isAccordionOpen?: boolean;
 }
 
 interface AccordionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  isOpen?: boolean;
 }
 
 interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  isOpen?: boolean;
+  isSearchAble?: boolean;
+  onChangeCallback?: () => void;
 }
 
 const AccordionHeader = function HeaderComponent({
+  isOpen,
   children,
-  ...rest
+  onClick,
 }: AccordionHeaderProps) {
-  return <div {...rest}>{children}</div>;
+  return (
+    <Header onClick={onClick}>
+      {children}
+      <AccordionIcon $isOpen={!!isOpen}>
+        <SvgIcon iconType={IconType.ACCORDION_ARROW} />
+      </AccordionIcon>
+    </Header>
+  );
 };
 
 const AccordionContent = function ContentComponent({
+  isOpen,
+  isSearchAble,
   children,
+  onChangeCallback = () => {},
   ...rest
 }: AccordionContentProps) {
-  return <div {...rest}>{children}</div>;
+  return (
+    <Content open={!!isOpen} {...rest}>
+      {isSearchAble && (
+        <SearchBox>
+          <Search onChangeCallback={onChangeCallback} width="100%" />
+        </SearchBox>
+      )}
+      {children}
+    </Content>
+  );
 };
 
 const Accordion: React.FC<AccordionProps> & {
   Header: typeof AccordionHeader;
   Content: typeof AccordionContent;
-} = ({
-  children,
-  isSearchAble = false,
-  onChangeCallback = () => {},
-  isAccordionOpen = false,
-}) => {
+} = ({ children, isSearchAble = false, isAccordionOpen = true }) => {
   const [isOpen, setIsOpen] = useState(isAccordionOpen);
-  const [{ header, content }, restChildren] = useSlots(children, {
-    header: AccordionHeader,
-    content: AccordionContent,
+
+  const [{ HeaderSlot, ContentSlot }, restChildren] = useSlots(children, {
+    HeaderSlot: AccordionHeader,
+    ContentSlot: AccordionContent,
   });
 
   const handleToggle = () => {
@@ -67,21 +84,11 @@ const Accordion: React.FC<AccordionProps> & {
 
   return (
     <AccordionContainer>
-      <Header onClick={handleToggle} $isSearchAble={isSearchAble}>
-        {header}
-        <AccordionIcon open={isOpen}>
-          <SvgIcon iconType={IconType.ACCORDION_ARROW} />
-        </AccordionIcon>
-      </Header>
-      <Content open={isOpen}>
-        {isSearchAble && (
-          <SearchBox>
-            <Search onChangeCallback={onChangeCallback} width="100%" />
-          </SearchBox>
-        )}
-        {content}
-        {restChildren}
-      </Content>
+      {HeaderSlot && <HeaderSlot isOpen={isOpen} onClick={handleToggle} />}
+      {ContentSlot && (
+        <ContentSlot isSearchAble={!!isSearchAble} isOpen={!!isOpen} />
+      )}
+      {restChildren}
     </AccordionContainer>
   );
 };
@@ -95,6 +102,5 @@ export default Accordion;
 Accordion.propTypes = {
   children: PropTypes.node.isRequired,
   isSearchAble: PropTypes.bool,
-  onChangeCallback: PropTypes.func,
   isAccordionOpen: PropTypes.bool,
 };

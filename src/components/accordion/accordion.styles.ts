@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const AccordionContainer = styled.div`
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 `;
 
-export const Header = styled.div<{ $isSearchAble: boolean }>`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,8 +16,7 @@ export const Header = styled.div<{ $isSearchAble: boolean }>`
   letter-spacing: 0.019px;
   cursor: pointer;
   color: var(--Neutral-400, #414141);
-  margin-bottom: ${({ $isSearchAble }) =>
-    $isSearchAble ? "0.5rem" : "0.2rem"};
+  margin-bottom: 0.5rem;
 `;
 
 export const Content = styled.div<{ open: boolean }>`
@@ -26,7 +25,8 @@ export const Content = styled.div<{ open: boolean }>`
   line-height: 1.5rem;
   letter-spacing: 0.0012em;
   text-align: left;
-  display: ${({ open }) => (open ? "block" : "none")};
+  display: ${({ open }) => (open ? "flex" : "none")};
+  flex-direction: column;
   animation: fadeIn 0.3s ease-in-out;
   @keyframes fadeIn {
     from {
@@ -38,9 +38,10 @@ export const Content = styled.div<{ open: boolean }>`
   }
 `;
 
-export const AccordionIcon = styled.span<{ open: boolean }>`
+export const AccordionIcon = styled.span<{ $isOpen: boolean }>`
   transition: transform 0.3s ease-in-out;
-  transform: ${({ open }) => (open ? "rotate(360deg)" : "rotate(180deg)")};
+  transform: ${({ $isOpen }) =>
+    $isOpen ? "rotate(360deg)" : "rotate(180deg)"};
 `;
 
 export const SearchBox = styled.div`

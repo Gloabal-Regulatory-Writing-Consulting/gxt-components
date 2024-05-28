@@ -1,5 +1,5 @@
 import React from "react";
-import { renderHook } from "@testing-library/react";
+import { renderHook, render } from "@testing-library/react";
 import { expect, it } from "vitest";
 import { useSlots } from "../useSlots";
 
@@ -14,28 +14,32 @@ function TestComponentB(props: React.PropsWithChildren<unknown>) {
 
 it("extracts elements based on config object", () => {
   const children = [
-    <TestComponentA key="a" />,
+    <TestComponentA key="a" variant="a" />,
     <TestComponentB key="b" />,
     <div key="hello">Hello World</div>,
   ];
   const slotsConfig = {
-    a: TestComponentA,
-    b: TestComponentB,
+    TestComponentASlot: TestComponentA,
+    TestComponentBSlot: TestComponentB,
   };
   const { result } = renderHook(() => useSlots(children, slotsConfig));
-  expect(result.current).toMatchInlineSnapshot(`
-    [
-      {
-        "a": <TestComponentA />,
-        "b": <TestComponentB />,
-      },
-      [
-        <div>
-          Hello World
-        </div>,
-      ],
-    ]
-  `);
+  const [{ TestComponentASlot, TestComponentBSlot }, restChildren] =
+    result.current;
+
+  const { asFragment: testComponentASlotFragment } = render(
+    TestComponentASlot ? <TestComponentASlot variant="a" /> : <></>,
+  );
+  const { asFragment: testComponentAFragment } = render(children[0]);
+
+  const { asFragment: testComponentBSlotFragment } = render(
+    TestComponentBSlot ? <TestComponentBSlot /> : <></>,
+  );
+  const { asFragment: testComponentBFragment } = render(children[1]);
+
+  expect(testComponentASlotFragment()).toEqual(testComponentAFragment());
+  expect(testComponentBSlotFragment()).toEqual(testComponentBFragment());
+  expect(restChildren).toHaveLength(1);
+  expect(restChildren[0]).toEqual(children[2]);
 });
 
 it("handles empty config object", () => {
@@ -93,7 +97,7 @@ it("ignores nested slots", () => {
   expect(result.current).toMatchInlineSnapshot(`
     [
       {
-        "a": <TestComponentA />,
+        "a": [Function],
         "b": undefined,
       },
       [
@@ -114,31 +118,31 @@ it("extracts elements based on condition in config object", () => {
 
   const { result } = renderHook(() =>
     useSlots(children, {
-      a: [
+      TestComponentASlot: [
         TestComponentA,
         (props: TestComponentAProps) => props.variant === "a",
       ],
-      b: [
+      TestComponentBSlot: [
         TestComponentA,
         (props: TestComponentAProps) => props.variant === "b",
       ],
     }),
   );
-  expect(result.current).toMatchInlineSnapshot(`
-    [
-      {
-        "a": <TestComponentA
-          variant="a"
-        />,
-        "b": <TestComponentA
-          variant="b"
-        />,
-      },
-      [
-        <div>
-          Hello World
-        </div>,
-      ],
-    ]
-  `);
+  const [{ TestComponentASlot, TestComponentBSlot }, restChildren] =
+    result.current;
+
+  const { asFragment: testComponentASlotFragment } = render(
+    TestComponentASlot ? <TestComponentASlot variant="a" /> : <></>,
+  );
+  const { asFragment: testComponentAFragment } = render(children[0]);
+
+  const { asFragment: testComponentBSlotFragment } = render(
+    TestComponentBSlot ? <TestComponentBSlot /> : <></>,
+  );
+  const { asFragment: testComponentBFragment } = render(children[1]);
+
+  expect(testComponentASlotFragment()).toEqual(testComponentAFragment());
+  expect(testComponentBSlotFragment()).toEqual(testComponentBFragment());
+  expect(restChildren).toHaveLength(1);
+  expect(restChildren[0]).toEqual(children[2]);
 });

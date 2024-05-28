@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps, cloneElement } from "react";
 
 // slot config allows 2 options:
 // 1. Component to match, example: { leadingVisual: LeadingVisual }
@@ -23,19 +23,13 @@ type SlotValue<
   Config,
   Property extends keyof Config,
 > = Config[Property] extends React.ElementType // config option 1
-  ? React.ReactElement<
-      React.ComponentPropsWithoutRef<Config[Property]>,
-      Config[Property]
-    >
+  ? React.FC<ComponentProps<Config[Property]>>
   : Config[Property] extends readonly [
         infer ElementType extends React.ElementType, // config option 2, infer array[0] as component
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         infer _testFn, // even though we don't use testFn, we need to infer it to support types for slots.*.props
       ]
-    ? React.ReactElement<
-        React.ComponentPropsWithoutRef<ElementType>,
-        ElementType
-      >
+    ? React.FC<ComponentProps<ElementType>>
     : never; // useful for narrowing types, third option is not possible
 
 /**
@@ -70,7 +64,12 @@ export function useSlots<Config extends SlotConfig>(
         const [component, testFn] = value;
         return child.type === component && testFn(child.props);
       } else {
-        return child.type === value;
+        if (typeof child.type == "function") {
+          return child.type === value;
+        } else if (typeof child.type == "object") {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          return (child.type as any)?.target === value;
+        }
       }
     });
 
@@ -92,7 +91,9 @@ export function useSlots<Config extends SlotConfig>(
 
     // If the child is a slot, add it to the `slots` object
 
-    slots[slotKey] = child as SlotValue<Config, keyof Config>;
+    slots[slotKey] = ((
+      props: (Partial<SlotElements<Config>> & React.Attributes) | undefined,
+    ) => cloneElement(child, props)) as SlotValue<Config, keyof Config>;
   });
 
   return [slots, rest];

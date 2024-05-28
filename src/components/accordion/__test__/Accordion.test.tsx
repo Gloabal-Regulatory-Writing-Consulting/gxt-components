@@ -9,11 +9,7 @@ import Accordion from "../Accordion";
 describe("Accordion", () => {
   it("renders children when open is true", () => {
     const { getByText } = render(
-      <Accordion
-        isSearchAble={false}
-        isAccordionOpen={true}
-        onChangeCallback={vi.fn()}
-      >
+      <Accordion isSearchAble={false} isAccordionOpen={true}>
         <Accordion.Header key="1">Header</Accordion.Header>
         <Accordion.Content key="2">here is content</Accordion.Content>
       </Accordion>,
@@ -23,11 +19,7 @@ describe("Accordion", () => {
 
   it("renders search box when isSearchAble is true", () => {
     const { getByTestId } = render(
-      <Accordion
-        isSearchAble={true}
-        isAccordionOpen={true}
-        onChangeCallback={vi.fn()}
-      >
+      <Accordion isSearchAble={true} isAccordionOpen={true}>
         <Accordion.Header key="1">Header</Accordion.Header>
         <Accordion.Content key="2">here is content</Accordion.Content>
       </Accordion>,
@@ -38,11 +30,7 @@ describe("Accordion", () => {
 
   it("does not render search box when isSearchAble is false", () => {
     const { queryByText } = render(
-      <Accordion
-        isSearchAble={false}
-        isAccordionOpen={true}
-        onChangeCallback={vi.fn()}
-      >
+      <Accordion isSearchAble={false} isAccordionOpen={true}>
         <Accordion.Header key="1">Header</Accordion.Header>
         <Accordion.Content key="2">here is content</Accordion.Content>
       </Accordion>,
@@ -53,20 +41,21 @@ describe("Accordion", () => {
   it("calls onChangeCallback when search box input changes", async () => {
     const onChangeCallback = vi.fn();
     const { getByPlaceholderText } = render(
-      <Accordion
-        isSearchAble={true}
-        isAccordionOpen={true}
-        onChangeCallback={onChangeCallback}
-      >
+      <Accordion isSearchAble={true} isAccordionOpen={true}>
         <Accordion.Header key="1">Header</Accordion.Header>
-        <Accordion.Content key="2">here is content</Accordion.Content>
+        <Accordion.Content key="2" onChangeCallback={onChangeCallback}>
+          here is content
+        </Accordion.Content>
       </Accordion>,
     );
     const inputElement = getByPlaceholderText("Search") as HTMLInputElement;
     fireEvent.change(inputElement, { target: { value: "test" } });
-    await waitFor(() => {
-      expect(onChangeCallback).toHaveBeenCalledTimes(1);
-      expect(onChangeCallback).toHaveBeenCalledWith("test");
-    });
+    await waitFor(
+      () => {
+        expect(onChangeCallback).toHaveBeenCalledTimes(1);
+        expect(onChangeCallback).toHaveBeenCalledWith("test");
+      },
+      { timeout: 1000 },
+    );
   });
 });

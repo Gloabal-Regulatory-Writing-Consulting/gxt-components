@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { useSlots } from "../../utils/useSlots";
+import { useSlots } from "../../hooks/useSlots";
 
 type Position = "left" | "right";
 
