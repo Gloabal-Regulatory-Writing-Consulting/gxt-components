@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const NavItemContainer = styled.div<{ isLinkActive: boolean }>`
+export const NavItemContainer = styled.div<{ $isLinkActive: boolean }>`
   display: flex;
   width: 15.75rem;
   padding: 0.5rem 0.75rem;
   align-items: center;
   gap: 0.75rem;
 
-  ${({ isLinkActive }) =>
-    isLinkActive === true &&
+  ${({ $isLinkActive }) =>
+    $isLinkActive === true &&
     css`
       border-left: solid;
       border-left-width: 0.25rem;
@@ -30,7 +30,7 @@ export const NavIcon = styled.div`
   flex-shrink: 0;
 `;
 
-export const NavText = styled.p<{ isActive: boolean; isExpanded: boolean }>`
+export const NavText = styled.p<{ $isActive: boolean; $isExpanded: boolean }>`
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -41,10 +41,10 @@ export const NavText = styled.p<{ isActive: boolean; isExpanded: boolean }>`
     opacity 0.5s ease-in-out,
     visibility 0.5s ease-in-out;
 
-  ${({ isActive, isExpanded }) => css`
-    opacity: ${isExpanded ? 1 : 0};
-    visibility: ${isExpanded ? "visible" : "hidden"};
-    color: ${isActive
+  ${({ $isActive, $isExpanded }) => css`
+    opacity: ${$isExpanded ? 1 : 0};
+    visibility: ${$isExpanded ? "visible" : "hidden"};
+    color: ${$isActive
       ? "var(--primary-200, #177BA6)"
       : "var(--neutral-400, #414141)"};
   `}

@@ -96,11 +96,13 @@ const Navbar: FC<NavbarProps> = ({
         <NavList $isExpanded={isExpanded}>
           {contentLinks.map((link) => (
             <Navitem
+              key={link.text}
               navigateTo={link.navigateTo}
               text={link.text}
               Icon={link.Icon}
               isExpanded={isExpanded}
               isLinkActive={isLinkActive}
+              onClickHandler={link.onClickHandler}
             />
           ))}
         </NavList>
@@ -108,11 +110,13 @@ const Navbar: FC<NavbarProps> = ({
       <FooterContent>
         {footerLinks.map((link) => (
           <Navitem
+            key={link.text}
             navigateTo={link.navigateTo}
             text={link.text}
             Icon={link.Icon}
             isExpanded={isExpanded}
             isLinkActive={isLinkActive}
+            onClickHandler={link.onClickHandler}
           />
         ))}
         {avatarIcon}

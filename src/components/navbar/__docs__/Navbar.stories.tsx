@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { FC } from "react";
+import React, { FunctionComponent, SVGProps } from "react";
 import { SvgIcon } from "../../svg";
 import { IconType } from "../../svg/SvgIcon";
 import { BrowserRouter as Router, useMatch } from "react-router-dom";
@@ -18,12 +18,7 @@ const meta: Meta<typeof Navbar> = {
   tags: ["autodocs"],
 };
 
-const SearchIcon: FC<{
-  iconType: IconType;
-  size: number;
-  className: string;
-  stroke: string;
-}> = ({ stroke }) => (
+const SearchIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({ stroke }) => (
   <SvgIcon
     iconType={IconType.SEARCH}
     size={20}
@@ -33,12 +28,7 @@ const SearchIcon: FC<{
   />
 );
 
-const PencilIcon: FC<{
-  iconType: IconType;
-  size: number;
-  className: string;
-  stroke: string;
-}> = ({ stroke }) => (
+const PencilIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({ stroke }) => (
   <SvgIcon
     iconType={IconType.PENCIL}
     size={20}
@@ -48,12 +38,9 @@ const PencilIcon: FC<{
   />
 );
 
-const ChevronIcon: FC<{
-  iconType: IconType;
-  size: number;
-  className: string;
-  stroke: string;
-}> = ({ stroke }) => (
+const ChevronIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({
+  stroke,
+}) => (
   <SvgIcon
     iconType={IconType.ChevronDown}
     size={20}
@@ -68,13 +55,11 @@ const contentNavlinks = [
     navigateTo: "/Search",
     text: "Search",
     Icon: SearchIcon,
-    isExpanded: false,
   },
   {
     navigateTo: "/Chevron",
     text: "Chevron",
     Icon: ChevronIcon,
-    isExpanded: false,
   },
 ];
 
@@ -83,7 +68,7 @@ const footerNavLinks = [
     navigateTo: "/EditFiles",
     text: "Edit Files",
     Icon: PencilIcon,
-    isExpanded: false,
+    onClickHandler: () => console.log("Edit Files clicked"),
   },
 ];
 
