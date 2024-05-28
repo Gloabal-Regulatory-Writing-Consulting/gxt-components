@@ -18,7 +18,7 @@ export interface DropdownProps<T> {
   options: T[];
   renderOption?: (option: T | null) => ReactNode;
   onSelect?: (option: T) => void;
-  label?: string;
+  label?: string | ReactNode;
   initialValue?: T | null;
   dropdownIcon?: boolean;
 }

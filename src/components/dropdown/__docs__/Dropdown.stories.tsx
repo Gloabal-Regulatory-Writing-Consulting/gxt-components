@@ -57,7 +57,7 @@ export const DisabledButton: Story = {
   },
 };
 
-export const actionsDropdown: Story = {
+export const ActionsDropdown: Story = {
   args: {
     disabled: false,
     type: "button",
@@ -69,7 +69,7 @@ export const actionsDropdown: Story = {
   decorators: [
     (Story, context) => {
       const { disabled } = context.args;
-      context.args.label = getSvgIcon(disabled);
+      context.args.label = getSvgIcon(!!disabled);
       return <Story />;
     },
   ],
