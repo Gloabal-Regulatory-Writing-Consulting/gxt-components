@@ -22,107 +22,123 @@ exports[`Navbar Component > renders correctly and matches snapshot 1`] = `
       <div
         class="sc-dLNtp jQpGFx"
       >
-        <a
-          class="sc-dhKdPU lfdZxK"
-          data-testid="Content Link 1"
-          data-tooltip-content="Content Link 1"
-          data-tooltip-id="navlink"
-          href="/user"
+        <div
+          data-testid="Content Link 1-navlink"
         >
-          <div
-            class="sc-jXbVAB cVasOk"
+          <a
+            class="sc-dhKdPU lfdZxK"
+            data-testid="Content Link 1"
+            data-tooltip-content="Content Link 1"
+            data-tooltip-id="navlink"
+            href="/user"
           >
             <div
-              class="sc-kpDprT swCGl"
+              class="sc-jXbVAB cVasOk"
             >
-              <span>
-                CL1
-              </span>
+              <div
+                class="sc-kpDprT swCGl"
+              >
+                <span>
+                  CL1
+                </span>
+              </div>
+              <p
+                class="sc-dAlxHm wuRAv"
+              >
+                Content Link 1
+              </p>
             </div>
-            <p
-              class="sc-dAlxHm wuRAv"
-            >
-              Content Link 1
-            </p>
-          </div>
-        </a>
-        <a
-          class="sc-dhKdPU lfdZxK"
-          data-testid="Content Link 2"
-          data-tooltip-content="Content Link 2"
-          data-tooltip-id="navlink"
-          href="/user"
+          </a>
+        </div>
+        <div
+          data-testid="Content Link 2-navlink"
         >
-          <div
-            class="sc-jXbVAB cVasOk"
+          <a
+            class="sc-dhKdPU lfdZxK"
+            data-testid="Content Link 2"
+            data-tooltip-content="Content Link 2"
+            data-tooltip-id="navlink"
+            href="/user"
           >
             <div
-              class="sc-kpDprT swCGl"
+              class="sc-jXbVAB cVasOk"
             >
-              <span>
-                CL2
-              </span>
+              <div
+                class="sc-kpDprT swCGl"
+              >
+                <span>
+                  CL2
+                </span>
+              </div>
+              <p
+                class="sc-dAlxHm wuRAv"
+              >
+                Content Link 2
+              </p>
             </div>
-            <p
-              class="sc-dAlxHm wuRAv"
-            >
-              Content Link 2
-            </p>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <div
       class="sc-eDPFhE gQNJRC"
     >
-      <a
-        class="sc-dhKdPU lfdZxK"
-        data-testid="Footer Link 1"
-        data-tooltip-content="Footer Link 1"
-        data-tooltip-id="navlink"
-        href="/user"
+      <div
+        data-testid="Footer Link 1-navlink"
       >
-        <div
-          class="sc-jXbVAB cVasOk"
+        <a
+          class="sc-dhKdPU lfdZxK"
+          data-testid="Footer Link 1"
+          data-tooltip-content="Footer Link 1"
+          data-tooltip-id="navlink"
+          href="/user"
         >
           <div
-            class="sc-kpDprT swCGl"
+            class="sc-jXbVAB cVasOk"
           >
-            <span>
-              FL1
-            </span>
+            <div
+              class="sc-kpDprT swCGl"
+            >
+              <span>
+                FL1
+              </span>
+            </div>
+            <p
+              class="sc-dAlxHm wuRAv"
+            >
+              Footer Link 1
+            </p>
           </div>
-          <p
-            class="sc-dAlxHm wuRAv"
-          >
-            Footer Link 1
-          </p>
-        </div>
-      </a>
-      <a
-        class="sc-dhKdPU lfdZxK"
-        data-testid="Footer Link 2"
-        data-tooltip-content="Footer Link 2"
-        data-tooltip-id="navlink"
-        href="/user"
+        </a>
+      </div>
+      <div
+        data-testid="Footer Link 2-navlink"
       >
-        <div
-          class="sc-jXbVAB cVasOk"
+        <a
+          class="sc-dhKdPU lfdZxK"
+          data-testid="Footer Link 2"
+          data-tooltip-content="Footer Link 2"
+          data-tooltip-id="navlink"
+          href="/user"
         >
           <div
-            class="sc-kpDprT swCGl"
+            class="sc-jXbVAB cVasOk"
           >
-            <span>
-              FL2
-            </span>
+            <div
+              class="sc-kpDprT swCGl"
+            >
+              <span>
+                FL2
+              </span>
+            </div>
+            <p
+              class="sc-dAlxHm wuRAv"
+            >
+              Footer Link 2
+            </p>
           </div>
-          <p
-            class="sc-dAlxHm wuRAv"
-          >
-            Footer Link 2
-          </p>
-        </div>
-      </a>
+        </a>
+      </div>
       <span>
         <div
           class="sc-aYaIB elxlrp false"
