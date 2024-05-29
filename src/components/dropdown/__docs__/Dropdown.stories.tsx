@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import Dropdown from "../Dropdown";
+import Dropdown, { Position } from "../Dropdown";
 import SvgIcon, { IconType } from "../../svg/SvgIcon";
 
 const meta: Meta<typeof Dropdown> = {
@@ -21,6 +21,14 @@ const getSvgIcon = (disabled: boolean) => (
   />
 );
 
+const defaultCustomStyles = {
+  container: {},
+  button: {},
+  icon: {},
+  itemsWrapper: {},
+  item: {},
+};
+
 export const DropdownButton: Story = {
   args: {
     disabled: false,
@@ -30,14 +38,8 @@ export const DropdownButton: Story = {
     label: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
-    position: "left",
-    customStyles: {
-      container: {},
-      button: {},
-      icon: {},
-      itemsWrapper: {},
-      item: {},
-    },
+    position: Position.Center,
+    customStyles: defaultCustomStyles,
   },
 };
 
@@ -50,14 +52,8 @@ export const DropdownSelect: Story = {
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
-    position: "right",
-    customStyles: {
-      container: {},
-      button: {},
-      icon: {},
-      itemsWrapper: {},
-      item: {},
-    },
+    position: Position.Bottom,
+    customStyles: defaultCustomStyles,
   },
 };
 
@@ -70,13 +66,7 @@ export const DisabledButton: Story = {
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
-    customStyles: {
-      container: {},
-      button: {},
-      icon: {},
-      itemsWrapper: {},
-      item: {},
-    },
+    customStyles: defaultCustomStyles,
   },
 };
 
@@ -88,14 +78,8 @@ export const ActionsDropdown: Story = {
     renderOption: (option) => <span>{option}</span>,
     label: getSvgIcon(false),
     onSelect: (option) => console.log("Selected option:", option),
-    position: "center",
-    customStyles: {
-      container: {},
-      button: {},
-      icon: {},
-      itemsWrapper: {},
-      item: {},
-    },
+    position: Position.Center,
+    customStyles: defaultCustomStyles,
   },
   decorators: [
     (Story, context) => {

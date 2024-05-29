@@ -10,8 +10,26 @@ import {
 } from "./DropdownStyledComponents";
 
 type DropdownType = "select" | "button";
-export type Position = "top" | "bottom" | "left" | "right" | "center";
-export type DropdownPosition = "up" | "down";
+export enum Position {
+  Top = "top",
+  Bottom = "bottom",
+  Left = "left",
+  Right = "right",
+  Center = "center",
+}
+
+export enum DropdownPosition {
+  Up = "up",
+  Down = "down",
+}
+
+export type CustomStylesType = {
+  container?: CSSProperties;
+  button?: CSSProperties;
+  icon?: CSSProperties;
+  itemsWrapper?: CSSProperties;
+  item?: CSSProperties;
+};
 
 export interface DropdownProps<T> {
   disabled?: boolean;
@@ -23,13 +41,7 @@ export interface DropdownProps<T> {
   initialValue?: T | null;
   dropdownIcon?: boolean;
   position: Position;
-  customStyles?: {
-    container?: CSSProperties;
-    button?: CSSProperties;
-    icon?: CSSProperties;
-    itemsWrapper?: CSSProperties;
-    item?: CSSProperties;
-  };
+  customStyles?: CustomStylesType;
 }
 
 const Dropdown = <T,>({
@@ -41,7 +53,7 @@ const Dropdown = <T,>({
   label,
   initialValue = null,
   dropdownIcon = false,
-  position: positionValue = "bottom",
+  position = Position.Bottom,
   customStyles = {},
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,14 +61,17 @@ const Dropdown = <T,>({
     initialValue || options?.at(0) || null,
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [dropdownPosition, setDropdownPosition] =
-    useState<DropdownPosition>("down");
+  const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition>(
+    DropdownPosition.Down,
+  );
 
   useEffect(() => {
     if (dropdownRef.current && isOpen) {
       const buttonRect = dropdownRef.current.getBoundingClientRect();
       const bottomSpace = window.innerHeight - buttonRect.bottom;
-      setDropdownPosition(bottomSpace < 200 ? "up" : "down");
+      setDropdownPosition(
+        bottomSpace < 200 ? DropdownPosition.Up : DropdownPosition.Down,
+      );
     }
   }, [isOpen]);
 
@@ -122,7 +137,7 @@ const Dropdown = <T,>({
       </CustomSelectButton>
       {isOpen && (
         <SelectItemsWrapper
-          position={positionValue}
+          position={position}
           $dropDownPosition={dropdownPosition}
           style={customStyles.itemsWrapper}
         >
