@@ -15,3 +15,5 @@ export * from "./navbar";
 export * from "./slideOver";
 export * from "./slideOverFilters";
 export * from "./checkboxInput";
+export * from "./tableHeader";
+

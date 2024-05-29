@@ -1,0 +1,33 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as TableHeader from "./TableHeader.stories.tsx";
+
+<Meta of={TableHeader} title="TableHeader" />
+
+# TableHeader
+
+TableHeader component with different props.
+
+#### Example
+
+<Canvas>
+<TableHeader/>
+</Canvas>
+
+## Usage
+
+```ts
+import { TableHeader } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+export const TableHeader = () => {
+  return (
+    <TableHeader
+    ColumnName: "id",
+    handleColumnSort: (order, columnName) => {
+      console.log("handleColumnSort");
+    },
+    Title: "New Column",
+    />
+  );
+};
+```
+## Props
+<Controls of={TableHeader.TableHeaderExample } />

@@ -10,6 +10,8 @@ export enum IconType {
   SMILEYFACE = "smileyface",
   PENCIL = "pencil",
   ACCORDION_ARROW = "accordionarrow",
+  ARROW_UP = "arrow-up",
+  ARROW_DOWN = "arrow-down",
   dropdownOptions = "dropdownoptions",
 }
 
@@ -190,6 +192,30 @@ const SvgIcon: FC<SvgIconProps> = ({
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M10 4.96875L10.5312 5.5L16.5312 11.4688L17.0625 12L16 13.0625L15.4688 12.5312L10 7.0625L4.53125 12.5312L4 13.0625L2.9375 12L3.46875 11.4688L9.46875 5.46875L10 4.9375V4.96875Z" />
+      </svg>
+    ),
+    [IconType.ARROW_UP]: (
+      <svg
+        {...rest}
+        width="10"
+        height="7"
+        viewBox="0 0 10 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 6L5 0L10 6H0Z" fill="white" />
+      </svg>
+    ),
+    [IconType.ARROW_DOWN]: (
+      <svg
+        {...rest}
+        width="10"
+        height="7"
+        viewBox="0 0 10 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0H10L5 6L0 0Z" fill="white" />
       </svg>
     ),
   };
