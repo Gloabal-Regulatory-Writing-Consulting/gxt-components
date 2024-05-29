@@ -5,6 +5,7 @@ import { Dropdown } from "../dropdown";
 import styles from "./Pagination.module.css";
 import ReactPaginate from "react-paginate";
 import styled from "styled-components";
+import { Position } from "../dropdown/Dropdown";
 
 export type PaginationProps = {
   currentPage: number;
@@ -136,6 +137,7 @@ const Pagination: FC<PaginationProps> = ({
           renderOption={(option) => option || ""}
           initialValue={itemsPerPage}
           dropdownIcon={true}
+          position={Position.Bottom}
         />
         <Label>{label} per page</Label>
       </PerPageContainer>

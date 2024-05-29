@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DropdownPosition } from "./Dropdown";
+import { DropdownPositionType, PositionType } from "./Dropdown";
 
 export const SelectWrapper = styled.div`
   display: flex;
@@ -33,22 +33,55 @@ export const IconWrapper = styled.div<{ disabled: boolean }>`
   `}
 `;
 
-export const SelectItemsWrapper = styled.div<{ position?: DropdownPosition }>`
+export const SelectItemsWrapper = styled.div<{
+  position?: PositionType;
+  $dropDownPosition?: DropdownPositionType;
+}>`
   position: absolute;
-  ${({ position }) => {
-    return `
-    top: ${position === "bottom" ? "100%" : "auto"};
-    bottom: ${position === "top" ? "100%" : "auto"};
-    ${position === "top" && `margin-bottom: 0.25rem;`};
-    ${position === "bottom" && `margin-top: 0.25rem;`};
-    `;
+  ${({ position, $dropDownPosition }) => {
+    switch (position) {
+      case "top":
+        return `
+          bottom: 100%;
+          margin-bottom: 0.25rem;
+        `;
+      case "bottom":
+        return `
+          ${$dropDownPosition === "down" ? "top" : "bottom"}: 100%;
+          ${$dropDownPosition === "down" ? "margin-top" : "margin-bottom"}: 0.25rem;
+        `;
+      case "left":
+        return `
+          ${$dropDownPosition === "down" ? "top" : "bottom"}: 100%;
+          ${$dropDownPosition === "down" ? "margin-top" : "margin-bottom"}: 0.25rem;
+          right: 100%;
+        `;
+      case "right":
+        return `
+          ${$dropDownPosition === "down" ? "top" : "bottom"}: 100%;
+          ${$dropDownPosition === "down" ? "margin-top" : "margin-bottom"}: 0.25rem;
+          left: 100%;
+        `;
+      case "center":
+        return `
+          ${$dropDownPosition === "down" ? "top" : "bottom"}: 100%;
+          ${$dropDownPosition === "down" ? "margin-top" : "margin-bottom"}: 0.25rem;
+          left: 50%;
+          transform: translateX(-50%);
+        `;
+      default:
+        return `
+          top: 100%;
+          margin-top: 0.25rem;
+        `;
+    }
   }}
-  left: 0;
   border-radius: 0.375rem;
   border: 1px solid var(--neutral-200, #9ca3af);
   background: var(--system-50, #fff);
   max-height: 12.5rem;
   overflow-y: auto;
+  z-index: 1;
 `;
 
 export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
@@ -75,15 +108,11 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   ${({ $isActive }) =>
     $isActive &&
     `
-    background-color: var(--primary-100, #cce4f6);
     color: var(--primary-200, #177ba6);
   `}
 
   &:hover {
-    transition: border-color 0.3s;
-    color: var(--system-100, #000000);
-    background-color: var(--primary-50, #2aace2);
-    border-color: var(--primary-200, #177ba6);
+    color: var(--primary-200, #177ba6);
   }
 `;
 
