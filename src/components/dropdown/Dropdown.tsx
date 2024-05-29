@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ReactNode } from "react";
+import { useState, useEffect, useRef, ReactNode, CSSProperties } from "react";
 import SvgIcon, { IconType } from "../svg/SvgIcon";
 import {
   CustomSelectButton,
@@ -10,7 +10,8 @@ import {
 } from "./DropdownStyledComponents";
 
 type DropdownType = "select" | "button";
-export type DropdownPosition = "top" | "bottom";
+export type Position = "top" | "bottom" | "left" | "right" | "center";
+export type DropdownPosition = "up" | "down";
 
 export interface DropdownProps<T> {
   disabled?: boolean;
@@ -21,6 +22,14 @@ export interface DropdownProps<T> {
   label?: string | ReactNode;
   initialValue?: T | null;
   dropdownIcon?: boolean;
+  position: Position;
+  customStyles?: {
+    container?: CSSProperties;
+    button?: CSSProperties;
+    icon?: CSSProperties;
+    itemsWrapper?: CSSProperties;
+    item?: CSSProperties;
+  };
 }
 
 const Dropdown = <T,>({
@@ -32,19 +41,22 @@ const Dropdown = <T,>({
   label,
   initialValue = null,
   dropdownIcon = false,
+  position: positionValue = "bottom",
+  customStyles = {},
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
     initialValue || options?.at(0) || null,
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<DropdownPosition>("bottom");
+  const [dropdownPosition, setDropdownPosition] =
+    useState<DropdownPosition>("down");
 
   useEffect(() => {
     if (dropdownRef.current && isOpen) {
       const buttonRect = dropdownRef.current.getBoundingClientRect();
       const bottomSpace = window.innerHeight - buttonRect.bottom;
-      setPosition(bottomSpace < 200 ? "top" : "bottom");
+      setDropdownPosition(bottomSpace < 200 ? "up" : "down");
     }
   }, [isOpen]);
 
@@ -88,11 +100,15 @@ const Dropdown = <T,>({
   };
 
   return (
-    <DropdownContainer ref={dropdownRef}>
-      <CustomSelectButton onClick={toggleDropdown} disabled={disabled}>
+    <DropdownContainer ref={dropdownRef} style={customStyles.container}>
+      <CustomSelectButton
+        onClick={toggleDropdown}
+        disabled={disabled}
+        style={customStyles.button}
+      >
         <SelectWrapper>{currentOption[type]}</SelectWrapper>
         {dropdownIcon && (
-          <IconWrapper disabled={disabled}>
+          <IconWrapper disabled={disabled} style={customStyles.icon}>
             <SvgIcon
               iconType={IconType.ChevronDown}
               fill={
@@ -105,12 +121,17 @@ const Dropdown = <T,>({
         )}
       </CustomSelectButton>
       {isOpen && (
-        <SelectItemsWrapper position={position}>
+        <SelectItemsWrapper
+          position={positionValue}
+          $dropDownPosition={dropdownPosition}
+          style={customStyles.itemsWrapper}
+        >
           {options.map((option, index) => (
             <SelectItemWrapper
               key={index}
               $isActive={type === "select" && option === selectedOption}
               onClick={() => handleItemClick(option)}
+              style={customStyles.item}
             >
               {renderOption(option)}
             </SelectItemWrapper>

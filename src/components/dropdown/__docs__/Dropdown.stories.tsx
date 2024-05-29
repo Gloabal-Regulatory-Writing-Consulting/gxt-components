@@ -30,18 +30,34 @@ export const DropdownButton: Story = {
     label: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
+    position: "left",
+    customStyles: {
+      container: {},
+      button: {},
+      icon: {},
+      itemsWrapper: {},
+      item: {},
+    },
   },
 };
 
 export const DropdownSelect: Story = {
   args: {
     disabled: false,
-    type: "select",
+    type: "button",
     options: ["Option 1", "Option 2", "Option 3"],
     renderOption: (option) => <span>{option}</span>,
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
+    position: "right",
+    customStyles: {
+      container: {},
+      button: {},
+      icon: {},
+      itemsWrapper: {},
+      item: {},
+    },
   },
 };
 
@@ -54,6 +70,13 @@ export const DisabledButton: Story = {
     label: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
+    customStyles: {
+      container: {},
+      button: {},
+      icon: {},
+      itemsWrapper: {},
+      item: {},
+    },
   },
 };
 
@@ -65,6 +88,14 @@ export const ActionsDropdown: Story = {
     renderOption: (option) => <span>{option}</span>,
     label: getSvgIcon(false),
     onSelect: (option) => console.log("Selected option:", option),
+    position: "center",
+    customStyles: {
+      container: {},
+      button: {},
+      icon: {},
+      itemsWrapper: {},
+      item: {},
+    },
   },
   decorators: [
     (Story, context) => {
