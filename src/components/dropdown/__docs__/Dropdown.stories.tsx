@@ -27,6 +27,7 @@ const defaultCustomStyles = {
   icon: {},
   itemsWrapper: {},
   item: {},
+  placeholder: {},
 };
 
 export const DropdownButton: Story = {
@@ -35,7 +36,7 @@ export const DropdownButton: Story = {
     type: "button",
     options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
     renderOption: (option) => <span>{option}</span>,
-    label: "Upload",
+    placeholder: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
     position: Position.Center,
@@ -49,7 +50,22 @@ export const DropdownSelect: Story = {
     type: "button",
     options: ["Option 1", "Option 2", "Option 3"],
     renderOption: (option) => <span>{option}</span>,
-    label: "Select an option",
+    placeholder: "Select an option",
+    onSelect: (option) => console.log("Selected option:", option),
+    dropdownIcon: true,
+    position: Position.Bottom,
+    customStyles: defaultCustomStyles,
+  },
+};
+
+export const LabeledDropdown: Story = {
+  args: {
+    disabled: false,
+    type: "select",
+    options: ["Option 1", "Option 2", "Option 3"],
+    renderOption: (option) => <span>{option}</span>,
+    placeholder: "Select an option",
+    label: "Select",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
     position: Position.Bottom,
@@ -63,7 +79,7 @@ export const DisabledButton: Story = {
     type: "button",
     options: ["Option 1", "Option 2", "Option 3"],
     renderOption: (option) => <span>{option}</span>,
-    label: "Select an option",
+    placeholder: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
     customStyles: defaultCustomStyles,
@@ -76,7 +92,7 @@ export const ActionsDropdown: Story = {
     type: "button",
     options: ["Option 1", "Option 2", "Option 3"],
     renderOption: (option) => <span>{option}</span>,
-    label: getSvgIcon(false),
+    placeholder: getSvgIcon(false),
     onSelect: (option) => console.log("Selected option:", option),
     position: Position.Center,
     customStyles: defaultCustomStyles,
@@ -84,7 +100,7 @@ export const ActionsDropdown: Story = {
   decorators: [
     (Story, context) => {
       const { disabled } = context.args;
-      context.args.label = getSvgIcon(!!disabled);
+      context.args.placeholder = getSvgIcon(!!disabled);
       return <Story />;
     },
   ],

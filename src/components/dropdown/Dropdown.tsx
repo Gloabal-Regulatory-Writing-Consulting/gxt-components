@@ -7,6 +7,7 @@ import {
   SelectItemsWrapper,
   SelectItemWrapper,
   SelectWrapper,
+  StyledLabel,
 } from "./DropdownStyledComponents";
 
 type DropdownType = "select" | "button";
@@ -36,6 +37,7 @@ export type CustomStylesType = {
   icon?: CSSProperties;
   itemsWrapper?: CSSProperties;
   item?: CSSProperties;
+  placeholder?: CSSProperties;
 };
 
 export interface DropdownProps<T> {
@@ -44,7 +46,8 @@ export interface DropdownProps<T> {
   options: T[];
   renderOption?: (option: T | null) => ReactNode;
   onSelect?: (option: T) => void;
-  label?: string | ReactNode;
+  label?: string;
+  placeholder?: string | ReactNode;
   initialValue?: T | null;
   dropdownIcon?: boolean;
   position: PositionType;
@@ -58,6 +61,7 @@ const Dropdown = <T,>({
   onSelect,
   renderOption = (option: T | null) => option?.toString(),
   label,
+  placeholder,
   initialValue = null,
   dropdownIcon = false,
   position = Position.Bottom,
@@ -117,17 +121,26 @@ const Dropdown = <T,>({
 
   const currentOption = {
     select: renderOption(selectedOption),
-    button: label,
+    button: placeholder,
   };
 
   return (
     <DropdownContainer ref={dropdownRef} style={customStyles.container}>
+      {label && (
+        <StyledLabel
+          data-testid="label"
+          aria-label={label}
+          style={customStyles.label}
+        >
+          {label}
+        </StyledLabel>
+      )}
       <CustomSelectButton
         onClick={toggleDropdown}
         disabled={disabled}
         style={customStyles.button}
       >
-        <SelectWrapper style={customStyles.label}>
+        <SelectWrapper style={customStyles.placeholder}>
           {currentOption[type]}
         </SelectWrapper>
         {dropdownIcon && (

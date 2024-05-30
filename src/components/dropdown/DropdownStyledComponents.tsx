@@ -148,3 +148,9 @@ export const DropdownContainer = styled.div`
   line-height: 150%;
   letter-spacing: 0.019px;
 `;
+
+export const StyledLabel = styled.label`
+  font-size: 0.9375rem;
+  display: block;
+  margin-bottom: 0.3125rem;
+`;
