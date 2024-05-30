@@ -1,11 +1,18 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { CSSProperties, InputHTMLAttributes } from "react";
 import styled from "styled-components";
+
+export type CustomStylesType = {
+  container?: CSSProperties;
+  label?: CSSProperties;
+  input?: CSSProperties;
+};
 
 export interface InputProps extends InputHTMLAttributes<HTMLButtonElement> {
   label?: string;
   inputType?: "text" | "password" | "email" | "number";
   primary?: boolean;
   inputSize?: "small" | "medium" | "large";
+  customStyles?: CustomStylesType;
 }
 
 const StyledInput = styled.input<InputProps>`
@@ -43,12 +50,17 @@ const Input: React.FC<InputProps> = ({
   size,
   primary,
   disabled,
+  customStyles = {},
   ...props
 }) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper style={customStyles.container}>
       {label && (
-        <StyledLabel data-testid="label" aria-label={label}>
+        <StyledLabel
+          data-testid="label"
+          aria-label={label}
+          style={customStyles.label}
+        >
           {label}
         </StyledLabel>
       )}
@@ -60,6 +72,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         autoComplete={props.autoComplete || "off"}
         size={size}
+        style={customStyles.input}
         {...props}
       />
     </StyledWrapper>
