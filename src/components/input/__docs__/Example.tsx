@@ -10,6 +10,7 @@ const Example: FC<InputProps> = ({
   primary = true,
   inputSize = "small",
   inputType = "text",
+  customStyles,
 }) => {
   return (
     <div
@@ -27,6 +28,7 @@ const Example: FC<InputProps> = ({
         disabled={disabled}
         onChange={onChange}
         primary={primary}
+        customStyles={customStyles}
       />
     </div>
   );

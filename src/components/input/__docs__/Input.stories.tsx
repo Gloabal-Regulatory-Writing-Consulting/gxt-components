@@ -17,6 +17,11 @@ export const Primary: Story = {
     disabled: false,
     inputSize: "small",
     onChange: (e) => console.log(e.target.value),
+    customStyles: {
+      input: {
+        width: "100%",
+      },
+    },
   },
 };
 export const Label: Story = {
@@ -36,6 +41,7 @@ export const Password: Story = {
     disabled: false,
     inputSize: "small",
     onChange: (e) => console.log(e.target.value),
+    customStyles: {},
   },
 };
 export const Disabled: Story = {
