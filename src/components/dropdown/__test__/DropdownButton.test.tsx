@@ -19,6 +19,8 @@ describe("Dropdown component", () => {
         options={options}
         renderOption={renderOption}
         onSelect={onSelect}
+        placeholder="Select an option"
+        position="bottom"
       />,
     );
 
@@ -35,7 +37,8 @@ describe("Dropdown component", () => {
         type="button"
         options={options}
         renderOption={renderOption}
-        label="Select an option"
+        placeholder="Select an option"
+        position="bottom"
       />,
     );
 
@@ -49,6 +52,8 @@ describe("Dropdown component", () => {
         options={options}
         renderOption={renderOption}
         onSelect={onSelect}
+        placeholder="Select an option"
+        position="bottom"
       />,
     );
 
@@ -64,14 +69,107 @@ describe("Dropdown component", () => {
         type="button"
         options={options}
         renderOption={renderOption}
-        label="Select an option"
+        placeholder="Select an option"
         disabled={true}
+        position="bottom"
       />,
     );
 
-    expect(screen.getByText("Select an option").parentElement).toBeInstanceOf(
-      HTMLButtonElement,
+    const button = screen.getByText("Select an option").parentElement;
+    expect(button).toBeInstanceOf(HTMLButtonElement);
+    expect(button).toBeDisabled();
+  });
+
+  it("renders label correctly", () => {
+    render(
+      <Dropdown
+        type="button"
+        options={options}
+        renderOption={renderOption}
+        label="Dropdown Label"
+        placeholder="Select an option"
+        position="bottom"
+      />,
     );
-    expect(screen.getByText("Select an option").parentElement).toBeDisabled();
+
+    expect(screen.getByText("Dropdown Label")).toBeInTheDocument();
+  });
+
+  it("applies custom styles to container", () => {
+    const customStyles = {
+      container: { backgroundColor: "rgb(211, 211, 211)" },
+    };
+    render(
+      <Dropdown
+        type="button"
+        options={options}
+        renderOption={renderOption}
+        placeholder="Select an option"
+        customStyles={customStyles}
+        position="bottom"
+      />,
+    );
+
+    const container =
+      screen.getByText("Select an option").parentElement?.parentElement;
+    expect(container).toHaveStyle("background-color: rgb(211, 211, 211)");
+  });
+
+  it("applies custom styles to label", () => {
+    const customStyles = {
+      label: { color: "rgb(255, 0, 0)" },
+    };
+    render(
+      <Dropdown
+        type="button"
+        options={options}
+        renderOption={renderOption}
+        label="Dropdown Label"
+        placeholder="Select an option"
+        customStyles={customStyles}
+        position="bottom"
+      />,
+    );
+
+    const label = screen.getByText("Dropdown Label");
+    expect(label).toHaveStyle("color: rgb(255, 0, 0)");
+  });
+
+  it("applies custom styles to button", () => {
+    const customStyles = {
+      button: { borderColor: "blue" },
+    };
+    render(
+      <Dropdown
+        type="button"
+        options={options}
+        renderOption={renderOption}
+        placeholder="Select an option"
+        customStyles={customStyles}
+        position="bottom"
+      />,
+    );
+
+    const button = screen.getByText("Select an option").parentElement;
+    expect(button).toHaveStyle("border-color: blue");
+  });
+
+  it("applies custom styles to placeholder", () => {
+    const customStyles = {
+      placeholder: { color: "rgb(0, 128, 0)" },
+    };
+    render(
+      <Dropdown
+        type="button"
+        options={options}
+        renderOption={renderOption}
+        placeholder="Select an option"
+        customStyles={customStyles}
+        position="bottom"
+      />,
+    );
+
+    const placeholder = screen.getByText("Select an option");
+    expect(placeholder).toHaveStyle("color: rgb(0, 128, 0)");
   });
 });
