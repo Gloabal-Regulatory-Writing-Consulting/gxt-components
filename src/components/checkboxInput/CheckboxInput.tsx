@@ -130,9 +130,9 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({
   return (
     <StyledWrapper>
       <StyledInput
+        data-testid="checkbox-input"
         {...props}
         ref={checkboxRef}
-        data-testid="checkbox-input"
         type="checkbox"
         autoComplete={props.autoComplete || "off"}
         $inputSize={$inputSize}

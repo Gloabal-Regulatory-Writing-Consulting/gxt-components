@@ -21,7 +21,12 @@ describe("SlideOverFilters", () => {
         isAccordionOpen: true,
         onChangeCallback: vi.fn(),
         checkboxOptions: [
-          { label: "Option 1", name: "test 1", onChange: vi.fn() },
+          {
+            label: "Option 1",
+            name: "test 1",
+            value: "value 1",
+            onChange: vi.fn(),
+          },
         ],
       },
     ],

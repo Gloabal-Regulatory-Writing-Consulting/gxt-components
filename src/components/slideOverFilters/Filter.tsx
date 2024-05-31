@@ -30,7 +30,7 @@ const Filter = ({
             label={checkboxOption.label}
             value={checkboxOption.value}
             onChange={(e) => handleCheckBoxChange(e, checkboxOption.onChange)}
-            checked={filters[checkboxOption.name].includes(
+            checked={(filters[checkboxOption.name] || []).includes(
               checkboxOption.value,
             )}
           ></CheckboxInput>
