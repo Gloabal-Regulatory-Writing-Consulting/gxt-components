@@ -2,13 +2,12 @@ import React, { FC } from "react";
 
 import SlideOver from "../slideOver/SlideOver";
 import { Button } from "../button";
-import { Accordion } from "../accordion";
-import { CheckboxInput } from "../checkboxInput";
 import {
   SlideOverFooter,
   SlideOverFooterRight,
   SlideOverHeader,
 } from "./SlideOverFilters.styles";
+import Filter from "./Filter";
 
 type FilterCheckboxOptions = {
   label: string;
@@ -94,46 +93,31 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
     cb && cb(newFilters);
   };
 
+  const handleReset = () => {
+    setFilters((prev) =>
+      Object.keys(prev).reduce(
+        (acc, key) => {
+          return { ...acc, [key]: [] };
+        },
+        {} as Record<string, string[]>,
+      ),
+    );
+    onResetHandler();
+  };
+
   return (
     <SlideOver width={width} isOpen={isOpen} onClose={onCloseHandler}>
       <SlideOverHeader>{title}</SlideOverHeader>
-
       {filtersOptions.map((accordionItem, index) => (
-        <Accordion
+        <Filter
+          {...accordionItem}
           key={index}
-          isSearchAble={accordionItem.isSearchAble}
-          isAccordionOpen={accordionItem.isAccordionOpen}
-        >
-          <Accordion.Header key={`${index}-header`}>
-            {accordionItem.header}
-          </Accordion.Header>
-          <Accordion.Content
-            key={`${index}-content`}
-            onChangeCallback={accordionItem.onChangeCallback}
-          >
-            {accordionItem.checkboxOptions.map(
-              (checkboxOption, optionIndex) => (
-                <CheckboxInput
-                  $inputSize="xs"
-                  name={checkboxOption.name}
-                  key={`${index}-${optionIndex}`}
-                  label={checkboxOption.label}
-                  value={checkboxOption.value}
-                  onChange={(e) =>
-                    handleCheckBoxChange(e, checkboxOption.onChange)
-                  }
-                  checked={filters[checkboxOption.name].includes(
-                    checkboxOption.value,
-                  )}
-                ></CheckboxInput>
-              ),
-            )}
-          </Accordion.Content>
-        </Accordion>
+          handleCheckBoxChange={handleCheckBoxChange}
+          filters={filters}
+        />
       ))}
-
       <SlideOverFooter>
-        <Button variant="secondary" onClick={onResetHandler}>
+        <Button variant="secondary" onClick={handleReset}>
           {resetButtonLabel}
         </Button>
 
