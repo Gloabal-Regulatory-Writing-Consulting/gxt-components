@@ -13,10 +13,12 @@ import {
 type FilterCheckboxOptions = {
   label: string;
   name: string;
-  onChange?: () => void;
+  value: string;
+  checked?: boolean;
+  onChange?: (filters: Record<string, string[]>) => void;
 };
 
-type FilterOptions = {
+export type FilterOptions = {
   header: string;
   isSearchAble: boolean;
   isAccordionOpen: boolean;
@@ -50,6 +52,48 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
   onResetHandler = () => {},
   width = "25rem",
 }) => {
+  const [filters, setFilters] = React.useState<Record<string, string[]>>(
+    filtersOptions.reduce(
+      (acc, curr) => {
+        const optionFilters = curr.checkboxOptions.reduce(
+          (checkboxAcc, checkboxOption) => {
+            if (checkboxOption.checked) {
+              checkboxAcc[checkboxOption.name] = [
+                ...(checkboxAcc[checkboxOption.name] || []),
+                checkboxOption.value,
+              ];
+            } else {
+              checkboxAcc[checkboxOption.name] = (
+                checkboxAcc[checkboxOption.name] || []
+              ).filter((option) => option !== checkboxOption.value);
+            }
+            return checkboxAcc;
+          },
+          {} as Record<string, string[]>,
+        );
+        return { ...acc, ...optionFilters };
+      },
+      {} as Record<string, string[]>,
+    ),
+  );
+
+  const handleCheckBoxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    cb?: (filters: Record<string, string[]>) => void,
+  ) => {
+    const { name, checked, value } = event.target;
+    const newFilters = {
+      ...filters,
+      [name]: checked
+        ? filters[name]
+          ? [...filters[name], value]
+          : [value]
+        : filters[name]?.filter((v) => v !== value),
+    };
+    setFilters(newFilters);
+    cb && cb(newFilters);
+  };
+
   return (
     <SlideOver width={width} isOpen={isOpen} onClose={onCloseHandler}>
       <SlideOverHeader>{title}</SlideOverHeader>
@@ -74,7 +118,13 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
                   name={checkboxOption.name}
                   key={`${index}-${optionIndex}`}
                   label={checkboxOption.label}
-                  onChange={checkboxOption.onChange}
+                  value={checkboxOption.value}
+                  onChange={(e) =>
+                    handleCheckBoxChange(e, checkboxOption.onChange)
+                  }
+                  checked={filters[checkboxOption.name].includes(
+                    checkboxOption.value,
+                  )}
                 ></CheckboxInput>
               ),
             )}

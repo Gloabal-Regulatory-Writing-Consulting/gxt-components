@@ -2,22 +2,23 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
 
-import SlideOverFilters from "../SlideOverFilters";
+import SlideOverFilters, { FilterOptions } from "../SlideOverFilters";
 import { Button } from "../../button";
 
-const filterOptions = [
+const filterOptions: FilterOptions[] = [
   ...Array.from({ length: 4 }, (_v, i) => ({
     header: `Header ${i + 1}`,
     isSearchAble: true,
     isAccordionOpen: true,
-    onChangeCallback: () => {
-      console.log(`test ${i + 1}`);
-    },
+    onChangeCallback: () => {},
     checkboxOptions: [
       ...Array.from({ length: 4 }, (_v, j) => ({
         label: `Test Option ${i * 6 + j + 1}`,
-        name: `test ${i * 6 + j + 1}`,
-        onChange: () => {},
+        name: `name ${i}`,
+        value: `test ${i * 6 + j + 1}`,
+        onChange: (filters) => {
+          console.log(filters);
+        },
       })),
     ],
   })),
@@ -26,7 +27,7 @@ const filterOptions = [
 const meta: Meta<typeof SlideOverFilters> = {
   title: "SlideOverFilters",
   render: function Render(args) {
-    const [{ isOpen }, updateArgs] = useArgs();
+    const [{ isOpen }, updateArgs] = useArgs<typeof args>();
 
     const handleOpen = () => {
       updateArgs({ isOpen: true });

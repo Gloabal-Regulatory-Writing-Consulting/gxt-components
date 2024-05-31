@@ -1,5 +1,7 @@
 import React, { InputHTMLAttributes, useEffect, useRef } from "react";
 import styled from "styled-components";
+import checkedIcon from "../../assets/icon/checked.svg";
+import indeterminateCheckedIcon from "../../assets/icon/indeterminate-checked.svg";
 
 export interface CheckboxInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -40,7 +42,7 @@ const StyledInput = styled.input<CheckboxInputProps>`
   }
 
   &:checked {
-    background-image: url("./checked.svg");
+    background-image: url("${checkedIcon}");
     background-repeat: no-repeat;
     background-position: 50%;
     background-color: var(--primary-200, #177ba6);
@@ -63,7 +65,7 @@ const StyledInput = styled.input<CheckboxInputProps>`
   }
 
   &:indeterminate {
-    background-image: url("./indeterminate-checked.svg");
+    background-image: url("${indeterminateCheckedIcon}");
     background-repeat: no-repeat;
     background-color: var(--primary-200, #177ba6);
     background-position: 50%;
