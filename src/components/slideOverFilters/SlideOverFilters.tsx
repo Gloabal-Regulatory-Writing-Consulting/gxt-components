@@ -2,21 +2,22 @@ import React, { FC } from "react";
 
 import SlideOver from "../slideOver/SlideOver";
 import { Button } from "../button";
-import { Accordion } from "../accordion";
-import { CheckboxInput } from "../checkboxInput";
 import {
   SlideOverFooter,
   SlideOverFooterRight,
   SlideOverHeader,
 } from "./SlideOverFilters.styles";
+import Filter from "./Filter";
 
 type FilterCheckboxOptions = {
   label: string;
   name: string;
-  onChange?: () => void;
+  value: string;
+  checked?: boolean;
+  onChange?: (filters: Record<string, string[]>) => void;
 };
 
-type FilterOptions = {
+export type FilterOptions = {
   header: string;
   isSearchAble: boolean;
   isAccordionOpen: boolean;
@@ -50,40 +51,73 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
   onResetHandler = () => {},
   width = "25rem",
 }) => {
+  const [filters, setFilters] = React.useState<Record<string, string[]>>(
+    filtersOptions.reduce(
+      (acc, curr) => {
+        const optionFilters = curr.checkboxOptions.reduce(
+          (checkboxAcc, checkboxOption) => {
+            if (checkboxOption.checked) {
+              checkboxAcc[checkboxOption.name] = [
+                ...(checkboxAcc[checkboxOption.name] || []),
+                checkboxOption.value,
+              ];
+            } else {
+              checkboxAcc[checkboxOption.name] = (
+                checkboxAcc[checkboxOption.name] || []
+              ).filter((option) => option !== checkboxOption.value);
+            }
+            return checkboxAcc;
+          },
+          {} as Record<string, string[]>,
+        );
+        return { ...acc, ...optionFilters };
+      },
+      {} as Record<string, string[]>,
+    ),
+  );
+
+  const handleCheckBoxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    cb?: (filters: Record<string, string[]>) => void,
+  ) => {
+    const { name, checked, value } = event.target;
+    const newFilters = {
+      ...filters,
+      [name]: checked
+        ? filters[name]
+          ? [...filters[name], value]
+          : [value]
+        : filters[name]?.filter((v) => v !== value),
+    };
+    setFilters(newFilters);
+    cb && cb(newFilters);
+  };
+
+  const handleReset = () => {
+    setFilters((prev) =>
+      Object.keys(prev).reduce(
+        (acc, key) => {
+          return { ...acc, [key]: [] };
+        },
+        {} as Record<string, string[]>,
+      ),
+    );
+    onResetHandler();
+  };
+
   return (
     <SlideOver width={width} isOpen={isOpen} onClose={onCloseHandler}>
       <SlideOverHeader>{title}</SlideOverHeader>
-
       {filtersOptions.map((accordionItem, index) => (
-        <Accordion
+        <Filter
+          {...accordionItem}
           key={index}
-          isSearchAble={accordionItem.isSearchAble}
-          isAccordionOpen={accordionItem.isAccordionOpen}
-        >
-          <Accordion.Header key={`${index}-header`}>
-            {accordionItem.header}
-          </Accordion.Header>
-          <Accordion.Content
-            key={`${index}-content`}
-            onChangeCallback={accordionItem.onChangeCallback}
-          >
-            {accordionItem.checkboxOptions.map(
-              (checkboxOption, optionIndex) => (
-                <CheckboxInput
-                  $inputSize="xs"
-                  name={checkboxOption.name}
-                  key={`${index}-${optionIndex}`}
-                  label={checkboxOption.label}
-                  onChange={checkboxOption.onChange}
-                ></CheckboxInput>
-              ),
-            )}
-          </Accordion.Content>
-        </Accordion>
+          handleCheckBoxChange={handleCheckBoxChange}
+          filters={filters}
+        />
       ))}
-
       <SlideOverFooter>
-        <Button variant="secondary" onClick={onResetHandler}>
+        <Button variant="secondary" onClick={handleReset}>
           {resetButtonLabel}
         </Button>
 

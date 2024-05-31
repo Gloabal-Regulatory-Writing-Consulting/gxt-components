@@ -27,15 +27,6 @@ export const Content = styled.div<{ open: boolean }>`
   text-align: left;
   display: ${({ open }) => (open ? "flex" : "none")};
   flex-direction: column;
-  animation: fadeIn 0.3s ease-in-out;
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 `;
 
 export const AccordionIcon = styled.span<{ $isOpen: boolean }>`

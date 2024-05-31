@@ -23,5 +23,12 @@ export default defineConfig({
     environment: "jsdom",
     css: true,
     setupFiles: "./setupTests.ts",
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/*.mdx",
+      "**/*.stories.tsx",
+      "Example.tsx",
+    ],
   },
 });
