@@ -1,1 +1,1 @@
-export * from "./SlideOverFilters";
+export { default as SlideOverFilters } from "./SlideOverFilters";
