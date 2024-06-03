@@ -12,15 +12,22 @@ export default meta;
 
 type Story = StoryObj<typeof Header>;
 
+const breadcrumbItems = [
+  { label: "Home", link: "/" },
+  { label: "Upload Documents", link: "/upload-documents", active: true },
+];
+
 export const Default: Story = {
   render: () => (
-    <Header style={{ border: "1px solid black" }}>
+    <Header
+      style={{ border: "1px solid black" }}
+      breadcrumbItems={breadcrumbItems}
+    >
       <Header.Heading>Upload Documents</Header.Heading>
       <Header.Actions>
         <Button variant="secondary">Add to Catalog</Button>
         <Button variant="secondary">Cancel</Button>
       </Header.Actions>
-      <Header.Breadcrumbs>Home {`  >  `} Upload Documents</Header.Breadcrumbs>
     </Header>
   ),
 };

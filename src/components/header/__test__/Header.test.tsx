@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import Header, { Actions, HeadingComponent, Breadcrumbs } from "../Header";
+import Header, { Actions, HeadingComponent } from "../Header";
 import "@testing-library/jest-dom";
 
 describe("Header component", () => {
@@ -13,18 +13,12 @@ describe("Header component", () => {
           <button>Action 1</button>
           <button>Action 2</button>
         </Header.Actions>
-        <Header.Breadcrumbs>
-          <a href="#">Home</a>
-          <span>/</span>
-          <a href="#">Page</a>
-        </Header.Breadcrumbs>
         <div>Additional Content</div>
       </Header>,
     );
 
     expect(screen.getByText("Page Title")).toBeInTheDocument();
     expect(screen.getAllByRole("button")).toHaveLength(2);
-    expect(screen.getAllByRole("link")).toHaveLength(2);
     expect(screen.getByText("Additional Content")).toBeInTheDocument();
   });
 
@@ -32,7 +26,6 @@ describe("Header component", () => {
     render(<Header />);
     expect(screen.queryByText("Page Title")).not.toBeInTheDocument();
     expect(screen.queryAllByRole("button")).toHaveLength(0);
-    expect(screen.queryAllByRole("link")).toHaveLength(0);
     expect(screen.queryByText("Additional Content")).not.toBeInTheDocument();
   });
 });
@@ -76,26 +69,27 @@ describe("Actions", () => {
 });
 
 describe("Breadcrumbs", () => {
-  it("should render the breadcrumbs correctly", () => {
-    render(
-      <Breadcrumbs>
-        <a href="#">Home</a>
-        <span>/</span>
-        <a href="#">Page</a>
-      </Breadcrumbs>,
-    );
-    expect(screen.getAllByRole("link")).toHaveLength(2);
-    expect(screen.getByText("/")).toBeInTheDocument();
+  it("should render Breadcrumbs if breadcrumbItems are provided", () => {
+    const breadcrumbItems = [
+      { label: "Home", link: "/" },
+      { label: "Page", link: "/page" },
+    ];
+
+    render(<Header breadcrumbItems={breadcrumbItems} />);
+    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("Page")).toBeInTheDocument();
   });
 
-  it("should apply additional props to the breadcrumbs container", () => {
-    render(
-      <Breadcrumbs data-testid="custom-breadcrumbs">
-        <a href="#">Home</a>
-        <span>/</span>
-        <a href="#">Page</a>
-      </Breadcrumbs>,
+  it("should render correct color for active Breadcrumbs link", () => {
+    const breadcrumbItems = [
+      { label: "Home", link: "/", active: true },
+      { label: "Page", link: "/page" },
+    ];
+
+    render(<Header breadcrumbItems={breadcrumbItems} />);
+    expect(screen.getByText("Home")).toHaveStyle(
+      "color: var(--primary-300, #115873);",
     );
-    expect(screen.getByTestId("custom-breadcrumbs")).toBeInTheDocument();
   });
 });
+

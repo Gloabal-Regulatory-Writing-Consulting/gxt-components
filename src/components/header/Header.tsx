@@ -1,12 +1,12 @@
-import { FC, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import {
   MainContainer,
   Container,
   Heading,
-  BreadcrumbsContainer,
   ActionsContainer,
 } from "./Header.styles";
 import { useSlots } from "../../hooks/useSlots";
+import Breadcrumbs, { breadcrumbItem } from "../breadcrums/Breadcrumbs";
 
 export const Actions: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -18,24 +18,19 @@ export const HeadingComponent: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => <Heading {...rest}>{children}</Heading>;
 
-export const Breadcrumbs: FC<HTMLAttributes<HTMLDivElement>> = ({
-  children,
-  ...rest
-}) => <BreadcrumbsContainer {...rest}>{children}</BreadcrumbsContainer>;
+interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+  breadcrumbItems?: breadcrumbItem[];
+}
 
-const Header: FC<HTMLAttributes<HTMLDivElement>> & {
+const Header: FC<HeaderProps> & {
   Heading: typeof HeadingComponent;
   Actions: typeof Actions;
-  Breadcrumbs: typeof Breadcrumbs;
-} = ({ children, ...rest }: HTMLAttributes<HTMLDivElement>) => {
-  const [{ HeadingSlot, ButtonSlot, BreadcrumbsSlot }, restChildren] = useSlots(
-    children,
-    {
-      HeadingSlot: HeadingComponent,
-      ButtonSlot: Actions,
-      BreadcrumbsSlot: Breadcrumbs,
-    },
-  );
+  Breadcrumbs: FC<{ items: breadcrumbItem[] }>;
+} = ({ children, breadcrumbItems, ...rest }: HeaderProps) => {
+  const [{ HeadingSlot, ButtonSlot }, restChildren] = useSlots(children, {
+    HeadingSlot: HeadingComponent,
+    ButtonSlot: Actions,
+  });
 
   return (
     <MainContainer {...rest}>
@@ -43,7 +38,7 @@ const Header: FC<HTMLAttributes<HTMLDivElement>> & {
         {HeadingSlot && <HeadingSlot />}
         {ButtonSlot && <ButtonSlot />}
       </Container>
-      {BreadcrumbsSlot && <BreadcrumbsSlot />}
+      {breadcrumbItems && <Breadcrumbs items={breadcrumbItems} />}
       {restChildren}
     </MainContainer>
   );
