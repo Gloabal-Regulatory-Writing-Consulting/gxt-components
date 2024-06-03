@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import TableHeader from "../TableHeader";
 import { describe, expect, it, vi } from "vitest";
-import { IconType } from "../../svg/SvgIcon";
 
 describe("TableHeader Component", () => {
   const handleColumnSortMock = vi.fn();
@@ -19,15 +18,15 @@ describe("TableHeader Component", () => {
   });
   it("renders sort icons when ColumnName is provided", () => {
     render(<TableHeader {...defaultProps} ColumnName="exampleColumn" />);
-    const upArrow = screen.queryByTestId(IconType.ARROW_UP);
-    const downArrow = screen.queryByTestId(IconType.ARROW_DOWN);
+    const upArrow = screen.queryByTestId("arrow-up-icon");
+    const downArrow = screen.queryByTestId("arrow-down-icon");
     expect(upArrow).toBeDefined();
     expect(downArrow).toBeDefined();
   });
   it("does not render sort icons when ColumnName is not provided", () => {
     render(<TableHeader {...defaultProps} />);
-    expect(screen.queryByTestId(IconType.ARROW_UP)).not.toBeInTheDocument();
-    expect(screen.queryByTestId(IconType.ARROW_DOWN)).not.toBeInTheDocument();
+    const sortContainer = screen.queryByTestId("sort-container");
+    expect(sortContainer).toHaveStyle({ display: "none" });
   });
   it("calls handleColumnSort with ASC order when the up arrow icon is clicked", () => {
     render(

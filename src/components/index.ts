@@ -3,7 +3,6 @@ export * from "./input";
 export * from "./tab";
 export * from "./tabs";
 export * from "./search";
-export * from "./svg";
 export * from "./dropdown";
 export * from "./pagination";
 export * from "./avatar";
@@ -16,4 +15,3 @@ export * from "./slideOver";
 export * from "./slideOverFilters";
 export * from "./checkboxInput";
 export * from "./tableHeader";
-

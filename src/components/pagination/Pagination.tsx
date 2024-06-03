@@ -1,11 +1,13 @@
 import { FC } from "react";
-import { SvgIcon } from "../svg";
-import { IconType } from "../svg/SvgIcon";
 import { Dropdown } from "../dropdown";
 import styles from "./Pagination.module.css";
 import ReactPaginate from "react-paginate";
 import styled from "styled-components";
 import { Position } from "../dropdown/Dropdown";
+import NextArrowIcon from "../../assets/icons/next-arrow.svg";
+import BackArrowIcon from "../../assets/icons/back-arrow.svg";
+import FirstPageArrowIcon from "../../assets/icons/firstpage-arrow.svg";
+import LastPageArrowIcon from "../../assets/icons/lastpage-arrow.svg";
 
 export type PaginationProps = {
   currentPage: number;
@@ -56,10 +58,6 @@ const Label = styled.span`
   color: var(--neutral-400, #414141);
 `;
 
-const StyledSvgIcon = styled(SvgIcon)<{ disabled?: boolean }>`
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-`;
-
 const Pagination: FC<PaginationProps> = ({
   totalItems,
   itemsPerPage,
@@ -81,31 +79,40 @@ const Pagination: FC<PaginationProps> = ({
     <PaginationContainer width={width}>
       <ItemsPagesWrapper>
         <PaginationWrapper>
-          <StyledSvgIcon
-            iconType={IconType.FIRST_PAGE}
+          <FirstPageArrowIcon
+            width="20"
+            height="20"
             onClick={() => onPageChange(0)}
             fill={arrowFillColor(isPrevDisabled)}
-            disabled={isPrevDisabled}
+            style={{
+              cursor: isPrevDisabled ? "not-allowed" : "pointer",
+            }}
             data-testid="first-page-icon"
           />
           <ReactPaginate
             className={styles["paginated-box"]}
             breakLabel="..."
             nextLabel={
-              <StyledSvgIcon
-                iconType={IconType.NEXT_ARROW}
+              <NextArrowIcon
+                width="20"
+                height="16"
                 onClick={() => !isNextDisabled && onPageChange(currentPage + 1)}
                 fill={arrowFillColor(isNextDisabled)}
-                disabled={isNextDisabled}
+                style={{
+                  cursor: isNextDisabled ? "not-allowed" : "pointer",
+                }}
                 data-testid="next-page-icon"
               />
             }
             previousLabel={
-              <StyledSvgIcon
-                iconType={IconType.BACK_ARROW}
+              <BackArrowIcon
+                width="20"
+                height="16"
                 onClick={() => !isPrevDisabled && onPageChange(currentPage - 1)}
                 fill={arrowFillColor(isPrevDisabled)}
-                disabled={isPrevDisabled}
+                style={{
+                  cursor: isPrevDisabled ? "not-allowed" : "pointer",
+                }}
                 data-testid="previous-page-icon"
               />
             }
@@ -120,11 +127,14 @@ const Pagination: FC<PaginationProps> = ({
             nextClassName={styles["next-pre-btn"]}
             forcePage={currentPage}
           />
-          <StyledSvgIcon
-            iconType={IconType.LAST_PAGE}
+          <LastPageArrowIcon
+            width="20"
+            height="20"
             onClick={() => onPageChange(lastPage)}
             fill={arrowFillColor(isNextDisabled)}
-            disabled={isNextDisabled}
+            style={{
+              cursor: isNextDisabled ? "not-allowed" : "pointer",
+            }}
             data-testid="last-page-icon"
           />
         </PaginationWrapper>
