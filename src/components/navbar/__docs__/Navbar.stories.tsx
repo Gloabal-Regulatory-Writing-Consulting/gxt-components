@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { FunctionComponent, SVGProps } from "react";
-import { SvgIcon } from "../../svg";
-import { IconType } from "../../svg/SvgIcon";
 import { BrowserRouter as Router, useMatch } from "react-router-dom";
 import Navbar from "../Navbar";
+import SearchIconSvg from "../../../assets/icons/search.svg";
+import ChevronDownIcon from "../../../assets/icons/chevrondown.svg";
+import Pencil from "../../../assets/icons/pencil.svg";
 
 const withRouter = (Story) => (
   <Router>
@@ -19,34 +20,31 @@ const meta: Meta<typeof Navbar> = {
 };
 
 const SearchIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({ stroke }) => (
-  <SvgIcon
-    iconType={IconType.SEARCH}
-    size={20}
+  <SearchIconSvg
+    width={20}
+    height={20}
     className="custom-icon"
-    stroke={stroke}
-    fill={stroke}
+    fill={stroke || "var(--neutral-200, #9CA3AF)"}
   />
 );
 
 const PencilIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({ stroke }) => (
-  <SvgIcon
-    iconType={IconType.PENCIL}
-    size={20}
+  <Pencil
+    width={18}
+    height={18}
     className="custom-icon"
-    stroke={stroke}
-    fill={stroke}
+    fill={stroke || "var(--neutral-200, #9CA3AF)"}
   />
 );
 
 const ChevronIcon: FunctionComponent<SVGProps<SVGSVGElement>> = ({
   stroke,
 }) => (
-  <SvgIcon
-    iconType={IconType.ChevronDown}
-    size={20}
+  <ChevronDownIcon
+    width={20}
+    height={20}
     className="custom-icon"
-    stroke={stroke}
-    fill={stroke}
+    fill={stroke || "var(--neutral-200, #9CA3AF)"}
   />
 );
 

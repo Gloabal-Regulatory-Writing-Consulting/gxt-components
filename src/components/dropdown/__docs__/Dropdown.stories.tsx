@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import Dropdown, { Position } from "../Dropdown";
-import SvgIcon, { IconType } from "../../svg/SvgIcon";
+import KababIcon from "../../../assets/icons/kabab-icon.svg";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Dropdown",
@@ -13,8 +13,9 @@ export default meta;
 type Story = StoryObj<typeof Dropdown<string>>;
 
 const getSvgIcon = (disabled: boolean) => (
-  <SvgIcon
-    iconType={IconType.dropdownOptions}
+  <KababIcon
+    width={20}
+    height={20}
     fill={
       disabled ? "var(--neutral-200, #9CA3AF)" : "var(--primary-50, #2AACE2)"
     }

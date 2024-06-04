@@ -1,8 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Search } from "../search";
-import { SvgIcon } from "../svg";
-import { IconType } from "../svg/SvgIcon";
 import { useSlots } from "../../hooks/useSlots";
 
 import {
@@ -12,6 +10,7 @@ import {
   Header,
   SearchBox,
 } from "./accordion.styles";
+import AccordionSvg from "../../assets/icons/accordion-icon.svg";
 
 export interface AccordionProps {
   children: ReactNode;
@@ -38,7 +37,7 @@ const AccordionHeader = function HeaderComponent({
     <Header onClick={onClick}>
       {children}
       <AccordionIcon $isOpen={!!isOpen}>
-        <SvgIcon iconType={IconType.ACCORDION_ARROW} />
+        <AccordionSvg fill={"var(--neutral-200, #9CA3AF)"} />
       </AccordionIcon>
     </Header>
   );

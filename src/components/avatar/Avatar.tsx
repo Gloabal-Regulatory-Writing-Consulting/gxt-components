@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useMemo } from "react";
-import { IconType } from "../svg/SvgIcon";
 import {
   AvatarBox,
   AvatarButton,
@@ -45,7 +44,9 @@ const Avatar: React.FC<AvatarProps> = ({
   }, [firstName, lastName]);
 
   const noIcon: JSX.Element = (
-    <UserInitials data-testid="user-initials" size={size}>{userInitials}</UserInitials>
+    <UserInitials data-testid="user-initials" size={size}>
+      {userInitials}
+    </UserInitials>
   );
 
   const userIcon: JSX.Element = (
@@ -54,19 +55,16 @@ const Avatar: React.FC<AvatarProps> = ({
 
   const userAvatar = useMemo(() => {
     switch (true) {
-        case !!imageUrl || !!avatar:
-            return userIcon;
-        default:
-            return noIcon;
+      case !!imageUrl || !!avatar:
+        return userIcon;
+      default:
+        return noIcon;
     }
-}, [imageUrl, avatar, userIcon, noIcon]);
+  }, [imageUrl, avatar, userIcon, noIcon]);
 
   const editImage = handleImageUpload ? (
     <>
-      <StyledIcon
-        iconType={IconType.PENCIL}
-        size={size === "small" ? 8 : 18}
-      ></StyledIcon>
+      <StyledIcon size={size === "small" ? 8 : 18} />
       <input
         type="file"
         data-testid="user-image-input"
@@ -80,7 +78,10 @@ const Avatar: React.FC<AvatarProps> = ({
   ) : null;
 
   return (
-    <AvatarContainer size={size} className={`${isExpanded && "expanded-avatar"}`}>
+    <AvatarContainer
+      size={size}
+      className={`${isExpanded && "expanded-avatar"}`}
+    >
       <AvatarIcon data-testid="avatarIcon" onClick={onClickHandler}>
         <AvatarBox>
           <AvatarButton size={size} className={`avatar-button`}>
@@ -93,7 +94,9 @@ const Avatar: React.FC<AvatarProps> = ({
             <AvatarText weight="bold" size={size}>
               {userName}
             </AvatarText>
-            <AvatarText weight="normal" size={size}>View profile</AvatarText>
+            <AvatarText weight="normal" size={size}>
+              View profile
+            </AvatarText>
           </AvatarTextContainer>
         )}
       </AvatarIcon>

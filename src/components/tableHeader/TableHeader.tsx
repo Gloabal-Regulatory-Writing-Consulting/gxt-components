@@ -1,11 +1,12 @@
 import React from "react";
-import SvgIcon, { IconType } from "../svg/SvgIcon";
 import {
   ArrowWrapper,
   HeaderContainer,
   HeaderTitle,
   SortContainer,
 } from "./TableHeader.styles";
+import ArrowUp from "../../assets/icons/arrowup-icon.svg";
+import ArrowDown from "../../assets/icons/arrowdown-icon.svg";
 
 type ITableHeader = {
   ColumnName?: string;
@@ -26,16 +27,18 @@ const TableHeader: React.FC<ITableHeader> = ({
 }) => (
   <HeaderContainer backgroundColor={backgroundColor} height={height}>
     <HeaderTitle>{Title}</HeaderTitle>
-    <SortContainer isVisible={!!ColumnName} className={className}>
+    <SortContainer
+      data-testid="sort-container"
+      isVisible={!!ColumnName}
+      className={className}
+    >
       <ArrowWrapper>
-        <SvgIcon
-          iconType={IconType.ARROW_UP}
+        <ArrowUp
           onClick={() => handleColumnSort("ASC", ColumnName)}
           data-testid="arrow-up-icon"
         />
       </ArrowWrapper>
-      <SvgIcon
-        iconType={IconType.ARROW_DOWN}
+      <ArrowDown
         onClick={() => handleColumnSort("DESC", ColumnName)}
         data-testid="arrow-down-icon"
       />

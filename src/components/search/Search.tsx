@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState, useEffect } from "react";
 import styled from "styled-components";
-import SvgIcon, { IconType } from "../svg/SvgIcon";
+import SearchIcon from "../../assets/icons/search.svg";
 
 export interface SearchProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -43,7 +43,7 @@ const SearchInput = styled.input`
   }
 `;
 
-const StyledIcon = styled(SvgIcon)`
+const StyledSearch = styled(SearchIcon)`
   position: absolute;
   left: 10px;
   top: 50%;
@@ -83,7 +83,11 @@ const Search: React.FC<SearchProps> = ({
 
   return (
     <SearchContainer width={width}>
-      <StyledIcon iconType={IconType.SEARCH} />
+      <StyledSearch
+        height={16}
+        width={16}
+        fill={"var(--neutral-200, #9CA3AF)"}
+      />
       <SearchInput
         {...rest}
         type="text"

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, ReactNode, CSSProperties } from "react";
-import SvgIcon, { IconType } from "../svg/SvgIcon";
+import ChevronDownIcon from "../../assets/icons/chevrondown.svg";
 import {
   CustomSelectButton,
   DropdownContainer,
@@ -145,8 +145,9 @@ const Dropdown = <T,>({
         </SelectWrapper>
         {dropdownIcon && (
           <IconWrapper disabled={disabled} style={customStyles.icon}>
-            <SvgIcon
-              iconType={IconType.ChevronDown}
+            <ChevronDownIcon
+              width={20}
+              height={20}
               fill={
                 disabled
                   ? "var(--neutral-200, #9CA3AF)"

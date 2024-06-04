@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { FC } from "react";
-import SvgIcon, { IconType } from "../../svg/SvgIcon";
+import { IconType } from "../../svg/SvgIcon";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Navitem from "../Navitem";
+import SearchIcon from "../../../assets/icons/search.svg";
 
 const withRouter = (Story) => (
   <Router>
@@ -17,12 +18,11 @@ const CustomIcon: FC<{
   className: string;
   stroke: string;
 }> = ({ stroke }) => (
-  <SvgIcon
-    iconType={IconType.SEARCH}
-    size={20}
+  <SearchIcon
+    width={20}
+    height={20}
     className="custom-icon"
-    stroke={stroke}
-    fill={stroke}
+    fill={stroke || "var(--neutral-200, #9CA3AF)"}
   />
 );
 

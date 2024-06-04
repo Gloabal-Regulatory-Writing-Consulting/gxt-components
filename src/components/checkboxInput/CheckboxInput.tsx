@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useEffect, useRef } from "react";
 import styled from "styled-components";
-import checkedIcon from "../../assets/icon/checked.svg";
-import indeterminateCheckedIcon from "../../assets/icon/indeterminate-checked.svg";
+import checkedIcon from "../../assets/images/check-icon.png";
+import indeterminateCheckedIcon from "../../assets/images/indeterminate-checked.png";
 
 export interface CheckboxInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -19,7 +19,7 @@ const StyledInput = styled.input<CheckboxInputProps>`
   appearance: none;
   padding: ${(props) =>
     props.$inputSize === "xs"
-      ? "0.475rem"
+      ? "0.6rem"
       : props.$inputSize === "small"
         ? "0.875rem"
         : props.$inputSize === "medium"

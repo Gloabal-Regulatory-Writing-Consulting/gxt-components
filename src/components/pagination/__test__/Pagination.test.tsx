@@ -82,10 +82,10 @@ describe("Pagination component", () => {
     );
 
     expect(screen.getByTestId("first-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByTestId("previous-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
   });
 
@@ -101,10 +101,10 @@ describe("Pagination component", () => {
     );
 
     expect(screen.getByTestId("next-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByTestId("last-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
   });
 
@@ -140,16 +140,16 @@ describe("Pagination component", () => {
     );
 
     expect(screen.getByTestId("next-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByTestId("previous-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByTestId("next-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByTestId("next-page-icon")).toHaveStyle({
-      pointerEvents: "none",
+      cursor: "not-allowed",
     });
     expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("entries per page")).toBeInTheDocument();

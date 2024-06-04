@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { SvgIcon } from "../svg";
+import Pencil from "../../assets/icons/pencil.svg";
 
 export const AvatarContainer = styled.div<{ size: "small" | "large" }>`
   display: flex;
@@ -133,15 +133,20 @@ export const UserIcon = styled.img`
   object-fit: cover;
 `;
 
-export const StyledIcon = styled(SvgIcon)`
+export const StyledIcon = styled(Pencil)<{ size: number }>`
   padding: 0.25rem;
   position: absolute;
   bottom: -8px;
-  right: ${({ size }) => (size === 8 ? "0" : "5px")};
   border-radius: 50%;
   background-color: lightgrey;
   cursor: pointer;
-
+  ${({ size }) => {
+    return `
+    right: ${size === 8 ? "0" : "5px"};
+    width: ${size}px;
+    height: ${size}px;
+    `;
+  }}
   &:hover {
     background-color: var(--primary-50, #1c99ce);
     color: white;

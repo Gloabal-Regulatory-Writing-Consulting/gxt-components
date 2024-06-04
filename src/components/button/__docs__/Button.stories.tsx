@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import SmilelyIcon from "../../../assets/icons/smilelyface.svg";
 
 import Button from "../Button";
-import { SvgIcon } from "../../svg";
-import { IconType } from "../../svg/SvgIcon";
 
 const meta: Meta<typeof Button> = {
   title: "Button",
@@ -45,6 +44,6 @@ export const IconButton: Story = {
   args: {
     ...Primary.args,
     circular: true,
-    children: <SvgIcon iconType={IconType.SMILEYFACE} />,
+    children: <SmilelyIcon width={20} height={20} />,
   },
 };
