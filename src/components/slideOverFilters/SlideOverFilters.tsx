@@ -12,7 +12,7 @@ import Filter from "./Filter";
 type FilterCheckboxOptions = {
   label: string;
   name: string;
-  value: string;
+  value: string | number;
   checked?: boolean;
   onChange?: (filters: Record<string, string[]>) => void;
 };
@@ -59,7 +59,7 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
             if (checkboxOption.checked) {
               checkboxAcc[checkboxOption.name] = [
                 ...(checkboxAcc[checkboxOption.name] || []),
-                checkboxOption.value,
+                checkboxOption.value.toString(),
               ];
             } else {
               checkboxAcc[checkboxOption.name] = (
@@ -87,7 +87,7 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
         ? filters[name]
           ? [...filters[name], value]
           : [value]
-        : filters[name]?.filter((v) => v !== value),
+        : filters[name]?.filter((v) => v.toString() !== value),
     };
     setFilters(newFilters);
     cb && cb(newFilters);

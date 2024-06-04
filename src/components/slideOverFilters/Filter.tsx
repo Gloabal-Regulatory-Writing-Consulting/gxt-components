@@ -23,18 +23,19 @@ const Filter = ({
       <Accordion.Header>{header}</Accordion.Header>
       <Accordion.Content onChangeCallback={onChangeCallback}>
         {checkboxOptions.map((checkboxOption, optionIndex) => (
-          <CheckboxInput
-            $inputSize="xs"
-            name={checkboxOption.name}
-            key={`${checkboxOption.name}-${optionIndex}`}
-            label={checkboxOption.label}
-            value={checkboxOption.value}
-            onChange={(e) => handleCheckBoxChange(e, checkboxOption.onChange)}
-            checked={(filters[checkboxOption.name] || []).includes(
-              checkboxOption.value,
-            )}
-          ></CheckboxInput>
-        ))}
+            <CheckboxInput
+              $inputSize="xs"
+              name={checkboxOption.name}
+              key={`${checkboxOption.name}-${optionIndex}`}
+              label={checkboxOption.label}
+              value={checkboxOption.value}
+              onChange={(e) => handleCheckBoxChange(e, checkboxOption.onChange)}
+              checked={(filters[checkboxOption.name] || []).includes(
+                checkboxOption.value.toString(),
+              )}
+            ></CheckboxInput>
+          )
+        )}
       </Accordion.Content>
     </Accordion>
   );
