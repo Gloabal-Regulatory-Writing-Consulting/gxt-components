@@ -4,10 +4,11 @@ import {
   TooltipTarget,
   TooltipContainer,
   TooltipBox,
+  Position,
 } from "./Tooltip.styles";
 
 export type TooltipProps = {
-  position?: "top" | "bottom" | "left" | "right";
+  position?: Position;
   tooltipText: string;
   children: React.ReactNode;
   background?: string;
@@ -18,8 +19,8 @@ function Tooltip({
   position = "right",
   tooltipText,
   children,
-  background = "#323131",
-  tooltipTextColor = "#fff",
+  background = "var(--Global-Tokens-System-50, #FFF)",
+  tooltipTextColor = "var(--Global-Tokens-Neutral-300, #4B5563)",
   toolToolboxProps = {},
 }: TooltipProps) {
   const [isHovered, setIsHovered] = useState(false);

@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-type Position = "top" | "bottom" | "left" | "right";
+export type Position = "top" | "bottom" | "left" | "right";
 export interface TooltipBoxProps {
   background: string;
   position: Position;
@@ -21,13 +21,13 @@ export const TooltipTarget = styled.div`
 
 export const TooltipContainer = styled.div<{ position: Position }>`
   position: absolute;
-  width: 200px;
-  margin-left: -100px;
+  width: 12.5rem;
+  margin-left: -6.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 50%;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 0.625rem);
   pointer-events: none;
 
   ${({ position }) => {
@@ -35,7 +35,7 @@ export const TooltipContainer = styled.div<{ position: Position }>`
       case "bottom":
         return `
           bottom: unset;
-          top: calc(100% + 10px);
+          top: calc(100% + 0.625rem);
         `;
       case "left":
         return `
@@ -43,9 +43,9 @@ export const TooltipContainer = styled.div<{ position: Position }>`
           width: 100%;
           left: unset;
           top: 50%;
-          right: calc(100% + 10px);
+          right: calc(100% + 0.625rem);
           min-width: max-content;
-          max-width: 300px;;
+          max-width: 18.75rem;
           white-space: normal;
           word-break: break-word;
         `;
@@ -56,9 +56,9 @@ export const TooltipContainer = styled.div<{ position: Position }>`
           width: 100%;
           right: unset;
           top: 50%;
-          left: calc(100% + 10px);
+          left: calc(100% + 0.625rem);
           min-width: max-content;
-          max-width: 300px;;
+          max-width: 18.75rem;
           white-space: normal;
           word-break: break-word;
         `;
@@ -82,24 +82,23 @@ export const TooltipBox = styled.span<TooltipBoxProps>`
   background-color: ${({ background }) => background};
   color: ${({ color }) => color};
   text-align: center;
-  border-radius: 5px;
-  padding: 8px;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
   font-size: 1rem;
   min-width: fit-content;
-  max-width: 300px;
+  max-width: 18.75rem;
   box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(0, 0, 0, 0.2);
-
+    0 0.25rem 1.75rem rgba(0, 0, 0, 0.15),
+    0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   animation: ${fadeIn} 0.5s linear;
   &:after {
     content: "";
     position: absolute;
-    border-width: 5px;
+    border-width: 0.3125rem;
     border-style: solid;
     border-color: ${({ background }) => background} transparent transparent
       transparent;
-    left: calc(50% - 5px);
+    left: calc(50% - 0.3125rem);
     top: 100%;
   }
 
@@ -112,7 +111,7 @@ export const TooltipBox = styled.span<TooltipBoxProps>`
             top: unset;
             width: 1px;
             bottom: 100%;
-            left: calc(50% - 5px);
+            left: calc(50% - 0.3125rem);
           }
         `;
       case "left":
@@ -120,7 +119,7 @@ export const TooltipBox = styled.span<TooltipBoxProps>`
           &:after {
             border-color: transparent transparent transparent ${background};
             left: 100%;
-            top: calc(50% - 5px);
+            top: calc(50% - 0.3125rem);
           }
         `;
       case "right":
@@ -129,7 +128,7 @@ export const TooltipBox = styled.span<TooltipBoxProps>`
             border-color: transparent ${background} transparent transparent;
             right: 100%;
             left: unset;
-            top: calc(50% - 5px);
+            top: calc(50% - 0.3125rem);
           }
         `;
       default:
