@@ -14,47 +14,53 @@ export interface SearchProps
 }
 
 const SearchContainer = styled.div<{ width: string }>`
-  position: relative;
   display: flex;
-  width: ${(props) => props.width || "100%"};
-`;
-
-const SearchInput = styled.input`
-  flex: 1;
-  outline: none;
-  padding-left: 30px;
-  width: 100%;
-  border-radius: 6px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  padding-right: 8px;
+  padding: 0.5625rem 0.8125rem;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 0 0;
+  border-radius: 0.375rem;
   border: 1px solid var(--neutral-200, #9ca3af);
   background: var(--system-50, #fff);
-  color: var(--neutral-200, #9ca3af);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-
-  &:focus {
-    border: 1px solid var(--primary-100, #1c99ce);
-    outline: 1px solid var(--primary-100, #1c99ce);
-  }
+  width: ${(props) => props.width || "100%"};
 
   &:hover {
     border: 1px solid var(--primary-100, #1c99ce);
   }
+
+  &:focus-within {
+    border: 1px solid var(--primary-100, #1c99ce);
+    outline: 1px solid var(--primary-100, #1c99ce);
+  }
 `;
 
-const StyledSearch = styled(SearchIcon)`
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+const SearchInput = styled.input`
+  flex: 1 0 0;
   color: var(--neutral-200, #9ca3af);
-  text-align: center;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  width: 1rem;
+  line-height: 150%;
+  letter-spacing: 0.00119rem;
+  border: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &:hover {
+    border: none;
+  }
+`;
+
+const StyledSearch = styled(SearchIcon)`
+  display: flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Search: React.FC<SearchProps> = ({
@@ -82,7 +88,7 @@ const Search: React.FC<SearchProps> = ({
   };
 
   return (
-    <SearchContainer width={width}>
+    <SearchContainer width={width} className={className}>
       <StyledSearch
         height={16}
         width={16}
@@ -98,7 +104,6 @@ const Search: React.FC<SearchProps> = ({
         value={searchTerm}
         autoComplete="off"
         data-testid="search"
-        className={className}
       />
     </SearchContainer>
   );
