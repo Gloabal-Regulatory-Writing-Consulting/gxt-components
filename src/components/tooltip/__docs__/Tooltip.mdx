@@ -1,0 +1,37 @@
+import React from "react";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as Tooltip from "./Tooltip.stories";
+
+<Meta of={Tooltip} title="Tooltip" />
+
+## Example
+
+<Canvas of={Tooltip.TooltipExample} />
+
+# Tooltip Example
+
+This is an example component that showcases the usage of `Tooltip` components.
+
+## Usage
+
+```tsx
+
+const TooltipExample = () => (
+  <div style={{ width: "20rem", color: "#414141" }}>
+    <Tooltip
+      text="I am a tooltip"
+      position="top"
+      background="222831"
+      tooltipTextColor="#fff"
+    >
+      Hover me
+    </Tooltip>
+  </div>
+);
+
+export default TooltipExample;
+```
+
+## Props
+
+<Controls of={Tooltip.TooltipExample} />
