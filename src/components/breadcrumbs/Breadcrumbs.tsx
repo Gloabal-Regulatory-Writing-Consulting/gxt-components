@@ -13,7 +13,6 @@ import {
 export interface breadcrumbItem {
   label: string;
   link: string;
-  active?: boolean;
 }
 
 export interface breadcrumbsProps {
@@ -26,7 +25,10 @@ export const Breadcrumbs: React.FC<breadcrumbsProps> = ({ items = [] }) => {
       {items.map((item, index) => (
         <>
           <BreadcrumbItem key={index}>
-            <BreadcrumbLink href={item.link} active={item.active}>
+            <BreadcrumbLink
+              href={item.link}
+              active={items.length === index + 1}
+            >
               {item.label}
             </BreadcrumbLink>
           </BreadcrumbItem>

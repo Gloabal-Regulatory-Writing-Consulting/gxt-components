@@ -6,7 +6,7 @@ import {
   ActionsContainer,
 } from "./Header.styles";
 import { useSlots } from "../../hooks/useSlots";
-import Breadcrumbs, { breadcrumbItem } from "../breadcrums/Breadcrumbs";
+import Breadcrumbs, { breadcrumbItem } from "../breadcrumbs/Breadcrumbs";
 
 export const Actions: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -25,13 +25,11 @@ interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
 const Header: FC<HeaderProps> & {
   Heading: typeof HeadingComponent;
   Actions: typeof Actions;
-  Breadcrumbs: FC<{ items: breadcrumbItem[] }>;
 } = ({ children, breadcrumbItems, ...rest }: HeaderProps) => {
   const [{ HeadingSlot, ButtonSlot }, restChildren] = useSlots(children, {
     HeadingSlot: HeadingComponent,
     ButtonSlot: Actions,
   });
-
   return (
     <MainContainer {...rest}>
       <Container>
@@ -46,6 +44,5 @@ const Header: FC<HeaderProps> & {
 
 Header.Heading = HeadingComponent;
 Header.Actions = Actions;
-Header.Breadcrumbs = Breadcrumbs;
 
 export default Header;

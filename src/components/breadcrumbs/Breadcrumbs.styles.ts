@@ -15,20 +15,17 @@ export const BreadcrumbItem = styled.div`
 `;
 
 export const BreadcrumbLink = styled.a<{ active?: boolean }>`
-  color: ${(props) => {
-    return props?.active === true
-      ? "var(--primary-300, #115873)"
-      : "var(--neutral-200, #9CA3AF)";
-  }};
-  check: ${(props) => {
-    return props.active ? 300 : 300;
-  }};
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.019px;
   text-decoration: none;
+  color: ${(props) => {
+    return props?.active === true
+      ? "var(--primary-300, #115873)"
+      : "var(--neutral-200, #9CA3AF)";
+  }};
 `;
 
 export const ChevronIcon = styled.span`

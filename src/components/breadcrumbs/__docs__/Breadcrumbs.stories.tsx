@@ -6,7 +6,6 @@ const breadcrumbsList = [
   {
     label: "Catalog",
     link: "/",
-    active: true,
   },
   {
     label: "Details",

@@ -7,7 +7,7 @@ import Breadcrumbs from "../Breadcrumbs";
 
 describe("Breadcrumbs", () => {
   const breadcrumbItems = [
-    { label: "Catalog", link: "/", active: true },
+    { label: "Catalog", link: "/"},
     { label: "View Complaint", link: "/1/view-complaint" },
   ];
 
