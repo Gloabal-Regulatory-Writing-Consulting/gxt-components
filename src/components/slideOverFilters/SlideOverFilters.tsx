@@ -37,6 +37,7 @@ type SlideOverFiltersProps = {
   onApplyHandler?: () => void;
   onResetHandler?: () => void;
   width?: string;
+  mountElementId?: string;
 };
 
 const SlideOverFilters: FC<SlideOverFiltersProps> = ({
@@ -50,6 +51,7 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
   onApplyHandler = () => {},
   onResetHandler = () => {},
   width = "25rem",
+  mountElementId = "root",
 }) => {
   const [filters, setFilters] = React.useState<Record<string, string[]>>(
     filtersOptions.reduce(
@@ -106,7 +108,12 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
   };
 
   return (
-    <SlideOver width={width} isOpen={isOpen} onClose={onCloseHandler}>
+    <SlideOver
+      width={width}
+      isOpen={isOpen}
+      onClose={onCloseHandler}
+      mountElementId={mountElementId}
+    >
       <SlideOverHeader>{title}</SlideOverHeader>
       {filtersOptions.map((accordionItem, index) => (
         <Filter

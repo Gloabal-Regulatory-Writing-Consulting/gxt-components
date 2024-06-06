@@ -4,17 +4,23 @@ import { createPortal } from "react-dom";
 interface ReactPortalProps {
   children: ReactNode;
   wrapperId?: string;
+  mountElementId?: string;
 }
-const createWrapperAndAppendToBody = (wrapperId: string) => {
+const createWrapperAndAppendToBody = (
+  wrapperId: string,
+  mountElementId: string,
+) => {
   const wrapperElement = document.createElement("div");
   wrapperElement.setAttribute("id", wrapperId);
-  document.body.appendChild(wrapperElement);
+  const mountElement = document.getElementById(mountElementId) || document.body;
+  mountElement.appendChild(wrapperElement);
   return wrapperElement;
 };
 
 const ReactPortal = ({
   children,
   wrapperId = "react-portal-wrapper",
+  mountElementId = "root",
 }: ReactPortalProps) => {
   const [wrapperElement, setWrapperElement] = useState<HTMLDivElement | null>(
     null,
@@ -26,7 +32,7 @@ const ReactPortal = ({
 
     if (!element) {
       systemCreated = true;
-      element = createWrapperAndAppendToBody(wrapperId);
+      element = createWrapperAndAppendToBody(wrapperId, mountElementId);
     }
     setWrapperElement(element as HTMLDivElement);
 
