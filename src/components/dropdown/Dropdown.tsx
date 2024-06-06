@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, ReactNode, CSSProperties } from "react";
-import ChevronDownIcon from "../../assets/icons/chevrondown.svg";
 import {
   CustomSelectButton,
   DropdownContainer,
@@ -7,6 +6,7 @@ import {
   SelectItemsWrapper,
   SelectItemWrapper,
   SelectWrapper,
+  StyledChevronDownIcon,
   StyledLabel,
 } from "./DropdownStyledComponents";
 
@@ -120,7 +120,7 @@ const Dropdown = <T,>({
   }, [isOpen]);
 
   const currentOption = {
-    select: renderOption(selectedOption),
+    select: selectedOption ? renderOption(selectedOption) : placeholder,
     button: placeholder,
   };
 
@@ -145,15 +145,7 @@ const Dropdown = <T,>({
         </SelectWrapper>
         {dropdownIcon && (
           <IconWrapper disabled={disabled} style={customStyles.icon}>
-            <ChevronDownIcon
-              width={20}
-              height={20}
-              fill={
-                disabled
-                  ? "var(--neutral-200, #9CA3AF)"
-                  : "var(--primary-50, #2AACE2)"
-              }
-            />
+            <StyledChevronDownIcon disabled={disabled} />
           </IconWrapper>
         )}
       </CustomSelectButton>
