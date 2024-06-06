@@ -7,7 +7,7 @@ export type CustomStylesType = {
   input?: CSSProperties;
 };
 
-export interface InputProps extends InputHTMLAttributes<HTMLButtonElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   inputType?: "text" | "password" | "email" | "number";
   primary?: boolean;
