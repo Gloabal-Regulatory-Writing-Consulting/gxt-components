@@ -83,6 +83,7 @@
   "name": "@gloabal-regulatory-writing-consulting/gxt-components",
   "dependencies": {
     "react-paginate": "^8.2.0",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "react-dropzone": "^14.0.0"
   }
 }

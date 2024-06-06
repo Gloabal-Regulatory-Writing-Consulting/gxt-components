@@ -4,17 +4,19 @@ import {
   DropzoneLabel,
   DropzoneMessage,
   DropzoneWrapper,
-} from "./DropzoneStyledComponents";
+} from "./Dropzone.styles";
 
 export type DropzoneProps = {
   onDrop?: (acceptedFiles: File[]) => void;
   maxFiles?: number;
+  onError?: (message: string) => void;
+  label?: string;
 };
 
-const Dropzone = ({ onDrop = () => {}, maxFiles = 10 }: DropzoneProps) => {
+const Dropzone = ({ onDrop = () => {}, maxFiles = 10, onError = () => {}, label = '' }: DropzoneProps) => {
   const handleDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles.length > maxFiles) {
-      alert(`You can only upload a maximum of ${maxFiles} files`);
+      onError(`You can only upload ${maxFiles} files`);
       return;
     }
     onDrop(acceptedFiles);
@@ -25,19 +27,19 @@ const Dropzone = ({ onDrop = () => {}, maxFiles = 10 }: DropzoneProps) => {
   });
 
   return (
-    <DropzoneWrapper {...getRootProps()} data-testid="dropzone">
-      <input {...getInputProps()} />
-      <DropzoneLabel>
-        {isDragActive ? (
-          <DropzoneMessage>Drop the files here ...</DropzoneMessage>
-        ) : (
-          <>
-            <DropzoneMessage>{"Drag and Drop Files"}</DropzoneMessage>
-            <Button variant="secondary">or Browse</Button>
-          </>
-        )}
-      </DropzoneLabel>
-    </DropzoneWrapper>
+      <DropzoneWrapper {...getRootProps()} data-testid="dropzone">
+        <input {...getInputProps()} />
+        <DropzoneLabel>
+          {isDragActive ? (
+            <DropzoneMessage>Drop here ...</DropzoneMessage>
+          ) : (
+            <>
+              <DropzoneMessage>{ label || "Drag and Drop Files"}</DropzoneMessage>
+              <Button variant="secondary">or Browse</Button>
+            </>
+          )}
+        </DropzoneLabel>
+      </DropzoneWrapper>
   );
 };
 export default Dropzone;

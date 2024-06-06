@@ -17,5 +17,6 @@ export const Default: Story = {
       console.log(acceptedFiles);
     },
     maxFiles: 10,
+    label: "",
   },
 };
