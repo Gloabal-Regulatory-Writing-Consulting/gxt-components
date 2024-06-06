@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import CancelIcon from "../../assets/icons/cancel.svg";
 
 type ColorShade = 100 | 200;
 
@@ -29,7 +29,7 @@ export const AlertMessageContainer = styled.div<{
   $alertType: string;
 }>`
   display: flex;
-  width: 896px;
+  width: 100%;
   align-items: center;
   border-radius: 6px;
   border: 1px solid
@@ -78,7 +78,7 @@ export const Message = styled.div<{
   letter-spacing: 0.019px;
 `;
 
-export const AlertLink = styled(NavLink)<{
+export const AlertLink = styled.span<{
   alertType: string;
 }>`
   flex: 1 0 0;
@@ -86,11 +86,15 @@ export const AlertLink = styled(NavLink)<{
     return getColor(props.alertType, 200);
   }};
 
-  font-family: Mulish;
+  cursor: pointer;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: 0.019rem;
   text-decoration-line: underline;
+`;
+
+export const CancelButton = styled(CancelIcon)`
+  cursor: pointer;
 `;

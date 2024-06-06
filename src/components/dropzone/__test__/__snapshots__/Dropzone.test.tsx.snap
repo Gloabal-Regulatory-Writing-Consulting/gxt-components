@@ -2,7 +2,7 @@
 
 exports[`Dropzone component > should render without errors 1`] = `
 <div
-  class="sc-iGgVNO cBMcyP"
+  class="sc-iGgVNO rLeiI"
   data-testid="dropzone"
   role="presentation"
   tabindex="0"
@@ -14,10 +14,10 @@ exports[`Dropzone component > should render without errors 1`] = `
     type="file"
   />
   <label
-    class="sc-gsFSjX bqmBIO"
+    class="sc-gsFSjX hfRpFU"
   >
     <p
-      class="sc-kAycRU loTMNo"
+      class="sc-kAycRU"
     >
       Drag and Drop Files
     </p>

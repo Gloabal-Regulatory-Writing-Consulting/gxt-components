@@ -1,7 +1,7 @@
 import React from "react";
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
-import AlertMessage from "../AlertMessage";
+import AlertMessage, { AlertMessageProps } from "../AlertMessage";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
@@ -17,9 +17,8 @@ const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
 };
 
 describe("AlertMessage", () => {
-  const AlertMessageProps = {
+  const AlertMessageProps: AlertMessageProps = {
     alertMessage: "This is a positive message.",
-    alertLink: "/details",
     linkText: "Learn more",
     alertType: "positive",
     display: true,
@@ -38,7 +37,6 @@ describe("AlertMessage", () => {
     );
     const linkElement = getByText("Learn more");
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute("href", "/details");
   });
 
   it("renders check mark icon on positive message", () => {
@@ -50,7 +48,7 @@ describe("AlertMessage", () => {
   });
 
   it("renders warning icon on negative message", () => {
-    const modifiedAlertProps = {
+    const modifiedAlertProps: AlertMessageProps = {
       ...AlertMessageProps,
       alertType: "negative",
     };
