@@ -16,5 +16,4 @@ export * from "./slideOverFilters";
 export * from "./checkboxInput";
 export * from "./tableHeader";
 export * from "./tooltip";
-export * from "./alertMessage";
- 
+export * from "./AlertMessage";
