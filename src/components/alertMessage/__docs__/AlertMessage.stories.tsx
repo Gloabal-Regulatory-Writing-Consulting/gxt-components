@@ -22,7 +22,6 @@ type Story = StoryObj<typeof AlertMessage>;
 export const Positive: Story = {
   args: {
     alertMessage: "Your changes have been saved successfully.",
-    alertLink: "/details",
     linkText: "View details",
     alertType: "positive",
   },
@@ -31,7 +30,6 @@ export const Positive: Story = {
 export const Negative: Story = {
   args: {
     alertMessage: "An error occurred while saving your changes.",
-    alertLink: "/error-details",
     linkText: "View details",
     alertType: "negative",
   },
@@ -40,7 +38,6 @@ export const Negative: Story = {
 export const Warning: Story = {
   args: {
     alertMessage: "Warning: Please check your inputs.",
-    alertLink: "/warning-details",
     linkText: "View details",
     alertType: "warning",
   },
