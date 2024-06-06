@@ -90,6 +90,7 @@ export interface SlideOverProps {
   slideOverStyles?: React.CSSProperties;
   contentStyles?: React.CSSProperties;
   overlayStyles?: React.CSSProperties;
+  mountElementId?: string;
 }
 
 const SlideOver: FC<SlideOverProps> & {
@@ -108,6 +109,7 @@ const SlideOver: FC<SlideOverProps> & {
   slideOverStyles = {},
   contentStyles = {},
   overlayStyles = {},
+  mountElementId = "root",
 }) => {
   const [{ HeaderSlot, FooterSlot }, restChildren] = useSlots(children, {
     HeaderSlot: SlideOverHeader,
@@ -142,7 +144,7 @@ const SlideOver: FC<SlideOverProps> & {
 
   return ReactDOM.createPortal(
     slideOverComponent,
-    document.body,
+    document.getElementById(mountElementId) || document.body,
     `slideOver-${position}`,
   );
 };
