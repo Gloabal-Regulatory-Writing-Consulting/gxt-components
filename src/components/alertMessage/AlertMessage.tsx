@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { CheckComponent } from "./CheckComponent";
-import { CancelComponent } from "./CancelComponent";
-import { WarningComponent } from "./WarningComponent";
-
+import CancelIcon from "../../assets/icons/cancel.svg"
+import CheckIcon from "../../assets/icons/check.svg"
+import WarningIcon from "../../assets/icons/warning.svg"
 import { getColor } from "./AlertMessage.styles";
 
 import {
@@ -42,9 +41,17 @@ export const AlertMessage: React.FC<AlertMessageProps> = ({
           <AccentBorder alertType={alertType}></AccentBorder>
           <ContentContainer>
             {alertType === "positive" ? (
-              <CheckComponent color={getColor(alertType, 100)} />
+              <CheckIcon
+                data-testid="icon-check-mark"
+                width={16}
+                height={16}
+                fill={getColor(alertType, 100)} />
             ) : (
-              <WarningComponent color={getColor(alertType, 100)} />
+              <WarningIcon
+                data-testid="icon-warning"
+                width={20}
+                height={20}
+                fill={getColor(alertType, 100)} />
             )}
             <MessageContainer>
               <Message alertType={alertType}>{alertMessage}</Message>
@@ -54,8 +61,11 @@ export const AlertMessage: React.FC<AlertMessageProps> = ({
                 </AlertLink>
               )}
             </MessageContainer>
-            <CancelComponent
-              color={getColor(alertType, 100)}
+            <CancelIcon
+              data-testid="icon-cancel"
+              width={11}
+              height={11}
+              fill={getColor(alertType, 100)}
               onClick={handleCancelAlert}
             />
           </ContentContainer>

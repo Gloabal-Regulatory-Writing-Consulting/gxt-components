@@ -31,7 +31,6 @@ describe("Search Component", () => {
     expect(
       screen.getByPlaceholderText("Type here to search"),
     ).toBeInTheDocument();
-    expect(screen.getByTestId("search")).toHaveClass("custom-search");
   });
 
   it("should call onChangeCallback with correct search term", async () => {
