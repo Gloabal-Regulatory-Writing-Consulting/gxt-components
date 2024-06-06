@@ -1,0 +1,45 @@
+import React from "react";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as Breadcrumbs from "./Breadcrumbs.stories";
+
+<Meta of={Breadcrumbs} title="Breadcrumbs" />
+
+#### Example
+
+<Canvas of={Breadcrumbs.BreadcrumbsComponent} />
+
+# BreadcrumbsExample
+
+This is an example component that showcases the usage of `Breadcrumbs` component.
+
+## Usage
+
+```tsx
+import Breadcrumbs from "./Breadcrumbs";
+
+const isLinkActive = (path: string) => {
+  // set active string logic
+}
+
+const breadCrumbList = [
+  {
+    label: 'Catalog',
+    to: '/',
+  },
+  {
+    label: 'View Complaint',
+    to: '/1/view-complaint',
+  },
+];
+
+const BreadcrumbsExample = () => (
+  <div style={{ width: "20rem", color: "#115873" }}>
+    <Breadcrumbs items={breadCrumbList} isLinkActive={isLinkActive}/>
+  </div>
+);
+
+export default BreadcrumbsExample;
+```
+
+## Props
+<Controls of={Breadcrumbs.BreadcrumbsComponent} />

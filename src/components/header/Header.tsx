@@ -3,10 +3,10 @@ import {
   MainContainer,
   Container,
   Heading,
-  BreadcrumbsContainer,
   ActionsContainer,
 } from "./Header.styles";
 import { useSlots } from "../../hooks/useSlots";
+import Breadcrumbs, { breadcrumbItem } from "../breadcrumbs/Breadcrumbs";
 
 export const Actions: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -18,32 +18,28 @@ export const HeadingComponent: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => <Heading {...rest}>{children}</Heading>;
 
-export const Breadcrumbs: FC<HTMLAttributes<HTMLDivElement>> = ({
-  children,
-  ...rest
-}) => <BreadcrumbsContainer {...rest}>{children}</BreadcrumbsContainer>;
+interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+  breadcrumbItems?: breadcrumbItem[];
+  isLinkActive?: (path: string) => boolean;
+}
 
-const Header: FC<HTMLAttributes<HTMLDivElement>> & {
+const Header: FC<HeaderProps> & {
   Heading: typeof HeadingComponent;
   Actions: typeof Actions;
-  Breadcrumbs: typeof Breadcrumbs;
-} = ({ children, ...rest }: HTMLAttributes<HTMLDivElement>) => {
-  const [{ HeadingSlot, ButtonSlot, BreadcrumbsSlot }, restChildren] = useSlots(
-    children,
-    {
-      HeadingSlot: HeadingComponent,
-      ButtonSlot: Actions,
-      BreadcrumbsSlot: Breadcrumbs,
-    },
-  );
-
+} = ({ children, breadcrumbItems, isLinkActive, ...rest }: HeaderProps) => {
+  const [{ HeadingSlot, ButtonSlot }, restChildren] = useSlots(children, {
+    HeadingSlot: HeadingComponent,
+    ButtonSlot: Actions,
+  });
   return (
     <MainContainer {...rest}>
       <Container>
         {HeadingSlot && <HeadingSlot />}
         {ButtonSlot && <ButtonSlot />}
       </Container>
-      {BreadcrumbsSlot && <BreadcrumbsSlot />}
+      {breadcrumbItems && isLinkActive && (
+        <Breadcrumbs items={breadcrumbItems} isLinkActive={isLinkActive} />
+      )}
       {restChildren}
     </MainContainer>
   );
@@ -51,6 +47,5 @@ const Header: FC<HTMLAttributes<HTMLDivElement>> & {
 
 Header.Heading = HeadingComponent;
 Header.Actions = Actions;
-Header.Breadcrumbs = Breadcrumbs;
 
 export default Header;
