@@ -19,12 +19,16 @@ Header component
 import { Header } from '@gloabal-regulatory-writing-consulting/gxt-components';
 
 const breadcrumbItems = [
-  { label: 'Home', link: '/' },
-  { label: 'Upload Documents', link: '/upload-documents', active: true },
+  { label: 'Home', to: '/' },
+  { label: 'Upload Documents', to: '/upload-documents', active: true },
 ];
 
+const isLinkActive = (path: string) => {
+  // set active string logic
+}
+
 const ExampleHeader = () => (
-  <Header breadcrumbItems={breadcrumbItems}>
+  <Header breadcrumbItems={breadcrumbItems} isLinkActive={isLinkActive}>
     <Header.Heading>Upload Documents</Header.Heading>
     <Header.Actions>
       <Button variant="secondary">Add to Catalog</Button>

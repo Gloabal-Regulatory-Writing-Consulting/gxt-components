@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes } from "react";
 import {
   MainContainer,
   Container,
@@ -20,12 +20,13 @@ export const HeadingComponent: FC<HTMLAttributes<HTMLDivElement>> = ({
 
 interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   breadcrumbItems?: breadcrumbItem[];
+  isLinkActive?: (path: string) => boolean;
 }
 
 const Header: FC<HeaderProps> & {
   Heading: typeof HeadingComponent;
   Actions: typeof Actions;
-} = ({ children, breadcrumbItems, ...rest }: HeaderProps) => {
+} = ({ children, breadcrumbItems, isLinkActive, ...rest }: HeaderProps) => {
   const [{ HeadingSlot, ButtonSlot }, restChildren] = useSlots(children, {
     HeadingSlot: HeadingComponent,
     ButtonSlot: Actions,
@@ -36,7 +37,9 @@ const Header: FC<HeaderProps> & {
         {HeadingSlot && <HeadingSlot />}
         {ButtonSlot && <ButtonSlot />}
       </Container>
-      {breadcrumbItems && <Breadcrumbs items={breadcrumbItems} />}
+      {breadcrumbItems && isLinkActive && (
+        <Breadcrumbs items={breadcrumbItems} isLinkActive={isLinkActive} />
+      )}
       {restChildren}
     </MainContainer>
   );

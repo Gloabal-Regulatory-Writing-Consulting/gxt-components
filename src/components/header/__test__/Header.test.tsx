@@ -3,6 +3,21 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import Header, { Actions, HeadingComponent } from "../Header";
 import "@testing-library/jest-dom";
+import { MemoryRouter, Route, Routes, useMatch } from "react-router-dom";
+
+const renderWithRouter = (ui: React.ReactElement, { route = "/" } = {}) => {
+  window.history.pushState({}, "Test page", route);
+
+  return render(
+    <MemoryRouter initialEntries={[route]}>
+      <Routes>
+        <Route path="*" element={ui} />
+      </Routes>
+    </MemoryRouter>,
+  );
+};
+
+const IsLinkActive = (path: string) => !!useMatch(`${path}/*`);
 
 describe("Header component", () => {
   it("should render the children correctly", () => {
@@ -71,25 +86,28 @@ describe("Actions", () => {
 describe("Breadcrumbs", () => {
   it("should render Breadcrumbs if breadcrumbItems are provided", () => {
     const breadcrumbItems = [
-      { label: "Home", link: "/" },
-      { label: "Page", link: "/page" },
+      { label: "Home", to: "/" },
+      { label: "Page", to: "/page" },
     ];
 
-    render(<Header breadcrumbItems={breadcrumbItems} />);
+    renderWithRouter(
+      <Header breadcrumbItems={breadcrumbItems} isLinkActive={IsLinkActive} />,
+    );
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Page")).toBeInTheDocument();
   });
 
   it("should render correct color for active Breadcrumbs link", () => {
     const breadcrumbItems = [
-      { label: "Home", link: "/", active: true },
-      { label: "Page", link: "/page" },
+      { label: "Home", to: "/", active: true },
+      { label: "Page", to: "/page" },
     ];
 
-    render(<Header breadcrumbItems={breadcrumbItems} />);
+    renderWithRouter(
+      <Header breadcrumbItems={breadcrumbItems} isLinkActive={IsLinkActive} />,
+    );
     expect(screen.getByText("Home")).toHaveStyle(
       "color: var(--primary-300, #115873);",
     );
   });
 });
-

@@ -2,19 +2,29 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import Header from "../Header";
 import { Button } from "../../button";
+import { BrowserRouter as Router, useMatch } from "react-router-dom";
+
+const withRouter = (Story) => (
+  <Router>
+    <Story />
+  </Router>
+);
 
 const meta: Meta<typeof Header> = {
   title: "Header",
   component: Header,
+  decorators: [withRouter],
 };
 
 export default meta;
 
+const isLinkActive = (path: string) => !!useMatch(`${path}/*`);
+
 type Story = StoryObj<typeof Header>;
 
 const breadcrumbItems = [
-  { label: "Home", link: "/" },
-  { label: "Upload Documents", link: "/upload-documents", active: true },
+  { label: "Home", to: "/" },
+  { label: "Upload Documents", to: "/upload-documents", active: true },
 ];
 
 export const Default: Story = {
@@ -22,6 +32,7 @@ export const Default: Story = {
     <Header
       style={{ border: "1px solid black" }}
       breadcrumbItems={breadcrumbItems}
+      isLinkActive={isLinkActive}
     >
       <Header.Heading>Upload Documents</Header.Heading>
       <Header.Actions>

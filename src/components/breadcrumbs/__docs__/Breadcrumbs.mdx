@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, Canvas, Controls } from "@storybook/blocks";
-import BreadcrumbsExample from "./BreadcrumbsExample";
 import * as Breadcrumbs from "./Breadcrumbs.stories";
 
 <Meta of={Breadcrumbs} title="Breadcrumbs" />
@@ -18,20 +17,24 @@ This is an example component that showcases the usage of `Breadcrumbs` component
 ```tsx
 import Breadcrumbs from "./Breadcrumbs";
 
+const isLinkActive = (path: string) => {
+  // set active string logic
+}
+
 const breadCrumbList = [
   {
     label: 'Catalog',
-    link: '/',
+    to: '/',
   },
   {
     label: 'View Complaint',
-    link: '/1/view-complaint',
+    to: '/1/view-complaint',
   },
 ];
 
 const BreadcrumbsExample = () => (
   <div style={{ width: "20rem", color: "#115873" }}>
-    <Breadcrumbs items={breadCrumbList} />
+    <Breadcrumbs items={breadCrumbList} isLinkActive={isLinkActive}/>
   </div>
 );
 
