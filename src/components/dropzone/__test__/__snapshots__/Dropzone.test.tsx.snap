@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dropzone component > should render without errors 1`] = `
+<div
+  class="sc-iGgVNO cBMcyP"
+  data-testid="dropzone"
+  role="presentation"
+  tabindex="0"
+>
+  <input
+    multiple=""
+    style="display: none;"
+    tabindex="-1"
+    type="file"
+  />
+  <label
+    class="sc-gsFSjX bqmBIO"
+  >
+    <p
+      class="sc-kAycRU loTMNo"
+    >
+      Drag and Drop Files
+    </p>
+    <button
+      class="sc-aYaIB sc-eqUzNf jTlVdY ajZRB"
+    >
+      or Browse
+    </button>
+  </label>
+</div>
+`;
