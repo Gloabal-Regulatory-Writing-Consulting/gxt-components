@@ -12,7 +12,7 @@ export const SelectWrapper = styled.div`
   border-radius: 0.25rem 0 0 0.25rem;
   border: none;
   background: var(--system-50, #fff);
-  color: var(--neutral-200, #9ca3af);
+  color: var(--neutral-400, #414141);
   font-weight: 700;
   transition: color 0.3s;
 `;
@@ -105,12 +105,18 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   align-items: center;
   align-self: stretch;
   border: none;
-  cursor: pointer;
+  cursor: ${({ $isActive }) => ($isActive ? "default" : "pointer")};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--neutral-200, #9ca3af);
   padding: 0.5rem 1rem;
+  color: ${({ $isActive }) =>
+    $isActive
+      ? " var(--neutral-200, #9ca3af)"
+      : " var(--neutral-400, #414141)"};
+  background-color: ${({ $isActive }) =>
+    $isActive ? "var(--system-50, #fff)" : "transparent"};
 
   &:first-child {
     border-radius: 0.25rem 0.25rem 0 0;
@@ -121,14 +127,12 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   }
 
   ${({ $isActive }) =>
-    $isActive &&
+    !$isActive &&
     `
-    color: var(--neutral-400, #414141);
+    &:hover {
+      color: var(--primary-200, #177ba6);
+    }
   `}
-
-  &:hover {
-    color: var(--primary-200, #177ba6);
-  }
 `;
 
 export const CustomSelectButton = styled.button<{
