@@ -30,8 +30,7 @@ const SearchContainer = styled.div<{ width: string }>`
   }
 
   &:focus-within {
-    border: 1px solid var(--primary-100, #1c99ce);
-    outline: 1px solid var(--primary-100, #1c99ce);
+    border: 2px solid var(--neutral-400, #414141);
   }
 `;
 
