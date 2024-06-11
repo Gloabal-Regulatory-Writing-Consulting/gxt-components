@@ -1,0 +1,37 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks";
+import * as TextArea from "./TextArea.stories.tsx";
+
+<Meta of={TextArea} title="TextArea" />
+
+# TextArea
+
+TextArea component with different props.
+
+#### Example
+
+<Canvas>
+<TextArea/>
+</Canvas>
+
+## Usage
+
+```ts
+import { TextArea } from '@gloabal-regulatory-writing-consulting/gxt-components';;
+const Example = () => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <TextArea
+        id="About"
+        name="myTextarea"
+        heading="About"
+        placeholder="Placeholder Text"
+        caption="enter some details"
+      />
+    </div>
+  );
+};
+
+export default Example;
+```
+## Props
+<Controls of={TextArea.Example} />

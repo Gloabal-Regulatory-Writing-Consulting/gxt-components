@@ -19,3 +19,4 @@ export * from "./tooltip";
 export * from "./alertMessage";
 export * from "./dropzone";
 export * from "./breadcrumbs";
+export * from "./textArea";
