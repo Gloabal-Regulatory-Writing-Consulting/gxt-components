@@ -11,7 +11,7 @@ describe("Input component", () => {
     expect(input).toBeInTheDocument();
   });
 
-  it("Input should render text", () => {
+  it("Input should render label and input", () => {
     render(<Input label="Click me" />);
     const label = screen.getByTestId("label");
     const input = screen.getByTestId("input");
@@ -56,5 +56,21 @@ describe("Input component", () => {
     render(<Input customStyles={customStyles} />);
     const input = screen.getByTestId("input");
     expect(input).toHaveStyle("border-color: blue");
+  });
+
+  it("Input should render help text", () => {
+    render(<Input helpText="This is help text" />);
+    const helpText = screen.getByText("This is help text");
+    expect(helpText).toBeInTheDocument();
+  });
+
+  it("Input should render error styles", () => {
+    render(<Input error label="Error label" helpText="Error help text" />);
+    const input = screen.getByTestId("input");
+    const label = screen.getByTestId("label");
+    const helpText = screen.getByText("Error help text");
+    expect(input).toHaveStyle("border-color: var(--negative-200, #7F1D1D)");
+    expect(label).toHaveStyle("color: var(--negative-200, #7F1D1D)");
+    expect(helpText).toHaveStyle("color: var(--negative-200, #7F1D1D)");
   });
 });
