@@ -1,48 +1,29 @@
-import React, { CSSProperties, InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import React, { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
+import {
+  StyledHelpText,
+  StyledInput,
+  StyledLabel,
+  StyledWrapper,
+} from "./Input.styles";
 
 export type CustomStylesType = {
   container?: CSSProperties;
   label?: CSSProperties;
   input?: CSSProperties;
+  helpText?: CSSProperties;
 };
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  helpText?: ReactNode;
   inputType?: "text" | "password" | "email" | "number";
   primary?: boolean;
   inputSize?: "small" | "medium" | "large";
   customStyles?: CustomStylesType;
+  disabled?: boolean;
+  $isFilled?: boolean;
+  error?: boolean;
 }
-
-const StyledInput = styled.input<InputProps>`
-  width: 100%;
-  border: 0.0625rem solid #ccc;
-  line-height: 1;
-  font-size: 0.9375rem;
-  cursor: pointer;
-  border-radius: 0.625rem;
-  display: inline-block;
-  color: ${(props) => (props.primary ? "grey" : "#000")};
-  padding: ${(props) =>
-    props.inputSize === "small"
-      ? "0.4375rem 1.5625rem 0.5rem"
-      : props.inputSize === "medium"
-        ? "0.5625rem 1.875rem 0.6875rem"
-        : "0.875rem 1.875rem 1rem"};
-`;
-
-const StyledLabel = styled.label`
-  font-size: 0.9375rem;
-  display: block;
-  margin-bottom: 0.3125rem;
-`;
-
-const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.625rem;
-`;
 
 const Input: React.FC<InputProps> = ({
   label,
@@ -51,20 +32,25 @@ const Input: React.FC<InputProps> = ({
   primary,
   disabled,
   customStyles = {},
+  helpText = "",
+  error = false,
   ...props
 }) => {
   return (
-    <StyledWrapper style={customStyles.container}>
+    <StyledWrapper style={customStyles.container} error={error}>
       {label && (
         <StyledLabel
+          htmlFor={label}
           data-testid="label"
           aria-label={label}
           style={customStyles.label}
+          error={error}
         >
           {label}
         </StyledLabel>
       )}
       <StyledInput
+        error={error}
         data-testid="input"
         id={label}
         type={inputType}
@@ -75,6 +61,11 @@ const Input: React.FC<InputProps> = ({
         style={customStyles.input}
         {...props}
       />
+      {helpText && (
+        <StyledHelpText style={customStyles.helpText} error={error}>
+          {helpText}
+        </StyledHelpText>
+      )}
     </StyledWrapper>
   );
 };

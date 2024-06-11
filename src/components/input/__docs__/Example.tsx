@@ -11,6 +11,9 @@ const Example: FC<InputProps> = ({
   inputSize = "small",
   inputType = "text",
   customStyles,
+  $isFilled = false,
+  helpText = "This is a help text",
+  error = false,
 }) => {
   return (
     <div
@@ -18,7 +21,7 @@ const Example: FC<InputProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100%",
+        height: "10rem",
       }}
     >
       <Input
@@ -28,7 +31,10 @@ const Example: FC<InputProps> = ({
         disabled={disabled}
         onChange={onChange}
         primary={primary}
+        $isFilled={$isFilled}
+        helpText={helpText}
         customStyles={customStyles}
+        error={error}
       />
     </div>
   );
