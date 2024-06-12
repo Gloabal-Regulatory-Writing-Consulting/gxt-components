@@ -31,24 +31,15 @@ const TextArea: React.FC<TextAreaProps> = ({
   ...rest
 }) => {
   const [text, setText] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
   return (
     <TextAreaContainer className={className}>
       {heading && <Heading disabled={disabled}>{heading}</Heading>}
-      <InputContainer isFocused={isFocused} disabled={disabled}>
+      <InputContainer disabled={disabled}>
         <TextAreaInput
           {...rest}
           id={id || "textarea"}
@@ -56,9 +47,6 @@ const TextArea: React.FC<TextAreaProps> = ({
           value={text}
           onChange={handleTextChange}
           placeholder={placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          isFocused={isFocused}
           disabled={disabled}
         />
         <RectangleContainer showPlaceholder={text.length === 0}>

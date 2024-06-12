@@ -8,21 +8,17 @@ export const TextAreaContainer = styled.div`
 `;
 
 export const Heading = styled.div<{ disabled?: boolean }>`
-  color: ${(props) =>
-    props.disabled
-      ? "var(--neutral-200, #9ca3af)"
-      : "var(--primary-300, #115873)"};
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.019px;
+
+  color: ${({ disabled }) =>
+    disabled ? "var(--neutral-200, #9ca3af)" : "var(--primary-300, #115873)"};
 `;
 
-export const InputContainer = styled.div<{
-  isFocused: boolean;
-  disabled?: boolean;
-}>`
+export const InputContainer = styled.div<{ disabled?: boolean }>`
   display: flex;
   padding: 12px 8px;
   width: 320px;
@@ -30,35 +26,27 @@ export const InputContainer = styled.div<{
   gap: 8px;
   align-self: stretch;
   border-radius: 6px;
-  border: 1px solid
-    ${(props) =>
-      props.isFocused
-        ? "var(--neutral-200, #414141)"
-        : "var(--neutral-200, #9ca3af)"};
-  background: ${(props) =>
-    props.disabled ? "var(--neutral-50, #F9FAFB)" : "var(--system-50, #fff)"};
+  border: 1px solid var(--neutral-200, #9ca3af);
+  background: ${({ disabled }) =>
+    disabled ? "var(--neutral-50, #F9FAFB)" : "var(--system-50, #fff)"};
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
-  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  &:focus-within {
+    border: ${({ disabled }) =>
+      !disabled && "2px solid var(--primary-200, #177BA6)"};
+  }
   &:active {
-    border-color: ${(props) =>
-      !props.disabled && "var(--neutral-200, #414141)"};
+    border: ${({ disabled }) =>
+      !disabled && "1px solid var(--neutral-200, #414141)"};
   }
   &:hover {
-    border-color: ${(props) =>
-      !props.disabled && "var(--primary-200, #177BA6)"};
-  }
-  &:focus {
-    border: ${(props) =>
-      !props.disabled && "2px solid var(--primary-200, #177BA6)"};
+    border-color: ${({ disabled }) =>
+      !disabled && "var(--primary-200, #177BA6)"};
   }
 `;
 
-export const TextAreaInput = styled.textarea<{
-  isFocused: boolean;
-  disabled?: boolean;
-}>`
+export const TextAreaInput = styled.textarea<{ disabled?: boolean }>`
   padding: 0;
   flex: 1 0 0;
   height: 77px;
@@ -71,14 +59,15 @@ export const TextAreaInput = styled.textarea<{
   font-weight: inherit;
   line-height: inherit;
   resize: none;
-  color: ${(props) =>
-    props.disabled ? "var(--neutral-200, #9ca3af)" : "inherit"};
+  color: ${({ disabled }) =>
+    disabled ? "var(--neutral-200, #9ca3af)" : "inherit"};
 
   &::placeholder {
-    color: ${(props) =>
-      props.isFocused
-        ? "var(--neutral-200, #414141)"
-        : "var(--neutral-200, #9ca3af)"};
+    color: var(--neutral-200, #9ca3af);
+  }
+
+  &:focus-within::placeholder {
+    color: var(--neutral-200, #414141);
   }
 `;
 
@@ -89,7 +78,7 @@ export const RectangleContainer = styled.div<{ showPlaceholder: boolean }>`
   align-self: stretch;
   border-radius: 32px;
   background: var(--system-50, #fff);
-  opacity: ${(props) => (props.showPlaceholder ? 1 : 0)};
+  opacity: ${({ showPlaceholder }) => (showPlaceholder ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
 `;
 
