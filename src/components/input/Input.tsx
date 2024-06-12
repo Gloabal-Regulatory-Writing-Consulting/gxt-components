@@ -21,8 +21,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputSize?: "small" | "medium" | "large";
   customStyles?: CustomStylesType;
   disabled?: boolean;
-  $isFilled?: boolean;
+  isFilled?: boolean;
   error?: boolean;
+  id?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -33,14 +34,16 @@ const Input: React.FC<InputProps> = ({
   disabled,
   customStyles = {},
   helpText = "",
+  id,
   error = false,
+  isFilled = false,
   ...props
 }) => {
   return (
     <StyledWrapper style={customStyles.container} error={error}>
       {label && (
         <StyledLabel
-          htmlFor={label}
+          htmlFor={id || label}
           data-testid="label"
           aria-label={label}
           style={customStyles.label}
@@ -50,9 +53,10 @@ const Input: React.FC<InputProps> = ({
         </StyledLabel>
       )}
       <StyledInput
+        $isFilled={!!props.value || isFilled}
         error={error}
         data-testid="input"
-        id={label}
+        id={id || label}
         type={inputType}
         primary={primary}
         disabled={disabled}
