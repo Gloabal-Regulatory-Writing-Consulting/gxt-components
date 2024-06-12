@@ -11,7 +11,7 @@ const Example: FC<InputProps> = ({
   inputSize = "small",
   inputType = "text",
   customStyles,
-  $isFilled = false,
+  isFilled = false,
   helpText = "This is a help text",
   error = false,
 }) => {
@@ -31,7 +31,7 @@ const Example: FC<InputProps> = ({
         disabled={disabled}
         onChange={onChange}
         primary={primary}
-        $isFilled={$isFilled}
+        isFilled={isFilled}
         helpText={helpText}
         customStyles={customStyles}
         error={error}

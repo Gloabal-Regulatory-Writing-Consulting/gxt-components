@@ -15,11 +15,11 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputSize?: "small" | "medium" | "large";
   customStyles?: CustomStylesType;
   disabled?: boolean;
-  $isFilled?: boolean;
+  isFilled?: boolean;
   error?: boolean;
 }
 
-export const StyledInput = styled.input<InputProps>`
+export const StyledInput = styled.input<InputProps & { $isFilled: boolean }>`
   width: 100%;
   padding: 0.5rem 0.75rem;
   justify-content: space-between;
@@ -37,12 +37,14 @@ export const StyledInput = styled.input<InputProps>`
   letter-spacing: 0.00119rem;
   outline: none;
 
-  ${({ error }) => css`
+  ${({ error, $isFilled }) => css`
     border: 1px solid
       ${error ? "var(--negative-200, #7f1d1d)" : " var(--neutral-200, #9ca3af)"};
     color: ${error
       ? "var(--negative-200, #7F1D1D)"
-      : "var(--neutral-200, #9CA3AF)"};
+      : $isFilled
+        ? "var(--neutral-400, #414141)"
+        : "var(--neutral-200, #9ca3af)"};
   `}
 
   &:hover {

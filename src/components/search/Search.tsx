@@ -31,12 +31,14 @@ const SearchContainer = styled.div<{ width: string }>`
 
   &:focus-within {
     border: 2px solid var(--neutral-400, #414141);
+    padding: calc(0.5rem - 1px) calc(0.75rem - 1px);
   }
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled.input<{ $isFilled: boolean }>`
   flex: 1 0 0;
-  color: var(--neutral-200, #9ca3af);
+  color: ${({ $isFilled }) =>
+    $isFilled ? "var(--neutral-400, #414141)" : "var(--neutral-200, #9ca3af)"};
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -82,7 +84,7 @@ const Search: React.FC<SearchProps> = ({
     return () => clearTimeout(debounceTimer);
   }, [searchTerm, debounceTime]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
 
@@ -101,6 +103,7 @@ const Search: React.FC<SearchProps> = ({
         onChange={handleInputChange}
         placeholder={placeholder || "Search"}
         value={searchTerm}
+        $isFilled={Boolean(searchTerm)}
         autoComplete="off"
         data-testid="search"
       />

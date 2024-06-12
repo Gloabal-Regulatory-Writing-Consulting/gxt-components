@@ -21,7 +21,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputSize?: "small" | "medium" | "large";
   customStyles?: CustomStylesType;
   disabled?: boolean;
-  $isFilled?: boolean;
+  isFilled?: boolean;
   error?: boolean;
 }
 
@@ -34,6 +34,7 @@ const Input: React.FC<InputProps> = ({
   customStyles = {},
   helpText = "",
   error = false,
+  isFilled = false,
   ...props
 }) => {
   return (
@@ -50,6 +51,7 @@ const Input: React.FC<InputProps> = ({
         </StyledLabel>
       )}
       <StyledInput
+        $isFilled={!!props.value || isFilled}
         error={error}
         data-testid="input"
         id={label}
