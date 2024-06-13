@@ -92,8 +92,8 @@ const Dropdown = <T,>({
   };
 
   const handleItemClick = (item: T) => {
-    if (type === "select" && onSelect) {
-      onSelect(item);
+    onSelect && onSelect(item);
+    if (type === "select") {
       setSelectedOption(item);
     }
     setIsOpen(false);
