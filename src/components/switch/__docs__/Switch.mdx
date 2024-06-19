@@ -1,0 +1,35 @@
+import React, { useState } from "react";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as Switch from "./Switch.stories";
+
+<Meta of={Switch} title="Switch" />
+
+## Example
+
+<Canvas of={Switch.SwitchExample} />
+
+# Switch Example
+
+This is an example component that showcases the usage of `Switch` components.
+
+## Usage
+
+```tsx
+
+const SwitchExample = () => (
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
+
+  return <Switch checked={isToggled} onChange={handleToggle} />
+);
+
+export default SwitchExample;
+```
+
+## Props
+
+<Controls of={Switch.SwitchExample} />
+
