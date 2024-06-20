@@ -91,6 +91,7 @@ export interface SlideOverProps {
   contentStyles?: React.CSSProperties;
   overlayStyles?: React.CSSProperties;
   mountElementId?: string;
+  dataTestId?: string;
 }
 
 const SlideOver: FC<SlideOverProps> & {
@@ -110,6 +111,8 @@ const SlideOver: FC<SlideOverProps> & {
   contentStyles = {},
   overlayStyles = {},
   mountElementId = "root",
+  dataTestId = "",
+  ...rest
 }) => {
   const [{ HeaderSlot, FooterSlot }, restChildren] = useSlots(children, {
     HeaderSlot: SlideOverHeader,
@@ -124,6 +127,8 @@ const SlideOver: FC<SlideOverProps> & {
         className={slideOverClasses}
         style={slideOverStyles}
         width={width}
+        data-testId={dataTestId}
+        {...rest}
       >
         {HeaderSlot && <HeaderSlot />}
         <Content style={contentStyles} className={contentClasses}>
