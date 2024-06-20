@@ -52,6 +52,7 @@ export interface DropdownProps<T> {
   dropdownIcon?: boolean;
   position: PositionType;
   customStyles?: CustomStylesType;
+  equalityFn?: (optionA: T | null, optionB: T | null) => boolean;
 }
 
 const Dropdown = <T,>({
@@ -66,6 +67,7 @@ const Dropdown = <T,>({
   dropdownIcon = false,
   position = Position.Bottom,
   customStyles = {},
+  equalityFn = (optionA: T | null, optionB: T | null) => optionA === optionB,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<T | null>(
@@ -158,7 +160,9 @@ const Dropdown = <T,>({
           {options.map((option, index) => (
             <SelectItemWrapper
               key={index}
-              $isActive={type === "select" && option === selectedOption}
+              $isActive={
+                type === "select" && equalityFn(option, selectedOption)
+              }
               onClick={() => handleItemClick(option)}
               style={customStyles.item}
             >
