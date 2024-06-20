@@ -51,5 +51,6 @@ export const SlideOverComponent: Story = {
     contentStyles: {},
     overlayStyles: {},
     children: [],
+    dataTestId: "test-slideover",
   },
 };
