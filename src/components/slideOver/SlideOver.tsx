@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { useSlots } from "../../hooks/useSlots";
@@ -94,7 +94,7 @@ export interface SlideOverProps {
   dataTestId?: string;
 }
 
-const SlideOver: FC<SlideOverProps> & {
+const SlideOver: FC<SlideOverProps & HTMLAttributes<HTMLDivElement>> & {
   Header: typeof SlideOverHeader;
   Footer: typeof SlideOverFooter;
 } = ({
@@ -124,11 +124,11 @@ const SlideOver: FC<SlideOverProps> & {
       <SlideOverContainer
         $isOpen={isOpen}
         $position={position}
+        width={width}
+        data-testid={dataTestId}
+        {...rest}
         className={slideOverClasses}
         style={slideOverStyles}
-        width={width}
-        data-testId={dataTestId}
-        {...rest}
       >
         {HeaderSlot && <HeaderSlot />}
         <Content style={contentStyles} className={contentClasses}>
