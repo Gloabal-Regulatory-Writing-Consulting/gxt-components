@@ -56,12 +56,14 @@ const SearchInput = styled.input<{ $isFilled: boolean }>`
   }
 `;
 
-const StyledSearch = styled(SearchIcon)`
+const StyledSearch = styled(SearchIcon)<{ $isFilled: boolean }>`
   display: flex;
   width: 1.25rem;
   height: 1.25rem;
   justify-content: center;
   align-items: center;
+  fill: ${({ $isFilled }) =>
+    $isFilled ? "var(--neutral-300, #4B5563)" : "var(--neutral-200, #9ca3af)"};
 `;
 
 const Search: React.FC<SearchProps> = ({
@@ -90,11 +92,7 @@ const Search: React.FC<SearchProps> = ({
 
   return (
     <SearchContainer width={width} className={className}>
-      <StyledSearch
-        height={16}
-        width={16}
-        fill={"var(--neutral-200, #9CA3AF)"}
-      />
+      <StyledSearch height={16} width={16} $isFilled={Boolean(searchTerm)} />
       <SearchInput
         {...rest}
         type="text"
