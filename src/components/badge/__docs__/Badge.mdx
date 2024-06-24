@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+import { Meta, Canvas, Controls } from "@storybook/blocks";
+import * as Badge from "./Badge.stories";
+
+<Meta of={Badge} title="Badge" />
+
+## Example
+
+<Canvas of={Badge.BadgeExample} />
+
+# Badge Example
+
+This is an example component that showcases the usage of `Badge` components.
+
+## Usage
+
+```tsx
+
+const BadgeExample = () => (
+
+  return <Badge label="Badge" type="basic" />
+);
+
+export default Badge;
+```
+
+## Props
+
+<Controls of={Badge.BadgeExample} />
+
