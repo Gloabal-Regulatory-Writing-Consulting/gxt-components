@@ -14,7 +14,7 @@ export const SwitchExample = ({
   onColor,
   offColor,
 }: SwitchProps) => {
-  const [isChecked, setIsChecked] = useState(!checked);
+  const [isChecked, setIsChecked] = useState(checked);
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
     onChange(e);
@@ -31,7 +31,7 @@ export const SwitchExample = ({
 };
 
 SwitchExample.args = {
-  checked: false,
+  checked: true,
   onChange: () => {},
   isDisabled: false,
   onColor: "var(--primary-200, #177ba6)",

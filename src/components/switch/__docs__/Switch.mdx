@@ -19,8 +19,8 @@ This is an example component that showcases the usage of `Switch` components.
 const SwitchExample = () => (
   const [isToggled, setIsToggled] = useState(false);
 
-  const handleToggle = () => {
-    setIsToggled(!isToggled);
+  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsToggled(e.target.checked);
   };
 
   return <Switch checked={isToggled} onChange={handleToggle} />
