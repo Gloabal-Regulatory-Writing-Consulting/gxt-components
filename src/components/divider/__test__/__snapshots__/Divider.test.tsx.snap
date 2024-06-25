@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Divider > renders horizontal divider with light color 1`] = `
+.c0 {
+  height: 0.0625rem;
+  flex-shrink: 0;
+  background-color: var(--neutral-200, #9CA3AF);
+}
+
+<div
+  class="c0"
+  data-testid="divider"
+/>
+`;
+
+exports[`Divider > renders vertical divider with medium color 1`] = `
+.c0 {
+  height: 0.0625rem;
+  flex-shrink: 0;
+  background-color: var(--neutral-400, #414141);
+}
+
+.c1 {
+  transform: rotate(90deg);
+}
+
+<div
+  class="c0 c1"
+  data-testid="divider"
+/>
+`;
