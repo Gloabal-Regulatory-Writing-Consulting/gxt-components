@@ -22,3 +22,4 @@ export * from "./breadcrumbs";
 export * from "./textArea";
 export * from "./badge";
 export * from "./switch";
+export * from "./divider";

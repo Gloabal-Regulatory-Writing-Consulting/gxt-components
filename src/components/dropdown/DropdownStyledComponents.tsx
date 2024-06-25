@@ -94,12 +94,11 @@ export const SelectItemsWrapper = styled.div<{
   border-radius: 0.25rem;
   border: 1px solid var(--neutral-200, #9ca3af);
   background: var(--system-50, #fff);
-  max-height: 12.5rem;
   overflow-y: auto;
   z-index: 1;
 `;
 
-export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
+export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
   display: flex;
   padding: 0.75rem 1rem;
   align-items: center;
@@ -109,7 +108,6 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--neutral-200, #9ca3af);
   padding: 0.5rem 1rem;
   color: ${({ $isActive }) =>
     $isActive
@@ -133,6 +131,11 @@ export const SelectItemWrapper = styled.div<{ $isActive: boolean }>`
       color: var(--primary-200, #177ba6);
     }
   `}
+`;
+
+export const SelectHeaderItemWrapper = styled(SelectItemWrapper)`
+  color: var(--primary-300, #115873);
+  font-weight: 700;
 `;
 
 export const CustomSelectButton = styled.button<{
