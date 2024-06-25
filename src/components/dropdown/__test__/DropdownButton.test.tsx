@@ -172,4 +172,41 @@ describe("Dropdown component", () => {
     const placeholder = screen.getByText("Select an option");
     expect(placeholder).toHaveStyle("color: rgb(0, 128, 0)");
   });
+
+  it("should render divided menu", () => {
+    render(
+      <Dropdown
+        type="button"
+        renderOption={renderOption}
+        placeholder="Select an option"
+        position="bottom"
+        menuType="divided"
+        groupedOptions={[
+          {
+            header: "Upload",
+            options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
+          },
+          {
+            header: "Download",
+            options: ["Download CSV", "Download DOCX", "Download PDF"],
+          },
+          {
+            header: "",
+            options: ["Close"],
+          },
+        ]}
+      />,
+    );
+
+    const button = screen.getByRole("button", {
+      name: "Select an option",
+    });
+
+    fireEvent.click(button);
+
+    expect(screen.getByText("Upload")).toHaveStyle("font-weight: 700");
+    expect(screen.getByText("Upload CSV")).toBeInTheDocument();
+    expect(screen.getByText("Download")).toHaveStyle("font-weight: 700");
+    expect(screen.getAllByTestId("divider")).toHaveLength(2);
+  });
 });

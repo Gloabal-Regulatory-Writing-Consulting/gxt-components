@@ -29,6 +29,7 @@ const defaultCustomStyles = {
   itemsWrapper: {},
   item: {},
   placeholder: {},
+  header: {},
 };
 
 export const DropdownButton: Story = {
@@ -36,6 +37,34 @@ export const DropdownButton: Story = {
     disabled: false,
     type: "button",
     options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
+    renderOption: (option) => <span>{option}</span>,
+    placeholder: "Upload",
+    onSelect: (option) => console.log("Selected option:", option),
+    dropdownIcon: true,
+    position: Position.Center,
+    customStyles: defaultCustomStyles,
+  },
+};
+
+export const DividedMenuButton: Story = {
+  args: {
+    disabled: false,
+    type: "button",
+    menuType: "divided",
+    groupedOptions: [
+      {
+        header: "Upload",
+        options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
+      },
+      {
+        header: "Download",
+        options: ["Download CSV", "Download DOCX", "Download PDF"],
+      },
+      {
+        header: "",
+        options: ["Close"],
+      },
+    ],
     renderOption: (option) => <span>{option}</span>,
     placeholder: "Upload",
     onSelect: (option) => console.log("Selected option:", option),

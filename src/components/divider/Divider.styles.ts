@@ -9,7 +9,7 @@ export const HorizontalDividerWrapper = styled.div<{
   flex-shrink: 0;
 
   background-color: ${({ $color }) =>
-    $color == "light"
+    $color === "light"
       ? "var(--neutral-200, #9CA3AF)"
       : "var(--neutral-400, #414141)"};
 `;

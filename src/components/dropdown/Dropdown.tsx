@@ -3,14 +3,17 @@ import {
   CustomSelectButton,
   DropdownContainer,
   IconWrapper,
+  SelectHeaderItemWrapper,
   SelectItemsWrapper,
   SelectItemWrapper,
   SelectWrapper,
   StyledChevronDownIcon,
   StyledLabel,
 } from "./DropdownStyledComponents";
+import { Divider } from "../divider";
 
 type DropdownType = "select" | "button";
+type DropdownMenuType = "simple" | "divided";
 
 export const Position = {
   Top: "top",
@@ -30,12 +33,15 @@ export const DropdownPosition = {
 export type DropdownPositionType =
   (typeof DropdownPosition)[keyof typeof DropdownPosition];
 
+type GroupedOption<T> = { header: string; options: T[] };
+
 export type CustomStylesType = {
   container?: CSSProperties;
   button?: CSSProperties;
   label?: CSSProperties;
   icon?: CSSProperties;
   itemsWrapper?: CSSProperties;
+  header?: CSSProperties;
   item?: CSSProperties;
   placeholder?: CSSProperties;
 };
@@ -43,7 +49,9 @@ export type CustomStylesType = {
 export interface DropdownProps<T> {
   disabled?: boolean;
   type: DropdownType;
-  options: T[];
+  menuType?: DropdownMenuType;
+  options?: T[];
+  groupedOptions?: GroupedOption<T>[];
   renderOption?: (option: T | null) => ReactNode;
   onSelect?: (option: T) => void;
   label?: string;
@@ -58,7 +66,9 @@ export interface DropdownProps<T> {
 const Dropdown = <T,>({
   disabled = false,
   type,
-  options,
+  menuType = "simple",
+  options = [],
+  groupedOptions = [],
   onSelect,
   renderOption = (option: T | null) => option?.toString(),
   label,
@@ -86,6 +96,10 @@ const Dropdown = <T,>({
       );
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    setSelectedOption(initialValue || options?.at(0) || null);
+  }, [initialValue, options]);
 
   const toggleDropdown = () => {
     if (!disabled) {
@@ -126,6 +140,38 @@ const Dropdown = <T,>({
     button: placeholder,
   };
 
+  const getDropdownOptions = (options: T[]) => {
+    return options.map((option, index) => (
+      <SelectItemWrapper
+        key={index}
+        $isActive={type === "select" && equalityFn(option, selectedOption)}
+        onClick={() => handleItemClick(option)}
+        style={customStyles.item}
+      >
+        {renderOption(option)}
+      </SelectItemWrapper>
+    ));
+  };
+
+  const getGroupedDropdownOptions = (groupedOptions: GroupedOption<T>[]) => {
+    return groupedOptions.map((group, index) => (
+      <div key={index}>
+        {group.header && (
+          <SelectHeaderItemWrapper key={index} style={customStyles.header}>
+            {group.header}
+          </SelectHeaderItemWrapper>
+        )}
+        {getDropdownOptions(group.options)}
+        {index < groupedOptions.length - 1 && <Divider />}
+      </div>
+    ));
+  };
+
+  const DropdownOptions =
+    menuType === "simple"
+      ? getDropdownOptions(options)
+      : getGroupedDropdownOptions(groupedOptions);
+
   return (
     <DropdownContainer ref={dropdownRef} style={customStyles.container}>
       {label && (
@@ -157,18 +203,7 @@ const Dropdown = <T,>({
           $dropDownPosition={dropdownPosition}
           style={customStyles.itemsWrapper}
         >
-          {options.map((option, index) => (
-            <SelectItemWrapper
-              key={index}
-              $isActive={
-                type === "select" && equalityFn(option, selectedOption)
-              }
-              onClick={() => handleItemClick(option)}
-              style={customStyles.item}
-            >
-              {renderOption(option)}
-            </SelectItemWrapper>
-          ))}
+          {DropdownOptions}
         </SelectItemsWrapper>
       )}
     </DropdownContainer>
