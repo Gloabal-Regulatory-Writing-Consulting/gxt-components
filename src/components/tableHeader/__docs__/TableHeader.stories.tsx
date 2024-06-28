@@ -15,5 +15,8 @@ export const TableHeaderExample: Story = {
     },
     Title: "New Column",
     backgroundColor: "var(--primary-200, #177ba6)",
+    className: "",
+    height: "345",
+    activeColumn: { order: "ASC", column: "id" },
   },
 };
