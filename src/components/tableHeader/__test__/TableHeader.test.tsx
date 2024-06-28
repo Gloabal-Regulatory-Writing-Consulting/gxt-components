@@ -16,18 +16,21 @@ describe("TableHeader Component", () => {
     const headerTitle = screen.getByText("Example Header");
     expect(headerTitle).toBeInTheDocument();
   });
+
   it("renders sort icons when ColumnName is provided", () => {
     render(<TableHeader {...defaultProps} ColumnName="exampleColumn" />);
     const upArrow = screen.queryByTestId("arrow-up-icon");
     const downArrow = screen.queryByTestId("arrow-down-icon");
-    expect(upArrow).toBeDefined();
-    expect(downArrow).toBeDefined();
+    expect(upArrow).toBeInTheDocument();
+    expect(downArrow).toBeInTheDocument();
   });
+
   it("does not render sort icons when ColumnName is not provided", () => {
     render(<TableHeader {...defaultProps} />);
     const sortContainer = screen.queryByTestId("sort-container");
     expect(sortContainer).toHaveStyle({ display: "none" });
   });
+
   it("calls handleColumnSort with ASC order when the up arrow icon is clicked", () => {
     render(
       <TableHeader
@@ -54,5 +57,11 @@ describe("TableHeader Component", () => {
     fireEvent.click(screen.getByTestId("arrow-down-icon"));
 
     expect(handleColumnSortMock).toHaveBeenCalledWith("DESC", "name");
+  });
+
+  it("does not break when className is provided", () => {
+    render(<TableHeader {...defaultProps} className="test-class" />);
+    const sortContainer = screen.getByTestId("sort-container");
+    expect(sortContainer).toHaveClass("test-class");
   });
 });
