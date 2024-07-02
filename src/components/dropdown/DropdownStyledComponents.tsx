@@ -96,6 +96,7 @@ export const SelectItemsWrapper = styled.div<{
   background: var(--system-50, #fff);
   overflow-y: auto;
   z-index: 1;
+  max-height: 18rem;
 `;
 
 export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
