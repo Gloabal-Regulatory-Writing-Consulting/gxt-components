@@ -17,9 +17,9 @@ export interface TextAreaProps
   placeholder?: string;
   disabled?: boolean;
   customStyles?: {
-    heading: React.CSSProperties;
-    caption: React.CSSProperties;
-    input: React.CSSProperties;
+    heading?: React.CSSProperties;
+    caption?: React.CSSProperties;
+    input?: React.CSSProperties;
   };
 }
 
@@ -41,13 +41,12 @@ const TextArea: React.FC<TextAreaProps> = ({
           {heading}
         </Heading>
       )}
-      <InputContainer disabled={disabled}>
+      <InputContainer disabled={disabled} style={customStyles?.input}>
         <TextAreaInput
           {...rest}
           id={id || "textarea"}
           name={name || "textarea"}
           value={value}
-          style={customStyles?.input}
           disabled={disabled}
         />
       </InputContainer>
