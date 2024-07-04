@@ -1,10 +1,8 @@
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 import {
   Caption,
   Heading,
-  InnerRectangle,
   InputContainer,
-  RectangleContainer,
   TextAreaContainer,
   TextAreaInput,
 } from "./TextArea.styles";
@@ -18,6 +16,11 @@ export interface TextAreaProps
   className?: string;
   placeholder?: string;
   disabled?: boolean;
+  customStyles?: {
+    heading: React.CSSProperties;
+    caption: React.CSSProperties;
+    input: React.CSSProperties;
+  };
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -25,35 +28,30 @@ const TextArea: React.FC<TextAreaProps> = ({
   name,
   heading,
   caption,
-  placeholder,
+  value,
   className = "",
   disabled,
+  customStyles,
   ...rest
 }) => {
-  const [text, setText] = useState("");
-
-  const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  };
-
   return (
     <TextAreaContainer className={className}>
-      {heading && <Heading disabled={disabled}>{heading}</Heading>}
+      {heading && (
+        <Heading style={customStyles?.heading} disabled={disabled}>
+          {heading}
+        </Heading>
+      )}
       <InputContainer disabled={disabled}>
         <TextAreaInput
           {...rest}
           id={id || "textarea"}
           name={name || "textarea"}
-          value={text}
-          onChange={handleTextChange}
-          placeholder={placeholder}
+          value={value}
+          style={customStyles?.input}
           disabled={disabled}
         />
-        <RectangleContainer showPlaceholder={text.length === 0}>
-          <InnerRectangle />
-        </RectangleContainer>
       </InputContainer>
-      {caption && <Caption>{caption}</Caption>}
+      {caption && <Caption style={customStyles?.caption}>{caption}</Caption>}
     </TextAreaContainer>
   );
 };
