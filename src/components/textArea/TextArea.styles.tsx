@@ -5,6 +5,7 @@ export const TextAreaContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
+  width: 100%;
 `;
 
 export const Heading = styled.div<{ disabled?: boolean }>`
@@ -69,24 +70,6 @@ export const TextAreaInput = styled.textarea<{ disabled?: boolean }>`
   &:focus-within::placeholder {
     color: var(--neutral-200, #414141);
   }
-`;
-
-export const RectangleContainer = styled.div<{ showPlaceholder: boolean }>`
-  display: flex;
-  padding: 4px;
-  align-items: flex-start;
-  align-self: stretch;
-  border-radius: 32px;
-  background: var(--system-50, #fff);
-  opacity: ${({ showPlaceholder }) => (showPlaceholder ? 1 : 0)};
-  transition: opacity 0.2s ease-in-out;
-`;
-
-export const InnerRectangle = styled.div`
-  width: 5px;
-  align-self: stretch;
-  border-radius: 32px;
-  background: var(--neutral-100, #e5e7eb);
 `;
 
 export const Caption = styled.div`

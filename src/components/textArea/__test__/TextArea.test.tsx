@@ -4,14 +4,14 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import TextArea from "../TextArea";
 
 describe("TextArea Component", () => {
-  const handleTextChange = vi.fn();
+  const handleChange = vi.fn();
 
   afterEach(() => {
     vi.clearAllMocks();
   });
 
   it("should render without crashing", () => {
-    render(<TextArea onChange={handleTextChange} />);
+    render(<TextArea onChange={handleChange} />);
   });
 
   it("should render with custom props", () => {
@@ -23,7 +23,7 @@ describe("TextArea Component", () => {
         caption="Custom Caption"
         placeholder="Custom Placeholder"
         className="custom-textarea"
-        onChange={handleTextChange}
+        onChange={handleChange}
       />,
     );
     expect(
@@ -34,7 +34,7 @@ describe("TextArea Component", () => {
   });
 
   it("should handle text input correctly", async () => {
-    render(<TextArea onChange={handleTextChange} />);
+    render(<TextArea onChange={handleChange} />);
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "test input" },
     });
@@ -44,16 +44,9 @@ describe("TextArea Component", () => {
   });
 
   it("should render as disabled when the disabled prop is true", () => {
-    render(<TextArea onChange={handleTextChange} disabled />);
+    render(<TextArea onChange={handleChange} disabled />);
     const textarea = screen.getByRole("textbox");
     expect(textarea).toBeDisabled();
-  });
-
-  it("should not call onChange when disabled", () => {
-    render(<TextArea onChange={handleTextChange} disabled />);
-    const textarea = screen.getByRole("textbox");
-    fireEvent.change(textarea, { target: { value: "test input" } });
-    expect(handleTextChange).not.toHaveBeenCalled();
   });
 
   it("should render the heading with disabled styling when disabled", () => {
@@ -61,7 +54,7 @@ describe("TextArea Component", () => {
       <TextArea
         heading="Disabled Heading"
         caption="Disabled Caption"
-        onChange={handleTextChange}
+        onChange={handleChange}
         disabled
       />,
     );

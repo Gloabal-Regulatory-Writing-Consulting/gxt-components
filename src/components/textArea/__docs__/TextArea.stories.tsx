@@ -18,5 +18,8 @@ export const Example: Story = {
     placeholder: "Placeholder Text",
     caption: "enter some details",
     disabled: false,
+    onChange: (e) => {
+      console.log(e.target.value);
+    },
   },
 };
