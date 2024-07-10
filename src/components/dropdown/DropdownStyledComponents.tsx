@@ -105,7 +105,7 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
   align-items: center;
   align-self: stretch;
   border: none;
-  cursor: ${({ $isActive }) => ($isActive ? "default" : "pointer")};
+  cursor: ${({ $isActive }) => ($isActive ? "not-allowed" : "pointer")};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,8 +135,17 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
 `;
 
 export const SelectHeaderItemWrapper = styled(SelectItemWrapper)`
-  color: var(--primary-300, #115873);
   font-weight: 700;
+  ${({ $isActive }) => {
+    return `
+        color: ${
+          $isActive
+            ? "var(--neutral-200, #9ca3af)"
+            : "var(--primary-300, #115873)"
+        }
+        cursor: ${$isActive ? "not-allowed" : "pointer"};
+      `;
+  }}
 `;
 
 export const CustomSelectButton = styled.button<{

@@ -36,8 +36,12 @@ export const DropdownButton: Story = {
   args: {
     disabled: false,
     type: "button",
-    options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
-    renderOption: (option) => <span>{option}</span>,
+    options: [
+      { value: "Upload CSV", toolTipText: "Option 1 tooltip" },
+      { value: "Upload DOCX" },
+      { value: "Upload PDF", disabled: true },
+    ],
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
@@ -54,18 +58,26 @@ export const DividedMenuButton: Story = {
     groupedOptions: [
       {
         header: "Upload",
-        options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
+        options: [
+          { value: "Upload CSV", disabled: true },
+          { value: "Upload DOCX" },
+        ],
       },
       {
         header: "Download",
-        options: ["Download CSV", "Download DOCX", "Download PDF"],
+        options: [
+          { value: "Download CSV" },
+          { value: "Download DOCX" },
+          { value: "Download PDF" },
+        ],
+        disabled: true,
       },
       {
         header: "",
-        options: ["Close"],
+        options: [{ value: "Close", disabled: true }],
       },
     ],
-    renderOption: (option) => <span>{option}</span>,
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: "Upload",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
@@ -78,8 +90,12 @@ export const DropdownSelect: Story = {
   args: {
     disabled: false,
     type: "button",
-    options: ["Option 1", "Option 2", "Option 3"],
-    renderOption: (option) => <span>{option}</span>,
+    options: [
+      { value: "Option 1" },
+      { value: "Option 2" },
+      { value: "Option 3" },
+    ],
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
@@ -92,8 +108,12 @@ export const LabeledDropdown: Story = {
   args: {
     disabled: false,
     type: "select",
-    options: ["Option 1", "Option 2", "Option 3"],
-    renderOption: (option) => <span>{option}</span>,
+    options: [
+      { value: "Option 1" },
+      { value: "Option 2" },
+      { value: "Option 3" },
+    ],
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: "Select an option",
     label: "Select",
     onSelect: (option) => console.log("Selected option:", option),
@@ -107,8 +127,12 @@ export const DisabledButton: Story = {
   args: {
     disabled: true,
     type: "button",
-    options: ["Option 1", "Option 2", "Option 3"],
-    renderOption: (option) => <span>{option}</span>,
+    options: [
+      { value: "Option 1" },
+      { value: "Option 2" },
+      { value: "Option 3" },
+    ],
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: "Select an option",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,
@@ -120,8 +144,12 @@ export const ActionsDropdown: Story = {
   args: {
     disabled: false,
     type: "button",
-    options: ["Option 1", "Option 2", "Option 3"],
-    renderOption: (option) => <span>{option}</span>,
+    options: [
+      { value: "Option 1" },
+      { value: "Option 2" },
+      { value: "Option 3" },
+    ],
+    renderOption: (option) => <span>{option?.value}</span>,
     placeholder: getSvgIcon(false),
     onSelect: (option) => console.log("Selected option:", option),
     position: Position.Center,
