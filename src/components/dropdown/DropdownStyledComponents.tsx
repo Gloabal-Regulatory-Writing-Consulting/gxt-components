@@ -99,13 +99,16 @@ export const SelectItemsWrapper = styled.div<{
   max-height: 18rem;
 `;
 
-export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
+export const SelectItemWrapper = styled.div<{
+  $isActive?: boolean;
+  $isDisabled?: boolean;
+}>`
   display: flex;
   padding: 0.75rem 1rem;
   align-items: center;
   align-self: stretch;
   border: none;
-  cursor: ${({ $isActive }) => ($isActive ? "default" : "pointer")};
+  cursor: ${({ $isActive }) => ($isActive ? "not-allowed" : "pointer")};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -125,8 +128,9 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
     border-bottom: none;
   }
 
-  ${({ $isActive }) =>
+  ${({ $isActive, $isDisabled }) =>
     !$isActive &&
+    !$isDisabled &&
     `
     &:hover {
       color: var(--primary-200, #177ba6);
@@ -135,8 +139,17 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
 `;
 
 export const SelectHeaderItemWrapper = styled(SelectItemWrapper)`
-  color: var(--primary-300, #115873);
   font-weight: 700;
+  ${({ $isDisabled }) => {
+    return `
+        color: ${
+          $isDisabled
+            ? "var(--neutral-200, #9ca3af)"
+            : "var(--primary-200, #177ba6)"
+        };
+        cursor: ${$isDisabled ? "not-allowed" : "default"};
+      `;
+  }}
 `;
 
 export const CustomSelectButton = styled.button<{

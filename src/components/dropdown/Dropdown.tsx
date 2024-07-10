@@ -33,7 +33,12 @@ export const DropdownPosition = {
 export type DropdownPositionType =
   (typeof DropdownPosition)[keyof typeof DropdownPosition];
 
-type GroupedOption<T> = { header: string; options: T[] };
+type GroupedOption<T> = {
+  header: string;
+  options: DropDownOption<T>[];
+  disabled?: boolean;
+};
+type DropDownOption<T> = { disabled?: boolean; value: T; toolTipText?: string };
 
 export type CustomStylesType = {
   container?: CSSProperties;
@@ -50,17 +55,20 @@ export interface DropdownProps<T> {
   disabled?: boolean;
   type: DropdownType;
   menuType?: DropdownMenuType;
-  options?: T[];
+  options?: DropDownOption<T>[];
   groupedOptions?: GroupedOption<T>[];
-  renderOption?: (option: T | null) => ReactNode;
-  onSelect?: (option: T) => void;
+  renderOption?: (option: DropDownOption<T> | null) => ReactNode;
+  onSelect?: (option: DropDownOption<T>) => void;
   label?: string;
   placeholder?: string | ReactNode;
-  initialValue?: T | null;
+  initialValue?: DropDownOption<T> | null;
   dropdownIcon?: boolean;
   position: PositionType;
   customStyles?: CustomStylesType;
-  equalityFn?: (optionA: T | null, optionB: T | null) => boolean;
+  equalityFn?: (
+    optionA: DropDownOption<T> | null,
+    optionB: DropDownOption<T> | null,
+  ) => boolean;
 }
 
 const Dropdown = <T,>({
@@ -70,19 +78,21 @@ const Dropdown = <T,>({
   options = [],
   groupedOptions = [],
   onSelect,
-  renderOption = (option: T | null) => option?.toString(),
+  renderOption = (option: DropDownOption<T> | null) => option?.toString(),
   label,
   placeholder,
   initialValue = null,
   dropdownIcon = false,
   position = Position.Bottom,
   customStyles = {},
-  equalityFn = (optionA: T | null, optionB: T | null) => optionA === optionB,
+  equalityFn = (
+    optionA: DropDownOption<T> | null,
+    optionB: DropDownOption<T> | null,
+  ) => optionA === optionB,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<T | null>(
-    initialValue || options?.at(0) || null,
-  );
+  const [selectedOption, setSelectedOption] =
+    useState<DropDownOption<T> | null>(initialValue || options?.at(0) || null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] =
     useState<DropdownPositionType>(DropdownPosition.Down);
@@ -107,7 +117,7 @@ const Dropdown = <T,>({
     }
   };
 
-  const handleItemClick = (item: T) => {
+  const handleItemClick = (item: DropDownOption<T>) => {
     onSelect && onSelect(item);
     if (type === "select") {
       setSelectedOption(item);
@@ -140,28 +150,43 @@ const Dropdown = <T,>({
     button: placeholder,
   };
 
-  const getDropdownOptions = (options: T[]) => {
-    return options.map((option, index) => (
-      <SelectItemWrapper
-        key={index}
-        $isActive={type === "select" && equalityFn(option, selectedOption)}
-        onClick={() => handleItemClick(option)}
-        style={customStyles.item}
-      >
-        {renderOption(option)}
-      </SelectItemWrapper>
-    ));
+  const getDropdownOptions = (
+    options: DropDownOption<T>[],
+    disabled = false,
+  ) => {
+    return options.map((option, index) => {
+      const isDisabled =
+        disabled ||
+        option.disabled ||
+        (type === "select" && equalityFn(option, selectedOption));
+
+      return (
+        <SelectItemWrapper
+          key={index}
+          $isActive={isDisabled}
+          onClick={!isDisabled ? () => handleItemClick(option) : undefined}
+          style={customStyles.item}
+        >
+          {renderOption(option)}
+        </SelectItemWrapper>
+      );
+    });
   };
 
   const getGroupedDropdownOptions = (groupedOptions: GroupedOption<T>[]) => {
     return groupedOptions.map((group, index) => (
       <div key={index}>
         {group.header && (
-          <SelectHeaderItemWrapper key={index} style={customStyles.header}>
+          <SelectHeaderItemWrapper
+            key={index}
+            style={customStyles.header}
+            $isDisabled={group.disabled}
+            $isActive={!group.disabled}
+          >
             {group.header}
           </SelectHeaderItemWrapper>
         )}
-        {getDropdownOptions(group.options)}
+        {getDropdownOptions(group.options, group.disabled)}
         {index < groupedOptions.length - 1 && <Divider />}
       </div>
     ));

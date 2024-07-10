@@ -141,11 +141,13 @@ const Pagination: FC<PaginationProps> = ({
       </ItemsPagesWrapper>
       <PerPageContainer>
         <Dropdown
-          options={perPageOptions}
+          options={perPageOptions.map((option) => ({
+            value: option,
+          }))}
           type="select"
-          onSelect={handlePerPageChange}
-          renderOption={(option) => option || ""}
-          initialValue={itemsPerPage}
+          onSelect={(option) => handlePerPageChange(option.value)}
+          renderOption={(option) => option?.value || ""}
+          initialValue={{ value: itemsPerPage }}
           dropdownIcon={true}
           position={Position.Bottom}
         />
