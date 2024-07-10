@@ -154,24 +154,23 @@ const Dropdown = <T,>({
     options: DropDownOption<T>[],
     disabled = false,
   ) => {
-    return options.map((option, index) => (
-      <SelectItemWrapper
-        key={index}
-        $isActive={
-          disabled ||
-          option.disabled ||
-          (type === "select" && equalityFn(option, selectedOption))
-        }
-        onClick={
-          !disabled && !option.disabled
-            ? () => handleItemClick(option)
-            : undefined
-        }
-        style={customStyles.item}
-      >
-        {renderOption(option)}
-      </SelectItemWrapper>
-    ));
+    return options.map((option, index) => {
+      const isDisabled =
+        disabled ||
+        option.disabled ||
+        (type === "select" && equalityFn(option, selectedOption));
+
+      return (
+        <SelectItemWrapper
+          key={index}
+          $isActive={isDisabled}
+          onClick={!isDisabled ? () => handleItemClick(option) : undefined}
+          style={customStyles.item}
+        >
+          {renderOption(option)}
+        </SelectItemWrapper>
+      );
+    });
   };
 
   const getGroupedDropdownOptions = (groupedOptions: GroupedOption<T>[]) => {
@@ -181,7 +180,8 @@ const Dropdown = <T,>({
           <SelectHeaderItemWrapper
             key={index}
             style={customStyles.header}
-            $isActive={group.disabled}
+            $isDisabled={group.disabled}
+            $isActive={!group.disabled}
           >
             {group.header}
           </SelectHeaderItemWrapper>

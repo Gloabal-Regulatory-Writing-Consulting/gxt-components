@@ -99,7 +99,10 @@ export const SelectItemsWrapper = styled.div<{
   max-height: 18rem;
 `;
 
-export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
+export const SelectItemWrapper = styled.div<{
+  $isActive?: boolean;
+  $isDisabled?: boolean;
+}>`
   display: flex;
   padding: 0.75rem 1rem;
   align-items: center;
@@ -125,8 +128,9 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
     border-bottom: none;
   }
 
-  ${({ $isActive }) =>
+  ${({ $isActive, $isDisabled }) =>
     !$isActive &&
+    !$isDisabled &&
     `
     &:hover {
       color: var(--primary-200, #177ba6);
@@ -136,14 +140,14 @@ export const SelectItemWrapper = styled.div<{ $isActive?: boolean }>`
 
 export const SelectHeaderItemWrapper = styled(SelectItemWrapper)`
   font-weight: 700;
-  ${({ $isActive }) => {
+  ${({ $isDisabled }) => {
     return `
         color: ${
-          $isActive
+          $isDisabled
             ? "var(--neutral-200, #9ca3af)"
-            : "var(--primary-300, #115873)"
-        }
-        cursor: ${$isActive ? "not-allowed" : "pointer"};
+            : "var(--primary-200, #177ba6)"
+        };
+        cursor: ${$isDisabled ? "not-allowed" : "default"};
       `;
   }}
 `;

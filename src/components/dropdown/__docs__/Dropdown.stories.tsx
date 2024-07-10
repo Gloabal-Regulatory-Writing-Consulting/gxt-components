@@ -74,7 +74,7 @@ export const DividedMenuButton: Story = {
       },
       {
         header: "",
-        options: [{ value: "Close", disabled: true }],
+        options: [{ value: "Close" }],
       },
     ],
     renderOption: (option) => <span>{option?.value}</span>,
