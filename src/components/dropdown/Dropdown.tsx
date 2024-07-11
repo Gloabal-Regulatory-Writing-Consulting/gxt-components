@@ -57,7 +57,7 @@ export interface DropdownProps<T> {
   menuType?: DropdownMenuType;
   options?: DropDownOption<T>[];
   groupedOptions?: GroupedOption<T>[];
-  renderOption?: (option: DropDownOption<T> | null) => ReactNode;
+  renderOption?: (option: DropDownOption<T>) => ReactNode;
   onSelect?: (option: DropDownOption<T>) => void;
   label?: string;
   placeholder?: string | ReactNode;
@@ -78,7 +78,7 @@ const Dropdown = <T,>({
   options = [],
   groupedOptions = [],
   onSelect,
-  renderOption = (option: DropDownOption<T> | null) => option?.toString(),
+  renderOption = (option: DropDownOption<T>) => option.value?.toString(),
   label,
   placeholder,
   initialValue = null,
