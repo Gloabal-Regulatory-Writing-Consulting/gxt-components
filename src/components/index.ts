@@ -23,3 +23,4 @@ export * from "./textArea";
 export * from "./badge";
 export * from "./switch";
 export * from "./divider";
+export * from "./tagsField";
