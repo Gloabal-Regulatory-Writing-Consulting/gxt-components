@@ -1,13 +1,30 @@
+import { HTMLAttributes } from "react";
 import { Badge } from "../badge";
-import { TagsFieldContainer } from "./TagsField.styles";
+import {
+  HelpText,
+  StyledLabel,
+  StyledWrapper,
+  TagsFieldContainer,
+} from "./TagsField.styles";
 
-export type TagsFieldProps<T> = {
+export type TagsFieldProps<T> = HTMLAttributes<HTMLDivElement> & {
   disabled?: boolean;
   onClick?: () => void;
   value?: { label: string; value: T }[];
+  error?: boolean;
+  helpText?: React.ReactNode;
+  label?: string;
+  id?: string;
 };
 const TagsField = <T,>(props: TagsFieldProps<T>) => {
-  const { value = [], disabled = false, onClick = () => {} } = props;
+  const {
+    value = [],
+    disabled = false,
+    onClick = () => {},
+    error = false,
+    label,
+    ...rest
+  } = props;
 
   const renderTags = () => {
     return value.map((item, index) => (
@@ -20,13 +37,28 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
   };
 
   return (
-    <TagsFieldContainer
-      role="input"
-      disabled={disabled}
-      onClick={disabled ? () => {} : onClick}
-    >
-      {renderTags()}
-    </TagsFieldContainer>
+    <StyledWrapper error={error} {...rest}>
+      {label && (
+        <StyledLabel
+          htmlFor={props.id || label}
+          data-testid="label"
+          aria-label={label}
+          error={error}
+        >
+          {label}
+        </StyledLabel>
+      )}
+      <TagsFieldContainer
+        role="input"
+        id={props.id || label}
+        disabled={disabled}
+        onClick={disabled ? () => {} : onClick}
+        error={error}
+      >
+        {renderTags()}
+      </TagsFieldContainer>
+      {props.helpText && <HelpText error={error}>{props.helpText}</HelpText>}
+    </StyledWrapper>
   );
 };
 

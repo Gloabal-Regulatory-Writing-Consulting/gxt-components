@@ -25,5 +25,9 @@ export const Primary: Story = {
     onClick: () => {
       console.log("clicked");
     },
+    disabled: false,
+    error: false,
+    helpText: "Help Text",
+    label: "Tags",
   },
 };
