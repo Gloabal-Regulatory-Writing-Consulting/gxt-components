@@ -27,9 +27,9 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
   } = props;
 
   const renderTags = () => {
-    return value.map((item, index) => (
+    return value.map((item) => (
       <Badge
-        key={index}
+        key={item.label}
         type={disabled ? "disabled" : "basic"}
         label={item.label}
       />
@@ -41,7 +41,7 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
       {label && (
         <StyledLabel
           htmlFor={props.id || label}
-          data-testid="label"
+          data-testid={props.id || label}
           aria-label={label}
           error={error}
         >
