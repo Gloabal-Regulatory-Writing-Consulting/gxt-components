@@ -38,7 +38,11 @@ type GroupedOption<T> = {
   options: DropDownOption<T>[];
   disabled?: boolean;
 };
-type DropDownOption<T> = { disabled?: boolean; value: T; toolTipText?: string };
+export type DropDownOption<T> = {
+  disabled?: boolean;
+  value: T;
+  toolTipText?: string;
+};
 
 export type CustomStylesType = {
   container?: CSSProperties;
@@ -92,7 +96,10 @@ const Dropdown = <T,>({
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] =
-    useState<DropDownOption<T> | null>(initialValue || options?.at(0) || null);
+    useState<DropDownOption<T> | null>(() => {
+      if (placeholder) return null;
+      return initialValue || options[0] || null;
+    });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownPosition, setDropdownPosition] =
     useState<DropdownPositionType>(DropdownPosition.Down);
@@ -108,10 +115,15 @@ const Dropdown = <T,>({
   }, [isOpen]);
 
   useEffect(() => {
-    setSelectedOption(initialValue || options?.at(0) || null);
-  }, [initialValue, options]);
+    if (type === "select" && !placeholder) {
+      setSelectedOption(initialValue || options?.at(0) || null);
+    }
+  }, [initialValue]);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+
     if (!disabled) {
       setIsOpen((prev) => !prev);
     }
