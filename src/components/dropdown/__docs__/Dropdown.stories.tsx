@@ -89,7 +89,7 @@ export const DividedMenuButton: Story = {
 export const DropdownSelect: Story = {
   args: {
     disabled: false,
-    type: "button",
+    type: "select",
     options: [
       { value: "Option 1" },
       { value: "Option 2" },
@@ -114,7 +114,6 @@ export const LabeledDropdown: Story = {
       { value: "Option 3" },
     ],
     renderOption: (option) => <span>{option?.value}</span>,
-    placeholder: "Select an option",
     label: "Select",
     onSelect: (option) => console.log("Selected option:", option),
     dropdownIcon: true,

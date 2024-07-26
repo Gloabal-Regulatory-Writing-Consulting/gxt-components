@@ -1,11 +1,20 @@
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { render, fireEvent, screen } from "@testing-library/react";
-import Dropdown from "../Dropdown";
+import Dropdown, { DropDownOption } from "../Dropdown";
 
 describe("Dropdown component", () => {
-  const options = ["Option 1", "Option 2", "Option 3"];
-  const renderOption = vi.fn((option) => <div>{option}</div>);
+  const options: DropDownOption<string>[] = [
+    {
+      value: "Option 1",
+    },
+    {
+      value: "Option 2",
+    },
+    {
+      value: "Option 3",
+    },
+  ];
   const onSelect = vi.fn();
 
   afterEach(() => {
@@ -17,17 +26,16 @@ describe("Dropdown component", () => {
       <Dropdown
         type="select"
         options={options}
-        renderOption={renderOption}
         onSelect={onSelect}
         placeholder="Select an option"
         position="bottom"
       />,
     );
 
-    fireEvent.click(screen.getByText("Option 1"));
+    fireEvent.click(screen.getByText("Select an option"));
 
     options.forEach((option) => {
-      expect(screen.getAllByText(option)[0]).toBeInTheDocument();
+      expect(screen.getByText(option.value)).toBeInTheDocument();
     });
   });
 
@@ -36,7 +44,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         placeholder="Select an option"
         position="bottom"
       />,
@@ -50,17 +57,19 @@ describe("Dropdown component", () => {
       <Dropdown
         type="select"
         options={options}
-        renderOption={renderOption}
         onSelect={onSelect}
         placeholder="Select an option"
         position="bottom"
       />,
     );
 
-    fireEvent.click(screen.getByText("Option 1"));
+    fireEvent.click(screen.getByText("Select an option"));
+
     fireEvent.click(screen.getByText("Option 2"));
 
-    expect(onSelect).toHaveBeenCalledWith("Option 2");
+    expect(onSelect).toHaveBeenCalledWith({
+      value: "Option 2",
+    });
   });
 
   it("disables button when disabled prop is true", () => {
@@ -68,7 +77,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         placeholder="Select an option"
         disabled={true}
         position="bottom"
@@ -85,7 +93,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         label="Dropdown Label"
         placeholder="Select an option"
         position="bottom"
@@ -103,7 +110,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         placeholder="Select an option"
         customStyles={customStyles}
         position="bottom"
@@ -123,7 +129,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         label="Dropdown Label"
         placeholder="Select an option"
         customStyles={customStyles}
@@ -143,7 +148,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         placeholder="Select an option"
         customStyles={customStyles}
         position="bottom"
@@ -162,7 +166,6 @@ describe("Dropdown component", () => {
       <Dropdown
         type="button"
         options={options}
-        renderOption={renderOption}
         placeholder="Select an option"
         customStyles={customStyles}
         position="bottom"
@@ -177,22 +180,29 @@ describe("Dropdown component", () => {
     render(
       <Dropdown
         type="button"
-        renderOption={renderOption}
         placeholder="Select an option"
         position="bottom"
         menuType="divided"
         groupedOptions={[
           {
             header: "Upload",
-            options: ["Upload CSV", "Upload DOCX", "Upload PDF"],
+            options: [
+              { value: "Upload CSV" },
+              { value: "Upload DOCX" },
+              { value: "Upload PDF" },
+            ],
           },
           {
             header: "Download",
-            options: ["Download CSV", "Download DOCX", "Download PDF"],
+            options: [
+              { value: "Download CSV" },
+              { value: "Download DOCX" },
+              { value: "Download PDF" },
+            ],
           },
           {
             header: "",
-            options: ["Close"],
+            options: [{ value: "Close" }],
           },
         ]}
       />,
@@ -208,5 +218,19 @@ describe("Dropdown component", () => {
     expect(screen.getByText("Upload CSV")).toBeInTheDocument();
     expect(screen.getByText("Download")).toHaveStyle("font-weight: 700");
     expect(screen.getAllByTestId("divider")).toHaveLength(2);
+  });
+
+  it("sets initial value correctly without placeholder", () => {
+    render(
+      <Dropdown
+        type="select"
+        options={options}
+        onSelect={onSelect}
+        initialValue={{ value: "Option 2" }}
+        position="bottom"
+      />,
+    );
+
+    expect(screen.getByText("Option 2")).toBeInTheDocument();
   });
 });
