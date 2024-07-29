@@ -117,9 +117,8 @@ const Dropdown = <T,>({
   useEffect(() => {
     if (type === "select" && !placeholder) {
       setSelectedOption(initialValue || options?.at(0) || null);
-      initialValue && onSelect && onSelect(initialValue);
     }
-  }, [initialValue, onSelect, options, placeholder, type]);
+  }, [initialValue]);
 
   const toggleDropdown = (event: React.MouseEvent) => {
     event.stopPropagation();
