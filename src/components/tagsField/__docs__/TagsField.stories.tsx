@@ -29,5 +29,6 @@ export const Primary: Story = {
     error: false,
     helpText: "Help Text",
     label: "Tags",
+    placeholder: "Click to select",
   },
 };

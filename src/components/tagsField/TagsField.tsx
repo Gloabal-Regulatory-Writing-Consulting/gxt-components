@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 import { Badge } from "../badge";
 import {
   HelpText,
+  Placeholder,
   StyledLabel,
   StyledWrapper,
   TagsFieldContainer,
@@ -15,6 +16,7 @@ export type TagsFieldProps<T> = HTMLAttributes<HTMLDivElement> & {
   helpText?: React.ReactNode;
   label?: string;
   id?: string;
+  placeholder?: string;
 };
 const TagsField = <T,>(props: TagsFieldProps<T>) => {
   const {
@@ -23,6 +25,7 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
     onClick = () => {},
     error = false,
     label,
+    placeholder,
     ...rest
   } = props;
 
@@ -55,6 +58,9 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
         onClick={disabled ? () => {} : onClick}
         error={error}
       >
+        {value.length === 0 && !disabled && placeholder && (
+          <Placeholder>{placeholder}</Placeholder>
+        )}
         {renderTags()}
       </TagsFieldContainer>
       {props.helpText && <HelpText error={error}>{props.helpText}</HelpText>}
