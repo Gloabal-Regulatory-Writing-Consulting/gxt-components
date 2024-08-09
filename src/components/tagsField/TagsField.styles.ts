@@ -44,6 +44,12 @@ export const TagsFieldContainer = styled.div<{
     `}
 `;
 
+export const Placeholder = styled.span<{}>`
+  color: var(--neutral-200, #9ca3af);
+  font-size: 1rem;
+  pointer-events: none;
+`;
+
 export const HelpText = styled.span<{ error?: boolean }>`
   color: ${({ error }) =>
     error ? "var(--negative-200, #7F1D1D)" : "var(--neutral-200, #9ca3af)"};
