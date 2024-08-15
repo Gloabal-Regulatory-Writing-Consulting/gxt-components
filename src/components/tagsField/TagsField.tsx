@@ -15,6 +15,7 @@ export type TagsFieldProps<T> = HTMLAttributes<HTMLDivElement> & {
   helpText?: React.ReactNode;
   label?: string;
   id?: string;
+  showIcon?: boolean;
 };
 const TagsField = <T,>(props: TagsFieldProps<T>) => {
   const {
@@ -23,6 +24,7 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
     onClick = () => {},
     error = false,
     label,
+    showIcon,
     ...rest
   } = props;
 
@@ -32,6 +34,7 @@ const TagsField = <T,>(props: TagsFieldProps<T>) => {
         key={item.label}
         type={disabled ? "disabled" : "basic"}
         label={item.label}
+        showIcon={showIcon}
       />
     ));
   };
