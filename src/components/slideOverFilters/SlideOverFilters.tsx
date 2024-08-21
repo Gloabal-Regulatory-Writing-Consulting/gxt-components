@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 import SlideOver from "../slideOver/SlideOver";
 import { Button } from "../button";
@@ -53,30 +53,33 @@ const SlideOverFilters: FC<SlideOverFiltersProps> = ({
   width = "25rem",
   mountElementId = "root",
 }) => {
-  const [filters, setFilters] = React.useState<Record<string, string[]>>(
-    filtersOptions.reduce(
-      (acc, curr) => {
-        const optionFilters = curr.checkboxOptions.reduce(
-          (checkboxAcc, checkboxOption) => {
-            if (checkboxOption.checked) {
-              checkboxAcc[checkboxOption.name] = [
-                ...(checkboxAcc[checkboxOption.name] || []),
-                checkboxOption.value.toString(),
-              ];
-            } else {
-              checkboxAcc[checkboxOption.name] = (
-                checkboxAcc[checkboxOption.name] || []
-              ).filter((option) => option !== checkboxOption.value);
-            }
-            return checkboxAcc;
-          },
-          {} as Record<string, string[]>,
-        );
-        return { ...acc, ...optionFilters };
-      },
-      {} as Record<string, string[]>,
-    ),
-  );
+  const [filters, setFilters] = React.useState<Record<string, string[]>>({});
+  useEffect(() => {
+    setFilters(
+      filtersOptions.reduce(
+        (acc, curr) => {
+          const optionFilters = curr.checkboxOptions.reduce(
+            (checkboxAcc, checkboxOption) => {
+              if (checkboxOption.checked) {
+                checkboxAcc[checkboxOption.name] = [
+                  ...(checkboxAcc[checkboxOption.name] || []),
+                  checkboxOption.value.toString(),
+                ];
+              } else {
+                checkboxAcc[checkboxOption.name] = (
+                  checkboxAcc[checkboxOption.name] || []
+                ).filter((option) => option !== checkboxOption.value);
+              }
+              return checkboxAcc;
+            },
+            {} as Record<string, string[]>,
+          );
+          return { ...acc, ...optionFilters };
+        },
+        {} as Record<string, string[]>,
+      ),
+    );
+  }, [filtersOptions]);
 
   const handleCheckBoxChange = (
     event: React.ChangeEvent<HTMLInputElement>,
