@@ -33,7 +33,7 @@ export const NavIcon = styled.div`
 export const NavText = styled.p<{ $isActive: boolean; $isExpanded: boolean }>`
   font-size: 1rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 150%;
   letter-spacing: 0.00119rem;
   margin: 0;

@@ -31,6 +31,7 @@
 .active-page {
     border: 2px solid var(--primary-100, #1C99CE);
     background: var(--system-50, #FFF);
+    color: var(--primary-200, #177ba6);
 }
 
 .active-page:hover {
