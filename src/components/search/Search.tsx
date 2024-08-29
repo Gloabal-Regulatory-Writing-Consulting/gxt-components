@@ -11,6 +11,7 @@ export interface SearchProps
   placeholder?: string;
   debounceTime?: number;
   width?: string;
+  value?: string;
 }
 
 const SearchContainer = styled.div<{ width: string }>`
@@ -74,9 +75,14 @@ const Search: React.FC<SearchProps> = ({
   onChangeCallback,
   debounceTime = 500,
   width = "20rem",
+  value = "",
   ...rest
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(value);
+
+  useEffect(() => {
+    setSearchTerm(value)
+  }, [value])
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
