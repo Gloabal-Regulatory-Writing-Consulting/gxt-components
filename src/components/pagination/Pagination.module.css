@@ -22,6 +22,12 @@
     letter-spacing: 0.00119rem;
     text-align: center;
     cursor: pointer;
+    margin-left: 0.1rem;
+}
+
+.pages-count:hover {
+  background: var(--primary-300, #115873);
+  color: var(--system-50, #FFF);
 }
 
 .pages-count>a {
@@ -32,11 +38,6 @@
     border: 2px solid var(--primary-100, #1C99CE);
     background: var(--system-50, #FFF);
     color: var(--primary-200, #177ba6);
-}
-
-.active-page:hover {
-    background: var(--primary-300, #115873);
-    color: var(--system-50, #FFF);
 }
 
 .next-pre-btn>a {

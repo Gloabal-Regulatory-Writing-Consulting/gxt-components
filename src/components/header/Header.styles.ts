@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Heading = styled.h1`
-  color: var(--primary-200, #177ba6);
+  color: var(--primary-400, #0a3a4c);
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
