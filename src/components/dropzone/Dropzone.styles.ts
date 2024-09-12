@@ -15,7 +15,7 @@ export const DropzoneLabel = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--primary-200, #177ba6);
