@@ -25,7 +25,7 @@ interface AccordionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
   isSearchAble?: boolean;
-  onChangeCallback?: () => void;
+  onChangeCallback?: (searchTerm: string) => void;
 }
 
 const AccordionHeader = function HeaderComponent({
@@ -50,14 +50,34 @@ const AccordionContent = function ContentComponent({
   onChangeCallback = () => {},
   ...rest
 }: AccordionContentProps) {
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearchChange = (searchTerm: string) => {
+    setSearchText(searchTerm);
+    onChangeCallback(searchTerm);
+  };
+
+  const filteredChildren = React.Children.toArray(children).filter(
+    (child: any) => {
+      return child.props.label
+        ?.toLowerCase()
+        .includes(searchText.toLowerCase());
+    },
+  );
+
   return (
     <Content open={!!isOpen} {...rest}>
       {isSearchAble && (
         <SearchBox>
-          <Search onChangeCallback={onChangeCallback} width="100%" />
+          <Search
+            value={searchText}
+            onChangeCallback={handleSearchChange}
+            width="100%"
+            placeholder="Search options..."
+          />
         </SearchBox>
       )}
-      {children}
+      {filteredChildren}
     </Content>
   );
 };
