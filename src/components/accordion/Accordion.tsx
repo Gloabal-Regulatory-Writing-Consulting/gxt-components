@@ -59,7 +59,7 @@ const AccordionContent = function ContentComponent({
 
   const filteredChildren = React.Children.toArray(children).filter(
     (child: any) => {
-      return child.props.label
+      return child.props?.label
         ?.toLowerCase()
         .includes(searchText.toLowerCase());
     },

@@ -26,7 +26,7 @@ exports[`Navitem component > applies active styles when link is active 1`] = `
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -62,7 +62,7 @@ exports[`Navitem component > applies correct icon color when link is active 1`] 
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -95,7 +95,7 @@ exports[`Navitem component > applies correct icon color when link is not active 
           />
         </div>
         <p
-          class="sc-fqkwJk ijTCaO"
+          class="sc-fqkwJk fFtWrx"
         >
           Home
         </p>
@@ -128,7 +128,7 @@ exports[`Navitem component > does not apply active styles when link is not activ
           />
         </div>
         <p
-          class="sc-fqkwJk ijTCaO"
+          class="sc-fqkwJk fFtWrx"
         >
           Home
         </p>
@@ -163,7 +163,7 @@ exports[`Navitem component > does not render expanded text when isExpanded is fa
           />
         </div>
         <p
-          class="sc-fqkwJk bnbWnV"
+          class="sc-fqkwJk fDjqbC"
         >
           Home
         </p>
@@ -192,7 +192,7 @@ exports[`Navitem component > does not render icon when not provided 1`] = `
           class="sc-eqUzNf kbmWsj"
         />
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -227,7 +227,7 @@ exports[`Navitem component > renders expanded text when isExpanded is true 1`] =
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -262,7 +262,7 @@ exports[`Navitem component > renders icon when provided 1`] = `
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -297,7 +297,7 @@ exports[`Navitem component > renders with correct text 1`] = `
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>
@@ -332,7 +332,7 @@ exports[`Navitem component > renders without crashing 1`] = `
           />
         </div>
         <p
-          class="sc-fqkwJk hXGbbs"
+          class="sc-fqkwJk lmZzif"
         >
           Home
         </p>

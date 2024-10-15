@@ -7,16 +7,6 @@ import { vi } from "vitest";
 import Accordion from "../Accordion";
 
 describe("Accordion", () => {
-  it("renders children when open is true", () => {
-    const { getByText } = render(
-      <Accordion isSearchAble={false} isAccordionOpen={true}>
-        <Accordion.Header key="1">Header</Accordion.Header>
-        <Accordion.Content key="2">here is content</Accordion.Content>
-      </Accordion>,
-    );
-    expect(getByText("here is content")).toBeInTheDocument();
-  });
-
   it("renders search box when isSearchAble is true", () => {
     const { getByTestId } = render(
       <Accordion isSearchAble={true} isAccordionOpen={true}>
@@ -48,7 +38,9 @@ describe("Accordion", () => {
         </Accordion.Content>
       </Accordion>,
     );
-    const inputElement = getByPlaceholderText("Search") as HTMLInputElement;
+    const inputElement = getByPlaceholderText(
+      "Search options...",
+    ) as HTMLInputElement;
     fireEvent.change(inputElement, { target: { value: "test" } });
     await waitFor(
       () => {

@@ -14,8 +14,21 @@ exports[`Dropzone component > should render without errors 1`] = `
     type="file"
   />
   <label
-    class="sc-gsFSjX hfRpFU"
+    class="sc-gsFSjX brWhWZ"
   >
+    <svg
+      class="custom-icon"
+      fill="var(--neutral-200, #9CA3AF)"
+      height="30"
+      viewBox="0 0 32 33"
+      width="30"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17.5 23V24.5H14.5V23V6.625L8.5625 12.5625L7.5 13.625L5.375 11.5L6.4375 10.4375L14.9375 1.9375L16 0.875L17.0625 1.9375L25.5625 10.4375L26.625 11.5L24.5 13.625L23.4375 12.5625L17.5 6.625V23ZM19.5 22.5V19.5H29H32V22.5V29.5V32.5H29H3H0V29.5V22.5V19.5H3H12.5V22.5H3V29.5H29V22.5H19.5ZM24 26C24 25.1875 24.625 24.5 25.5 24.5C26.3125 24.5 27 25.1875 27 26C27 26.875 26.3125 27.5 25.5 27.5C24.625 27.5 24 26.875 24 26Z"
+        fill="#177BA6"
+      />
+    </svg>
     <p
       class="sc-kAycRU"
     >
