@@ -17,6 +17,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   overlay?: boolean;
   maxWidth?: string;
   maxHeight?: string;
+  overlayClassName?: string;
   onClose?: () => void;
   isOpen: boolean;
 }
@@ -32,6 +33,7 @@ const Modal: FC<ModalProps> & {
   overlay = true,
   maxWidth = "18rem",
   maxHeight,
+  overlayClassName,
   onClose = () => {},
   isOpen,
   ...rest
@@ -44,6 +46,7 @@ const Modal: FC<ModalProps> & {
         $overlayBackground={overlayBackground}
         $showBackground={overlay}
         onClick={onClose}
+        className={overlayClassName}
         data-testid="modal-overlay"
       >
         <StyledModalWrapper
