@@ -29,6 +29,16 @@ export const Content = styled.div<{ open: boolean }>`
   flex-direction: column;
 `;
 
+export const Box = styled.div<{ open: boolean }>`
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.0012em;
+  text-align: left;
+  display: ${({ open }) => (open ? "flex" : "none")};
+  flex-direction: column;
+`;
+
 export const AccordionIcon = styled.span<{ $isOpen: boolean }>`
   transition: transform 0.3s ease-in-out;
   transform: ${({ $isOpen }) =>

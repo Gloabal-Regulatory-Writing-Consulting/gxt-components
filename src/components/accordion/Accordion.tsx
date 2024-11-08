@@ -6,6 +6,7 @@ import { useSlots } from "../../hooks/useSlots";
 import {
   AccordionContainer,
   AccordionIcon,
+  Box,
   Content,
   Header,
   SearchBox,
@@ -16,6 +17,7 @@ export interface AccordionProps {
   children: ReactNode;
   isSearchAble?: boolean;
   isAccordionOpen?: boolean;
+  onChangeCallback?: (searchTerm: string) => void;
 }
 
 interface AccordionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,8 +26,7 @@ interface AccordionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
-  isSearchAble?: boolean;
-  onChangeCallback?: (searchTerm: string) => void;
+  searchText?: string;
 }
 
 const AccordionHeader = function HeaderComponent({
@@ -45,18 +46,10 @@ const AccordionHeader = function HeaderComponent({
 
 const AccordionContent = function ContentComponent({
   isOpen,
-  isSearchAble,
   children,
-  onChangeCallback = () => {},
+  searchText = "",
   ...rest
 }: AccordionContentProps) {
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearchChange = (searchTerm: string) => {
-    setSearchText(searchTerm);
-    onChangeCallback(searchTerm);
-  };
-
   const filteredChildren = React.Children.toArray(children).filter(
     (child: any) => {
       return child.props?.label
@@ -67,16 +60,6 @@ const AccordionContent = function ContentComponent({
 
   return (
     <Content open={!!isOpen} {...rest}>
-      {isSearchAble && (
-        <SearchBox>
-          <Search
-            value={searchText}
-            onChangeCallback={handleSearchChange}
-            width="100%"
-            placeholder="Search options..."
-          />
-        </SearchBox>
-      )}
       {filteredChildren}
     </Content>
   );
@@ -85,8 +68,14 @@ const AccordionContent = function ContentComponent({
 const Accordion: React.FC<AccordionProps> & {
   Header: typeof AccordionHeader;
   Content: typeof AccordionContent;
-} = ({ children, isSearchAble = false, isAccordionOpen = true }) => {
+} = ({
+  children,
+  isSearchAble = false,
+  isAccordionOpen = true,
+  onChangeCallback = () => {},
+}) => {
   const [isOpen, setIsOpen] = useState(isAccordionOpen);
+  const [searchText, setSearchText] = useState("");
 
   const [{ HeaderSlot, ContentSlot }, restChildren] = useSlots(children, {
     HeaderSlot: AccordionHeader,
@@ -97,6 +86,11 @@ const Accordion: React.FC<AccordionProps> & {
     setIsOpen(!isOpen);
   };
 
+  const handleSearchChange = (searchTerm: string) => {
+    setSearchText(searchTerm);
+    onChangeCallback(searchTerm);
+  };
+
   useEffect(() => {
     setIsOpen(isAccordionOpen);
   }, [isAccordionOpen]);
@@ -105,7 +99,21 @@ const Accordion: React.FC<AccordionProps> & {
     <AccordionContainer>
       {HeaderSlot && <HeaderSlot isOpen={isOpen} onClick={handleToggle} />}
       {ContentSlot && (
-        <ContentSlot isSearchAble={!!isSearchAble} isOpen={!!isOpen} />
+        <>
+          <Box open={!!isOpen}>
+            {isSearchAble && (
+              <SearchBox>
+                <Search
+                  value={searchText}
+                  onChangeCallback={handleSearchChange}
+                  width="100%"
+                  placeholder="Search options..."
+                />
+              </SearchBox>
+            )}
+          </Box>
+          <ContentSlot isOpen={!!isOpen} searchText={searchText} />
+        </>
       )}
       {restChildren}
     </AccordionContainer>
