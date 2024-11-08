@@ -19,9 +19,13 @@ const Filter = ({
   filters: Record<string, string[]>;
 }) => {
   return (
-    <Accordion isSearchAble={isSearchAble} isAccordionOpen={isAccordionOpen}>
+    <Accordion
+      isSearchAble={isSearchAble}
+      isAccordionOpen={isAccordionOpen}
+      onChangeCallback={onChangeCallback}
+    >
       <Accordion.Header>{header}</Accordion.Header>
-      <Accordion.Content onChangeCallback={onChangeCallback}>
+      <Accordion.Content>
         {checkboxOptions.map((checkboxOption, optionIndex) => (
           <CheckboxInput
             $inputSize="xs"
