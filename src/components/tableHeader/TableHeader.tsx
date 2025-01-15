@@ -35,14 +35,14 @@ const TableHeader: React.FC<ITableHeader> = ({
   const { column, order } = activeColumn;
 
   const ArrowUpIcon = useMemo(() => {
-    if (column === ColumnName && order === "DESC") {
+    if (column === ColumnName && order === "ASC") {
       return ArrowUpFilled;
     }
     return ArrowUp;
   }, [column, order, ColumnName]);
 
   const ArrowDownIcon = useMemo(() => {
-    if (column === ColumnName && order === "ASC") {
+    if (column === ColumnName && order === "DESC") {
       return ArrowDownFilled;
     }
     return ArrowDown;
@@ -58,14 +58,14 @@ const TableHeader: React.FC<ITableHeader> = ({
       >
         <ArrowWrapper>
           <ArrowUpIcon
-            onClick={() => handleColumnSort("DESC", ColumnName)}
+            onClick={() => handleColumnSort("ASC", ColumnName)}
             data-testid="arrow-up-icon"
             fill="var(--system-50, #fff)"
           />
         </ArrowWrapper>
         <ArrowWrapper>
           <ArrowDownIcon
-            onClick={() => handleColumnSort("ASC", ColumnName)}
+            onClick={() => handleColumnSort("DESC", ColumnName)}
             data-testid="arrow-down-icon"
             fill="var(--system-50, #fff)"
           />
