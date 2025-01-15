@@ -18,6 +18,7 @@ export interface AlertMessageProps {
   alertType?: "positive" | "negative" | "warning";
   display?: boolean;
   onLinkClick?: () => void;
+  onClose?: () => void;
 }
 
 export const AlertMessage: React.FC<AlertMessageProps> = ({
@@ -26,10 +27,12 @@ export const AlertMessage: React.FC<AlertMessageProps> = ({
   alertType = "positive",
   display = true,
   onLinkClick = () => {},
+  onClose = () => {},
 }) => {
   const [displayAlert, setDisplayAlert] = useState(display);
   const handleCancelAlert = () => {
     setDisplayAlert(false);
+    onClose();
   };
 
   return (
