@@ -11,7 +11,7 @@ export const TableHeaderExample: Story = {
   args: {
     ColumnName: "id",
     handleColumnSort: (order, columnName) => {
-      console.log("handleColumnSort");
+      console.log("handleColumnSort", order, columnName);
     },
     Title: "New Column",
     backgroundColor: "var(--primary-200, #177ba6)",
