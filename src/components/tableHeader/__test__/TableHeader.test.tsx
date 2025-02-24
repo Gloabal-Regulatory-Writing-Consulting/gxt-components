@@ -31,7 +31,7 @@ describe("TableHeader Component", () => {
     expect(sortContainer).toHaveStyle({ display: "none" });
   });
 
-  it("calls handleColumnSort with DESC order when the up arrow icon is clicked", () => {
+  it("calls handleColumnSort with ASC order when the up arrow icon is clicked", () => {
     render(
       <TableHeader
         Title="Name"
@@ -42,10 +42,10 @@ describe("TableHeader Component", () => {
 
     fireEvent.click(screen.getByTestId("arrow-up-icon"));
 
-    expect(handleColumnSortMock).toHaveBeenCalledWith("DESC", "name");
+    expect(handleColumnSortMock).toHaveBeenCalledWith("ASC", "name");
   });
 
-  it("calls handleColumnSort with ASC order when the down arrow icon is clicked", () => {
+  it("calls handleColumnSort with DESC order when the down arrow icon is clicked", () => {
     render(
       <TableHeader
         Title="Name"
@@ -56,7 +56,7 @@ describe("TableHeader Component", () => {
 
     fireEvent.click(screen.getByTestId("arrow-down-icon"));
 
-    expect(handleColumnSortMock).toHaveBeenCalledWith("ASC", "name");
+    expect(handleColumnSortMock).toHaveBeenCalledWith("DESC", "name");
   });
 
   it("does not break when className is provided", () => {
